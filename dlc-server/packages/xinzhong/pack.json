@@ -1,0 +1,11 @@
+{
+  "id": "xinzhong",
+  "kind": "pack",
+  "name": "新钟",
+  "version": "1.0.0",
+  "description": "山门新钟一响：第一幕开幕换句，闪步精英更偏。只改幕池，不改关卡几何。",
+  "builtin": true,
+  "tags": [
+    "stage"
+  ]
+}

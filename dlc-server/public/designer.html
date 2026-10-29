@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>设计台·拼装 · 藏经阁</title>
+  <meta name="description" content="《长夜安魂曲》藏经阁设计台 — 人话积木拼装内容卷" />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="/assets/designer.css" />
+</head>
+<body class="designer-page">
+  <div class="ink-bg" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true"></div>
+
+  <header class="masthead designer-mast">
+    <div class="mast-inner">
+      <p class="eyebrow">藏经阁 · 长夜安魂曲</p>
+      <h1>设计台·拼装</h1>
+      <p class="tagline">点积木、拨滑杆，拼出敌寇与浪次 — 右侧纸墨即时可见</p>
+    </div>
+    <nav class="designer-nav" aria-label="馆内导航">
+      <a href="/">← 回藏经阁</a>
+      <a href="/UPLOAD.md">入藏说明</a>
+    </nav>
+  </header>
+
+  <!-- 向导首页 -->
+  <section id="wizard-home" class="wizard-home">
+    <p class="wizard-lead">先选一件事做起。做完可随时导出卷册；高级工坊收在下面。</p>
+    <div class="wizard-cards">
+      <button type="button" class="wizard-card" data-wizard="enemy">
+        <span class="wc-icon" aria-hidden="true">寇</span>
+        <h2>做一个敌寇</h2>
+        <p>定长相、怎么打、随身带什么。编号会自动起好。</p>
+      </button>
+      <button type="button" class="wizard-card" data-wizard="weapon">
+        <span class="wc-icon" aria-hidden="true">刃</span>
+        <h2>做一把兵刃</h2>
+        <p>拼外观积木、数值手感、普攻链 Style，再挂一招外功（既有攻击盒）。</p>
+      </button>
+      <button type="button" class="wizard-card" data-wizard="moves">
+        <span class="wc-icon" aria-hidden="true">符</span>
+        <h2>做一套招式 / 符</h2>
+        <p>拼符效时间轴（含锥伤/横幅等 19 kind），再挂灵符 Def；或招式样子。</p>
+      </button>
+      <button type="button" class="wizard-card" data-wizard="stage">
+        <span class="wc-icon" aria-hidden="true">浪</span>
+        <h2>编一关浪次</h2>
+        <p>排谁先出场、精英偏重；Boss 怎么凶请先在玩法目录编 kit，再挂关卡 kit。</p>
+      </button>
+      <button type="button" class="wizard-card" data-wizard="acts">
+        <span class="wc-icon" aria-hidden="true">池</span>
+        <h2>编整幕默认</h2>
+        <p>四幕精英权重 / 掉落偏向 / Lore / 幕间字幕。与关卡浪次分家，勿混进同一表单。</p>
+      </button>
+    </div>
+    <details class="workshop-fold">
+      <summary>整卷工坊（高级）</summary>
+      <p class="hint">卷元数据、全部积木分区、JSON 导入导出 — 给熟手用。</p>
+      <div class="workshop-links">
+        <button type="button" class="btn-ink" data-goto="meta">卷题签</button>
+        <button type="button" class="btn-ink" data-goto="behaviors">怎么打</button>
+        <button type="button" class="btn-ink" data-goto="silhouettes">长相</button>
+        <button type="button" class="btn-ink" data-goto="weaponLooks">兵器长相</button>
+        <button type="button" class="btn-ink" data-goto="animRecipes">招式样子</button>
+        <button type="button" class="btn-ink" data-goto="talismanScripts">符效</button>
+        <button type="button" class="btn-ink" data-goto="gameplay">玩法目录</button>
+        <button type="button" class="btn-ink" data-goto="stages">关卡浪次</button>
+        <button type="button" class="btn-ink" data-goto="acts">幕池</button>
+        <button type="button" class="btn-ink" data-goto="io">导出 / 导入</button>
+      </div>
+    </details>
+  </section>
+
+  <nav class="tabs designer-tabs" id="designer-tabs" role="tablist" aria-label="设计分区" hidden>
+    <button type="button" class="tab" data-panel="home" role="tab">← 向导</button>
+    <button type="button" class="tab" data-panel="meta" role="tab">卷题签</button>
+    <button type="button" class="tab" data-panel="weaponLooks" role="tab">兵器长相</button>
+    <button type="button" class="tab" data-panel="animRecipes" role="tab">招式样子</button>
+    <button type="button" class="tab" data-panel="talismanScripts" role="tab">符效</button>
+    <button type="button" class="tab" data-panel="silhouettes" role="tab">长相</button>
+    <button type="button" class="tab" data-panel="behaviors" role="tab">怎么打</button>
+    <button type="button" class="tab" data-panel="gameplay" role="tab">玩法目录</button>
+    <button type="button" class="tab" data-panel="stages" role="tab">关卡浪次</button>
+    <button type="button" class="tab" data-panel="acts" role="tab">幕池</button>
+    <button type="button" class="tab" data-panel="io" role="tab">导出</button>
+  </nav>
+
+  <main class="designer-main" id="designer-main" hidden>
+    <section id="panel-meta" class="panel" role="tabpanel" hidden>
+      <div class="panel-card">
+        <h2>卷册题签</h2>
+        <div class="form-grid" id="meta-form"></div>
+        <p class="hint">卷号用小写字母数字与 -_；与入藏文件夹名一致。可先起名再改号。</p>
+      </div>
+    </section>
+
+    <section id="panel-weaponLooks" class="panel" role="tabpanel" hidden>
+      <div class="split with-preview">
+        <aside class="block-tray" id="tray-weaponLooks" aria-label="兵器零件"></aside>
+        <div class="recipe-stage">
+          <div class="recipe-toolbar">
+            <button type="button" class="btn-ink" data-add-recipe="weaponLooks">＋ 新兵器长相</button>
+            <select id="sel-weaponLooks" class="ink-select" aria-label="外观列表"></select>
+            <button type="button" class="btn-ink danger-soft" data-del-recipe="weaponLooks">删</button>
+          </div>
+          <div id="editor-weaponLooks" class="recipe-editor"></div>
+        </div>
+        <aside class="human-preview" id="preview-weaponLooks" aria-live="polite"></aside>
+      </div>
+    </section>
+
+    <section id="panel-animRecipes" class="panel" role="tabpanel" hidden>
+      <div class="split with-preview">
+        <aside class="block-tray" id="tray-animRecipes" aria-label="动画积木"></aside>
+        <div class="recipe-stage">
+          <div class="recipe-toolbar">
+            <button type="button" class="btn-ink" data-add-recipe="animRecipes">＋ 新招式样子</button>
+            <select id="sel-animRecipes" class="ink-select" aria-label="配方列表"></select>
+            <button type="button" class="btn-ink danger-soft" data-del-recipe="animRecipes">删</button>
+          </div>
+          <div id="editor-animRecipes" class="recipe-editor"></div>
+        </div>
+        <aside class="human-preview" id="preview-animRecipes" aria-live="polite"></aside>
+      </div>
+    </section>
+
+    <section id="panel-talismanScripts" class="panel" role="tabpanel" hidden>
+      <div class="split with-preview">
+        <aside class="block-tray" id="tray-talismanScripts" aria-label="符效积木"></aside>
+        <div class="recipe-stage">
+          <div class="recipe-toolbar">
+            <button type="button" class="btn-ink" data-add-recipe="talismanScripts">＋ 新符效</button>
+            <select id="sel-talismanScripts" class="ink-select" aria-label="符效列表"></select>
+            <button type="button" class="btn-ink danger-soft" data-del-recipe="talismanScripts">删</button>
+          </div>
+          <div id="editor-talismanScripts" class="recipe-editor"></div>
+        </div>
+        <aside class="human-preview" id="preview-talismanScripts" aria-live="polite"></aside>
+      </div>
+    </section>
+
+    <section id="panel-silhouettes" class="panel" role="tabpanel" hidden>
+      <div class="split with-preview">
+        <aside class="block-tray" id="tray-silhouettes" aria-label="长相积木"></aside>
+        <div class="recipe-stage">
+          <div class="recipe-toolbar">
+            <button type="button" class="btn-ink" data-add-recipe="silhouettes">＋ 新长相</button>
+            <select id="sel-silhouettes" class="ink-select" aria-label="剪影列表"></select>
+            <button type="button" class="btn-ink danger-soft" data-del-recipe="silhouettes">删</button>
+          </div>
+          <div id="editor-silhouettes" class="recipe-editor"></div>
+        </div>
+        <aside class="human-preview" id="preview-silhouettes" aria-live="polite"></aside>
+      </div>
+    </section>
+
+    <section id="panel-behaviors" class="panel" role="tabpanel" hidden>
+      <div class="split with-preview">
+        <aside class="block-tray" id="tray-behaviors" aria-label="怎么打积木"></aside>
+        <div class="recipe-stage">
+          <div class="recipe-toolbar">
+            <button type="button" class="btn-ink" data-add-recipe="behaviors">＋ 新打法</button>
+            <select id="sel-behaviors" class="ink-select" aria-label="行为列表"></select>
+            <button type="button" class="btn-ink danger-soft" data-del-recipe="behaviors">删</button>
+          </div>
+          <div id="editor-behaviors" class="recipe-editor"></div>
+        </div>
+        <aside class="human-preview" id="preview-behaviors" aria-live="polite"></aside>
+      </div>
+    </section>
+
+    <section id="panel-gameplay" class="panel" role="tabpanel" hidden>
+      <div class="panel-card">
+        <h2>玩法目录</h2>
+        <p class="hint">攻击盒 / 攻击姿态（含 locomotion：hp.*/sp.* 前缀；三帧同填） / 特效配方 / <b>投射物</b>（projectiles：drawKind 闭集 arrow|fireball）/ <b>弹幕模板</b>（volleys：style 闭集三）/ <b>图集</b>（sheets：src 须 ./art/；禁外链）/ <b>音效</b>（sfx：synth 和/或 src+format；文件须放 public/art/audio/，馆包不送达二进制）/ <b>幕氛围</b>（backdrops：theme 闭集四）/ 敌寇（behaviorId·silhouetteId·colliderId·<b>kitId</b>）/ 碰撞盒 / <b>Boss 招式</b>（bossMoves：kind 闭集 10 + 调参）/ <b>Boss 怎么凶</b>（bossKits：close/far 加权）/ <b>精英词条</b>（eliteMods）/ <b>残页</b>（fragments：tag 闭集五）/ <b>称号</b>（titles）/ <b>材料</b>（materials）/ <b>防具套装</b>（armorSets：slots 闭集七）/ <b>防具单件</b>（armorPieces）/ <b>兵器词缀</b>（wepAffixes）/ <b>场地词缀</b>（affixes）/ <b>丹药</b>（pills：effect 点路径；cost→materials）/ <b>内功</b>（neigong：effects 五阶数组；meditateCost→materials）/ 普攻链 Style / 兵器 / 外功 / 符 — 与长相、打法、碰撞、攻击盒、姿态、特效、投射物、弹幕、图集、音效、幕氛围、Boss 招、精英/残页/称号/材料/防具/词缀/丹/内功编号互相引用。兵器 craft / 符·丹 cost / 内功 meditateCost 可点本卷材料 id。不做实时飞行/Boss 战斗预览；不做 PNG 上传 / 音频预览；不扩 FragmentTag / 装甲槽 / 场地词缀效果词汇 / aura·sfx lit；可编<strong>场地词缀</strong>（affixes）；关卡 affixBias 可点本卷/核心 id（导演已读 prefer-subset）；可编<strong>丹药 / 内功</strong>；不做喝药实时预览；幕池（acts）见独立「幕池」页（与关卡分栏）。</p>
+        <div class="recipe-toolbar">
+          <select id="sel-gp-kind" class="ink-select">
+            <option value="attacks">攻击盒</option>
+            <option value="poses">攻击姿态（含 loco）</option>
+            <option value="fxRecipes">特效配方</option>
+            <option value="projectiles">投射物</option>
+            <option value="volleys">弹幕模板</option>
+            <option value="sheets">图集</option>
+            <option value="sfx">音效</option>
+            <option value="backdrops">幕氛围</option>
+            <option value="enemies">敌寇</option>
+            <option value="colliders">碰撞盒</option>
+            <option value="bossMoves">Boss 招式</option>
+            <option value="bossKits">Boss 怎么凶</option>
+            <option value="eliteMods">精英词条</option>
+            <option value="fragments">残页</option>
+            <option value="titles">称号</option>
+            <option value="materials">材料</option>
+            <option value="armorSets">防具套装</option>
+            <option value="armorPieces">防具单件</option>
+            <option value="wepAffixes">兵器词缀</option>
+            <option value="affixes">场地词缀</option>
+            <option value="pills">丹药</option>
+            <option value="neigong">内功</option>
+            <option value="combatStyles">普攻链 Style</option>
+            <option value="weapons">兵器</option>
+            <option value="skills">外功</option>
+            <option value="talismans">符</option>
+          </select>
+          <button type="button" class="btn-ink" id="btn-gp-add">＋ 新增</button>
+          <select id="sel-gp-item" class="ink-select"></select>
+          <button type="button" class="btn-ink danger-soft" id="btn-gp-del">删</button>
+        </div>
+        <div class="gp-with-preview">
+          <div id="editor-gameplay" class="recipe-editor"></div>
+          <aside class="human-preview" id="preview-gameplay" aria-live="polite"></aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="panel-stages" class="panel" role="tabpanel" hidden>
+      <div class="split with-preview stages-split">
+        <div class="recipe-stage span-tray">
+          <div class="panel-card flat">
+            <h2>编一关浪次</h2>
+            <p class="hint">出场顺序、精英偏重、场地偏味。精英偏重：玩法目录编 eliteMods，再在场地填 eliteWeight（可点本卷/核心精英 id）。场地偏味：玩法目录编 affixes，再在场地填 affixBias（可点本卷/核心词缀 id；导演已读 prefer-subset·债#5）。Boss「怎么凶」：玩法目录编 bossKits（+ 可选 bossMoves），再在下方 Boss 遭遇填 kit（优先于敌寇 kitId）。<b>整幕默认</b>精英权重 / 掉落偏向 / Lore / 幕间字幕请到「幕池」页 — 勿把 ActPool 嵌进本表单。</p>
+            <div class="recipe-toolbar">
+              <button type="button" class="btn-ink" id="btn-stage-add">＋ 新幕</button>
+              <select id="sel-stages" class="ink-select"></select>
+              <button type="button" class="btn-ink danger-soft" id="btn-stage-del">删</button>
+            </div>
+            <div id="editor-stages" class="recipe-editor"></div>
+          </div>
+        </div>
+        <aside class="human-preview" id="preview-stages" aria-live="polite"></aside>
+      </div>
+    </section>
+
+
+    <section id="panel-acts" class="panel" role="tabpanel" hidden>
+      <div class="split with-preview stages-split">
+        <div class="recipe-stage span-tray">
+          <div class="panel-card flat">
+            <h2>幕池 · 整幕默认</h2>
+            <p class="hint">与「关卡浪次」分栏：本页编整幕 <code>eliteWeights</code> / 掉落偏向 / <code>loreLine</code> / 幕间 <code>betweenActs</code>；关卡页只管几何、波次、场内 beat、单场覆盖。<code>kit</code> 开放 string（核心+本卷 bossKits）。导出 <code>content.acts = { pools, beats }</code>，可被远程 apply 吃。不做掉落模拟预览。</p>
+            <h3 class="stage-sublabel">幕池 pools</h3>
+            <div class="recipe-toolbar">
+              <button type="button" class="btn-ink" id="btn-act-pool-add">＋ 新幕池</button>
+              <select id="sel-act-pools" class="ink-select" aria-label="幕池列表"></select>
+              <button type="button" class="btn-ink danger-soft" id="btn-act-pool-del">删</button>
+            </div>
+            <div id="editor-act-pools" class="recipe-editor"></div>
+            <h3 class="stage-sublabel">幕间字幕 beats</h3>
+            <div class="recipe-toolbar">
+              <button type="button" class="btn-ink" id="btn-act-beat-add">＋ 新幕间</button>
+              <select id="sel-act-beats" class="ink-select" aria-label="幕间列表"></select>
+              <button type="button" class="btn-ink danger-soft" id="btn-act-beat-del">删</button>
+            </div>
+            <div id="editor-act-beats" class="recipe-editor"></div>
+          </div>
+        </div>
+        <aside class="human-preview" id="preview-acts" aria-live="polite"></aside>
+      </div>
+    </section>
+
+    <section id="panel-io" class="panel" role="tabpanel" hidden>
+      <div class="panel-card">
+        <h2>导出 / 导入</h2>
+        <p class="hint">日常看右侧人话预览即可；这里才是 JSON。可下载或持令牌入藏。</p>
+        <div class="io-actions">
+          <button type="button" class="btn-ink" id="btn-export-pack">下载 pack.json</button>
+          <button type="button" class="btn-ink" id="btn-export-content">下载 content.json</button>
+          <button type="button" class="btn-warm" id="btn-export-both">打包下载两份</button>
+          <label class="btn-ink file-btn">导入 JSON<input type="file" id="import-file" accept="application/json,.json" hidden /></label>
+        </div>
+        <div class="token-row">
+          <label class="field span-2">
+            <span>入藏令牌（仅本机记住）</span>
+            <input type="password" id="upload-token" autocomplete="off" />
+          </label>
+          <button type="button" class="btn-warm" id="btn-upload">入藏</button>
+        </div>
+        <pre id="export-preview" class="export-preview" hidden></pre>
+        <button type="button" class="btn-ink" id="btn-toggle-json">显示 / 隐藏 JSON</button>
+        <p id="upload-status" class="hint" role="status"></p>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+  <script src="/assets/designer-preview.js" defer></script>
+  <script src="/assets/designer.js" defer></script>
+</body>
+</html>

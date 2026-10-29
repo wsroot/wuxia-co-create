@@ -1,0 +1,25 @@
+=== Paper stats (optimistic cancel into next @ active end) ===
+silver  Lv1 medium chain=45 dmg / 41f  dps=65.85  shieldTTK≈1.21s  bossChains≈20  dash=14
+thorn   Lv1 light  chain=30 dmg / 35f  dps=51.43  shieldTTK≈1.56s  bossChains≈30  dash=10
+spear   Lv1 medium chain=38 dmg / 40f  dps=57  shieldTTK≈1.4s  bossChains≈23.7  dash=12
+axe     Lv1 heavy  chain=66 dmg / 56f  dps=70.71  shieldTTK≈1.13s  bossChains≈13.6  dash=20
+twin    Lv1 light  chain=38 dmg / 36f  dps=63.33  shieldTTK≈1.26s  bossChains≈23.7  dash=17
+bell    Lv1 heavy  chain=45 dmg / 50f  dps=54  shieldTTK≈1.48s  bossChains≈20  dash=14
+--- Lv5 ---
+silver  Lv5          chain=51  dps=74.63  bossChains≈17.6  bossTTK≈12.1s
+thorn   Lv5          chain=33  dps=56.57  bossChains≈27.3  bossTTK≈15.9s
+spear   Lv5          chain=43  dps=64.5  bossChains≈20.9  bossTTK≈14s
+axe     Lv5          chain=74  dps=79.29  bossChains≈12.2  bossTTK≈11.4s
+twin    Lv5          chain=44  dps=73.33  bossChains≈20.5  bossTTK≈12.3s
+bell    Lv5          chain=50  dps=60  bossChains≈18  bossTTK≈15s
+--- Affinity / identity ---
+silver slash1 reach=74 hs=5
+thorn  slash1 reach=52 hs=4 (light, snappy)
+spear  shieldAff chain=47 reach=110
+axe    bossAff chain=78 finisher hs=14
+twin   dash=17 reach=64 hs=10
+bell   bossAff chain=55 bossChains≈16.4
+live spear slash1: {"id":"spear","reach":110,"tipX":21,"pierce":true,"dmg":7}
+live axe boss: {"flash":40,"weapon":"axe","hs":14}
+live bell boss: {"flash":40,"weapon":"bell","bossHp":890}
+live twin dash: {"id":"twin","dashDmg":17,"reach":64,"hs":10}

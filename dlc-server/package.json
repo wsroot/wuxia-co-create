@@ -1,0 +1,13 @@
+{
+  "name": "requiem-dlc-server",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "《长夜安魂曲》DLC 目录与内容包下载服务（AIHome :4174）",
+  "scripts": {
+    "start": "node server.mjs",
+    "regen": "node scripts/regen-catalog.mjs",
+    "pack": "node scripts/pack-zip.mjs",
+    "seed-zips": "node scripts/pack-zip.mjs --all"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "shixiang",
+  "kind": "pack",
+  "name": "石像夜巡",
+  "version": "1.3.1",
+  "description": "古刹石醒：夜巡石俑入第一幕；Boss 石像夜巡无 body 组装键 + 夜巡石甲/突刺负载 + 灰石剪影 + 空档 Behavior 积木（Gsm5：face/keep/strafe；CORE gargoyle 仍无 steps）。Dfr4：kit 挂夜巡短啸/急火/迅潜 soft 三招（可辨于 CORE roar/dive/fireball omit）。需客户端已含 Boss 空档旁路与 dive/火球/震啸 soft。",
+  "builtin": true,
+  "tags": [
+    "enemy",
+    "stage",
+    "armor",
+    "skill"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "changye",
+  "kind": "pack",
+  "name": "长夜",
+  "version": "0.0.0-skeleton",
+  "description": "官方默认大包对照骨架（Oc5）。出厂体验以客户端 always-on 源插件 src/content/changye 为准；本目录供馆/设计台对照，非 OPTIONAL、不可当可关 DLC 替代源包。完整 content 未镜像（B 档以 Cordis 为准）。",
+  "builtin": true,
+  "tags": [
+    "menpai-bundle",
+    "stage",
+    "weapon",
+    "enemy"
+  ]
+}

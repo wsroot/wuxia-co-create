@@ -1,0 +1,213 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-29T05:42:05.322Z",
+  "packages": [
+    {
+      "id": "bingren",
+      "name": "残锋",
+      "kind": "pack",
+      "version": "1.0.0",
+      "description": "缺刃亦能成芒：残锋弯刀一柄（外观积木+残锋链 Style）+ 残锋诀一招（挂长夜刀芒盒）+ 自制招式样子残锋斩芒（playPose timeline:full 全时间轴）+ 冷芒特效配方与斩姿+ 残锋闲姿覆盖玩家站立（hp.idle）。W4/C·F3·X4·Pose3·Loco4 示范，只登记数据。",
+      "tags": [
+        "weapon",
+        "skill"
+      ],
+      "size": 7549,
+      "md5": "5d85ef97e3f5b2832a7672d5ad20b4d6",
+      "download": "/packages/bingren/content.json",
+      "content": "/packages/bingren/content.json",
+      "builtin": true
+    },
+    {
+      "id": "canye",
+      "name": "残夜",
+      "kind": "pack",
+      "version": "1.0.0",
+      "description": "残夜一脉：薄铜精英、裂气残页、夜行套装调参。只登记玩法副目录，不改关卡几何。",
+      "tags": [
+        "affix",
+        "armor"
+      ],
+      "size": 880,
+      "md5": "3f4dbcdcf0d51e455d498adf5f1cc644",
+      "download": "/packages/canye/content.json",
+      "content": "/packages/canye/content.json",
+      "builtin": true
+    },
+    {
+      "id": "canzhao",
+      "name": "残照",
+      "kind": "pack",
+      "version": "1.0.0",
+      "description": "残阳入骨一门外功：皮膜自固，余晖护身。",
+      "tags": [
+        "skill"
+      ],
+      "size": 519,
+      "md5": "a820f8619c32aae56bb44e1885491a37",
+      "download": "/packages/canzhao/content.json",
+      "content": "/packages/canzhao/content.json",
+      "builtin": true
+    },
+    {
+      "id": "changye",
+      "name": "长夜",
+      "kind": "pack",
+      "version": "0.0.0-skeleton",
+      "description": "官方默认大包对照骨架（Oc5）。出厂体验以客户端 always-on 源插件 src/content/changye 为准；本目录供馆/设计台对照，非 OPTIONAL、不可当可关 DLC 替代源包。完整 content 未镜像（B 档以 Cordis 为准）。",
+      "tags": [
+        "menpai-bundle",
+        "stage",
+        "weapon",
+        "enemy"
+      ],
+      "size": 239,
+      "md5": "cb1caa277719c9ff6d0a3d1b2f7e84af",
+      "download": "/packages/changye/content.json",
+      "content": "/packages/changye/content.json",
+      "builtin": true
+    },
+    {
+      "id": "chixia",
+      "name": "赤霞",
+      "kind": "pack",
+      "version": "1.0.0",
+      "description": "赤霞秘符一脉，焚身成焰，近身者皆退。",
+      "tags": [
+        "talisman"
+      ],
+      "size": 3700,
+      "md5": "b2a7c6f756b7049471e55d6ab77af29b",
+      "download": "/packages/chixia/content.json",
+      "content": "/packages/chixia/content.json",
+      "builtin": true
+    },
+    {
+      "id": "hanmang",
+      "name": "寒芒",
+      "kind": "pack",
+      "version": "1.0.0",
+      "description": "纸上凝霜，一枚寒芒符：身前寒刃锥击。",
+      "tags": [
+        "talisman"
+      ],
+      "size": 1343,
+      "md5": "46c01f3512e1106ed59144fc6b7f602a",
+      "download": "/packages/hanmang/content.json",
+      "content": "/packages/hanmang/content.json",
+      "builtin": true
+    },
+    {
+      "id": "molin",
+      "name": "墨鳞",
+      "kind": "pack",
+      "version": "1.0.0",
+      "description": "墨色鳞光一丹：入腹护体，刀剑暂难近身。",
+      "tags": [
+        "pill"
+      ],
+      "size": 815,
+      "md5": "048aba526829925c682a2cc763c19498",
+      "download": "/packages/molin/content.json",
+      "content": "/packages/molin/content.json",
+      "builtin": true
+    },
+    {
+      "id": "moyu",
+      "name": "墨羽",
+      "kind": "pack",
+      "version": "1.1.0",
+      "description": "墨羽一脉：自建墨箭（挂自建伤害盒 moyu_ink_shot）与慢雷弹幕 + 墨羽符一枚。R3 远程素材 + ArrowProj2 伤害软挂示范，只登记数据。",
+      "tags": [
+        "talisman",
+        "enemy"
+      ],
+      "size": 3848,
+      "md5": "e1ed6e4abbe8130ecdb825ba3c769607",
+      "download": "/packages/moyu/content.json",
+      "content": "/packages/moyu/content.json",
+      "builtin": true
+    },
+    {
+      "id": "qiangying",
+      "name": "枪影",
+      "kind": "pack",
+      "version": "1.1.0",
+      "description": "雨巷枪影：中距突刺杂兵入第一幕；枪影先锋可挂外功/符/丹/装。需客户端已含 spear 机体与敌人负载解释器。",
+      "tags": [
+        "enemy",
+        "stage",
+        "talisman",
+        "skill"
+      ],
+      "size": 6783,
+      "md5": "0c9b3f3a129e77ae30bd473e5bde4f5f",
+      "download": "/packages/qiangying/content.json",
+      "content": "/packages/qiangying/content.json",
+      "builtin": true
+    },
+    {
+      "id": "qingcheng",
+      "name": "青城",
+      "kind": "menpai",
+      "version": "1.0.0",
+      "description": "青城山门一脉，擅护体遁甲之术。",
+      "tags": [
+        "skill"
+      ],
+      "size": 477,
+      "md5": "0a4ac4f0c296d74c371374d4650c1d9e",
+      "download": "/packages/qingcheng/content.json",
+      "content": "/packages/qingcheng/content.json",
+      "builtin": true
+    },
+    {
+      "id": "shixiang",
+      "name": "石像夜巡",
+      "kind": "pack",
+      "version": "1.3.1",
+      "description": "古刹石醒：夜巡石俑入第一幕；Boss 石像夜巡无 body 组装键 + 夜巡石甲/突刺负载 + 灰石剪影 + 空档 Behavior 积木（Gsm5：face/keep/strafe；CORE gargoyle 仍无 steps）。Dfr4：kit 挂夜巡短啸/急火/迅潜 soft 三招（可辨于 CORE roar/dive/fireball omit）。需客户端已含 Boss 空档旁路与 dive/火球/震啸 soft。",
+      "tags": [
+        "enemy",
+        "stage",
+        "armor",
+        "skill"
+      ],
+      "size": 7017,
+      "md5": "6b46d7d319bb982987c8fa8cfd56a5f4",
+      "download": "/packages/shixiang/content.json",
+      "content": "/packages/shixiang/content.json",
+      "builtin": true
+    },
+    {
+      "id": "xinzhong",
+      "name": "新钟",
+      "kind": "pack",
+      "version": "1.0.0",
+      "description": "山门新钟一响：第一幕开幕换句，闪步精英更偏。只改幕池，不改关卡几何。",
+      "tags": [
+        "stage"
+      ],
+      "size": 835,
+      "md5": "61029db86eb75ecae19208aea547155f",
+      "download": "/packages/xinzhong/content.json",
+      "content": "/packages/xinzhong/content.json",
+      "builtin": true
+    },
+    {
+      "id": "yinfeng",
+      "name": "隐风",
+      "kind": "pack",
+      "version": "1.0.0",
+      "description": "馆藏试篇：一枚隐风符，轻身一瞬。仅存于藏经阁，非游戏内置。",
+      "tags": [
+        "talisman"
+      ],
+      "size": 1111,
+      "md5": "e8e3a6f9f709bc7d64edb3adc109bb8d",
+      "download": "/packages/yinfeng/content.json",
+      "content": "/packages/yinfeng/content.json",
+      "builtin": false
+    }
+  ]
+}

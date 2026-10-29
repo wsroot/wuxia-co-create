@@ -1,0 +1,324 @@
+{
+  "talismanScripts": [
+    {
+      "id": "qiangyingQiangmang",
+      "anim": "sealStampFull",
+      "steps": [
+        {
+          "kind": "fx",
+          "preset": "flare",
+          "at": "caster",
+          "size": 55,
+          "color": "#c07040"
+        },
+        {
+          "kind": "fx",
+          "preset": "swordQi",
+          "at": "caster",
+          "color": "#e09050"
+        },
+        {
+          "kind": "sfx",
+          "id": "slash"
+        },
+        {
+          "kind": "multihit",
+          "times": 2,
+          "gapFrames": 6,
+          "step": {
+            "kind": "damageCone",
+            "reach": 150,
+            "halfH": 48,
+            "damage": 9,
+            "kbX": 4,
+            "kbY": -2,
+            "hitstun": 12,
+            "heavy": true
+          }
+        },
+        {
+          "kind": "damageBox",
+          "w": 90,
+          "h": 50,
+          "ox": 70,
+          "oy": -35,
+          "damage": 6,
+          "kbX": 3
+        },
+        {
+          "kind": "shake",
+          "amp": 3,
+          "frames": 6
+        },
+        {
+          "kind": "wait",
+          "frames": 10
+        }
+      ]
+    }
+  ],
+  "talismans": [
+    {
+      "id": "qiangying_qiangmang",
+      "name": "枪芒符",
+      "fogName": "灵符·枪??",
+      "lore": "纸上凝枪意，一挥锋芒外吐。枪影先锋偶以此破势。",
+      "tip": "出征：身前枪芒锥击",
+      "color": "#c07040",
+      "cost": {
+        "iron": 1,
+        "silk": 1
+      },
+      "fee": 10,
+      "stockCap": 2,
+      "runCharges": 1,
+      "quality": "fan",
+      "grade": "xia",
+      "scriptId": "qiangyingQiangmang",
+      "icon": "H-05-tal-3"
+    }
+  ],
+  "silhouettes": [
+    {
+      "id": "qiangying_vanguard",
+      "body": "spear",
+      "baseRig": "spear",
+      "label": "枪影先锋剪影",
+      "parts": [
+        {
+          "kind": "mainhand",
+          "fromWeapon": true
+        },
+        {
+          "kind": "headgear",
+          "style": "topknot"
+        },
+        {
+          "kind": "palette",
+          "sash": "#c07040",
+          "eye": "#e09050",
+          "coat": "#182838"
+        },
+        {
+          "kind": "cloak",
+          "style": "ragged",
+          "sway": 1.2,
+          "color": "#1a2430"
+        },
+        {
+          "kind": "armorLayer",
+          "slot": "shoulder",
+          "style": "light",
+          "color": "#4a3840"
+        },
+        {
+          "kind": "ornament",
+          "slot": "waist",
+          "style": "bell",
+          "color": "#c07040"
+        },
+        {
+          "kind": "faceMark",
+          "style": "scar",
+          "color": "#602820"
+        },
+        {
+          "kind": "stanceBias",
+          "lean": 0.15,
+          "crouch": 0.05
+        }
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "qiangying_mid_spear",
+      "body": "spear",
+      "label": "枪影中距枪法",
+      "steps": [
+        {
+          "kind": "keepDistance",
+          "idealMin": 90,
+          "idealMax": 165,
+          "chase": 240,
+          "retreatSpeed": 2.6
+        },
+        {
+          "kind": "circleStrafe",
+          "radius": 130,
+          "speed": 1.35,
+          "weight": 0.7
+        },
+        {
+          "kind": "meleeAttack",
+          "attackKey": "thrust",
+          "rangeMin": 80,
+          "rangeMax": 175,
+          "weight": 2.0,
+          "cooldown": 52
+        },
+        {
+          "kind": "meleeAttack",
+          "attackKey": "lunge",
+          "rangeMin": 100,
+          "rangeMax": 220,
+          "weight": 1.0,
+          "cooldown": 44
+        },
+        {
+          "kind": "comboChain",
+          "attackKeys": [
+            "thrust",
+            "lunge"
+          ],
+          "gapFrames": 12,
+          "weight": 0.9,
+          "rangeMin": 70,
+          "rangeMax": 190
+        },
+        {
+          "kind": "dodge",
+          "range": 100,
+          "direction": "side",
+          "weight": 0.8,
+          "cooldown": 70
+        },
+        {
+          "kind": "flank",
+          "preferBehind": true,
+          "weight": 0.5
+        },
+        {
+          "kind": "retreatBurst",
+          "dist": 80,
+          "frames": 12,
+          "weight": 0.45
+        },
+        {
+          "kind": "phaseAtHp",
+          "below": 0.4,
+          "setPhase": "残枪"
+        },
+        {
+          "kind": "phaseGate",
+          "phase": "残枪",
+          "steps": [
+            {
+              "kind": "callAlly",
+              "enemyId": "qiangying_spear",
+              "max": 1,
+              "cooldown": 240,
+              "weight": 1.2
+            },
+            {
+              "kind": "taunt",
+              "text": "枪未折！",
+              "weight": 0.4,
+              "cooldown": 90
+            }
+          ]
+        },
+        {
+          "kind": "useLoadout",
+          "prefer": "any",
+          "weight": 1.4
+        },
+        {
+          "kind": "idleEmote",
+          "text": "……",
+          "weight": 0.15,
+          "cooldown": 160
+        },
+        {
+          "kind": "facePlayer"
+        }
+      ]
+    }
+  ],
+  "enemies": [
+    {
+      "id": "qiangying_spear",
+      "name": "枪影亡魂",
+      "body": "spear",
+      "silhouetteId": "spear",
+      "behaviorId": "spear",
+      "hp": 55,
+      "dropChance": 0.24,
+      "eliteEligible": true,
+      "loot": [
+        {
+          "kind": "material",
+          "id": "iron",
+          "chance": 0.35,
+          "amount": 1
+        },
+        {
+          "kind": "crystal",
+          "chance": 0.18,
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "qiangying_vanguard",
+      "name": "枪影先锋",
+      "body": "spear",
+      "silhouetteId": "qiangying_vanguard",
+      "behaviorId": "qiangying_mid_spear",
+      "hp": 72,
+      "dropChance": 0.28,
+      "eliteEligible": true,
+      "cooldown": 28,
+      "loot": [
+        {
+          "kind": "material",
+          "id": "iron",
+          "chance": 0.45,
+          "amount": 2
+        },
+        {
+          "kind": "material",
+          "id": "bone",
+          "chance": 0.25,
+          "amount": 1
+        },
+        {
+          "kind": "crystal",
+          "chance": 0.22,
+          "amount": 4
+        }
+      ],
+      "skills": [
+        {
+          "id": "tuci",
+          "weight": 2,
+          "minRange": 90,
+          "maxRange": 220,
+          "cooldown": 110
+        }
+      ],
+      "gear": [
+        {
+          "id": "pijia"
+        }
+      ],
+      "pills": [
+        {
+          "id": "heal",
+          "when": "hpBelow",
+          "hpFrac": 0.4,
+          "once": true
+        }
+      ],
+      "talismans": [
+        {
+          "id": "qiangying_qiangmang",
+          "weight": 1,
+          "minRange": 50,
+          "maxRange": 180,
+          "cooldown": 150
+        }
+      ]
+    }
+  ]
+}

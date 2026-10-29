@@ -1,0 +1,36 @@
+{
+  "armorSets": [
+    {
+      "id": "canye_yexing",
+      "fogName": "套装·夜??",
+      "name": "残夜行影",
+      "lore": "残夜踏影，气机更轻。",
+      "slots": ["legs", "arms", "waist", "neck"],
+      "weight": 10,
+      "two": { "dashCdMul": 0.90, "rage": 0.04 },
+      "full": { "dashCdMul": 0.82, "dashIframes": 4, "rage": 0.06 },
+      "twoTip": "闪身冷却再短 · 气势微增",
+      "fullTip": "闪身更快 · 无敌略久 · 气势回复"
+    }
+  ],
+  "eliteMods": [
+    {
+      "id": "canye_tongpi",
+      "name": "残夜薄铜",
+      "tag": "薄铜",
+      "color": "#c8a878",
+      "dmgTakenMul": 0.78
+    }
+  ],
+  "fragments": [
+    {
+      "id": "canye_lieqi",
+      "name": "残夜裂气",
+      "fogName": "残页·??",
+      "desc": "外功伤害略升",
+      "color": "#ff9080",
+      "tag": "qi",
+      "skillDmgMul": 1.12
+    }
+  ]
+}

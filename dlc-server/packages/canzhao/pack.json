@@ -1,0 +1,11 @@
+{
+  "id": "canzhao",
+  "kind": "pack",
+  "name": "残照",
+  "version": "1.0.0",
+  "description": "残阳入骨一门外功：皮膜自固，余晖护身。",
+  "builtin": true,
+  "tags": [
+    "skill"
+  ]
+}

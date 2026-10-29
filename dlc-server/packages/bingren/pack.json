@@ -1,0 +1,12 @@
+{
+  "id": "bingren",
+  "kind": "pack",
+  "name": "残锋",
+  "version": "1.0.0",
+  "description": "缺刃亦能成芒：残锋弯刀一柄（外观积木+残锋链 Style）+ 残锋诀一招（挂长夜刀芒盒）+ 自制招式样子残锋斩芒（playPose timeline:full 全时间轴）+ 冷芒特效配方与斩姿+ 残锋闲姿覆盖玩家站立（hp.idle）。W4/C·F3·X4·Pose3·Loco4 示范，只登记数据。",
+  "builtin": true,
+  "tags": [
+    "weapon",
+    "skill"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "yinfeng",
+  "kind": "pack",
+  "name": "隐风",
+  "version": "1.0.0",
+  "description": "馆藏试篇：一枚隐风符，轻身一瞬。仅存于藏经阁，非游戏内置。",
+  "builtin": false,
+  "tags": [
+    "talisman"
+  ]
+}

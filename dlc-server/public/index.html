@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>藏经阁 · 长夜安魂曲</title>
+  <meta name="description" content="《长夜安魂曲》藏经阁 — 门派与内容卷册目录" />
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <div class="ink-bg" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true"></div>
+
+  <header class="masthead">
+    <div class="mast-inner">
+      <p class="eyebrow">长夜安魂曲</p>
+      <h1>藏经阁</h1>
+      <p class="tagline">暗夜纸墨 · 冷月观册 · 江湖传闻尽录于此</p>
+      <p class="tagline" style="margin-top:0.55rem"><a href="/designer">设计台·拼装 › 做人话积木</a></p>
+    </div>
+    <div id="status" class="status-strip" role="status">
+      <span class="dot pending"></span>
+      <span class="status-text">正探阁门…</span>
+    </div>
+  </header>
+
+  <main class="hall">
+    <nav class="tabs" role="tablist" aria-label="卷册分类">
+      <button type="button" class="tab active" data-filter="all" role="tab" aria-selected="true">全部</button>
+      <button type="button" class="tab" data-filter="menpai" role="tab" aria-selected="false">门派</button>
+      <button type="button" class="tab" data-filter="pack" role="tab" aria-selected="false">内容卷</button>
+    </nav>
+
+    <div id="tag-chips" class="tag-chips" role="group" aria-label="内容标签" hidden></div>
+
+    <p id="meta" class="meta-line" hidden></p>
+    <div id="grid" class="card-grid" aria-live="polite"></div>
+    <div id="empty" class="empty-state" hidden>
+      <p class="empty-title">阁中暂无此卷</p>
+      <p class="empty-hint">换一类再翻，或稍后再来。</p>
+    </div>
+    <div id="error" class="error-state" hidden>
+      <p class="empty-title">册簿未至</p>
+      <p class="empty-hint" id="error-detail">未能取得 catalog.json。请确认馆址在线，或稍后再试。</p>
+      <button type="button" id="retry" class="btn-ink">再探一次</button>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <p>只阅不写 · 取册自藏 · 入门请于游戏内山门</p>
+    <p class="muted">作者须持令牌经接口入藏 · 馆内无自助投卷</p>
+    <p class="muted">API · <a href="/catalog.json">catalog.json</a> · <a href="/health">health</a> · <a href="/UPLOAD.md">UPLOAD</a> · <a href="/designer">设计台·拼装</a></p>
+  </footer>
+
+  <div id="drawer-backdrop" class="drawer-backdrop" hidden></div>
+  <aside id="drawer" class="drawer" hidden aria-hidden="true" role="dialog" aria-labelledby="drawer-title">
+    <button type="button" class="drawer-close" id="drawer-close" aria-label="合上卷册">×</button>
+    <div class="drawer-body">
+      <p class="drawer-kind" id="drawer-kind"></p>
+      <h2 id="drawer-title"></h2>
+      <p class="drawer-ver" id="drawer-ver"></p>
+      <p class="drawer-desc" id="drawer-desc"></p>
+      <div id="drawer-tags" class="drawer-tags" hidden></div>
+      <dl class="drawer-meta">
+        <div><dt>卷号</dt><dd id="drawer-id"></dd></div>
+        <div><dt>尺幅</dt><dd id="drawer-size"></dd></div>
+        <div><dt>印记</dt><dd id="drawer-md5" class="mono"></dd></div>
+        <div><dt>出处</dt><dd id="drawer-builtin"></dd></div>
+      </dl>
+      <div class="drawer-actions">
+        <a id="link-content" class="btn-ink" href="#" target="_blank" rel="noopener">阅正文</a>
+        <a id="link-download" class="btn-warm" href="#" download>取册</a>
+      </div>
+    </div>
+  </aside>
+
+  <script src="/assets/app.js" defer></script>
+</body>
+</html>

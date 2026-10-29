@@ -1,0 +1,1074 @@
+{
+  "act1": {
+    "actIndex": 0,
+    "id": "act1",
+    "title": "第一幕 · 夜雨江湖",
+    "subtitle": "月下江湖，剑气如霜",
+    "length": 5800,
+    "start": 220,
+    "backdropTheme": "night",
+    "arenas": [
+      {
+        "name": "山门古道",
+        "x0": 520,
+        "trigger": 860,
+        "waves": [
+          [
+            {
+              "type": "axe",
+              "side": "R",
+              "delay": 0
+            },
+            {
+              "type": "axe",
+              "side": "L",
+              "delay": 50
+            }
+          ],
+          [
+            {
+              "type": "axe",
+              "side": "R",
+              "delay": 0
+            },
+            {
+              "type": "archer",
+              "side": "R",
+              "delay": 30
+            }
+          ]
+        ]
+      },
+      {
+        "name": "竹林栈道",
+        "x0": 1900,
+        "trigger": 2240,
+        "waves": [
+          [
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 0
+            },
+            {
+              "type": "axe",
+              "side": "L",
+              "delay": 40
+            }
+          ],
+          [
+            {
+              "type": "archer",
+              "side": "R",
+              "delay": 0
+            },
+            {
+              "type": "archer",
+              "side": "L",
+              "delay": 20
+            },
+            {
+              "type": "axe",
+              "side": "R",
+              "delay": 60
+            }
+          ]
+        ]
+      },
+      {
+        "name": "古刹前殿",
+        "x0": 3300,
+        "trigger": 3640,
+        "waves": [
+          [
+            {
+              "type": "shield",
+              "side": "L",
+              "delay": 0
+            },
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 30
+            }
+          ],
+          [
+            {
+              "type": "axe",
+              "side": "R",
+              "delay": 0
+            },
+            {
+              "type": "archer",
+              "side": "L",
+              "delay": 20
+            },
+            {
+              "type": "archer",
+              "side": "R",
+              "delay": 40
+            },
+            {
+              "type": "axe",
+              "side": "L",
+              "delay": 80
+            }
+          ]
+        ]
+      }
+    ],
+    "boss": {
+      "name": "镇山古刹",
+      "x0": 4760,
+      "trigger": 5040,
+      "bossName": "镇山石兽",
+      "bossSubtitle": "古刹镇山 · 石兽苏醒",
+      "bossId": "gargoyle",
+      "hpScale": 1,
+      "dmgScale": 1,
+      "tint": "jade"
+    },
+    "platforms": [
+      {
+        "x": 580,
+        "y": 372,
+        "w": 170,
+        "h": 96,
+        "kind": "roof"
+      },
+      {
+        "x": 920,
+        "y": 396,
+        "w": 140,
+        "h": 72,
+        "kind": "bridge"
+      },
+      {
+        "x": 1180,
+        "y": 358,
+        "w": 150,
+        "h": 110,
+        "kind": "pavilion"
+      },
+      {
+        "x": 1550,
+        "y": 388,
+        "w": 160,
+        "h": 80,
+        "kind": "roof"
+      },
+      {
+        "x": 1980,
+        "y": 368,
+        "w": 180,
+        "h": 100,
+        "kind": "roof"
+      },
+      {
+        "x": 2280,
+        "y": 398,
+        "w": 200,
+        "h": 70,
+        "kind": "bridge"
+      },
+      {
+        "x": 2580,
+        "y": 353,
+        "w": 140,
+        "h": 115,
+        "kind": "pavilion"
+      },
+      {
+        "x": 3380,
+        "y": 363,
+        "w": 190,
+        "h": 105,
+        "kind": "roof"
+      },
+      {
+        "x": 3680,
+        "y": 390,
+        "w": 160,
+        "h": 78,
+        "kind": "bridge"
+      },
+      {
+        "x": 3960,
+        "y": 348,
+        "w": 170,
+        "h": 120,
+        "kind": "pavilion"
+      },
+      {
+        "x": 4400,
+        "y": 380,
+        "w": 150,
+        "h": 88,
+        "kind": "roof"
+      },
+      {
+        "x": 4860,
+        "y": 368,
+        "w": 160,
+        "h": 100,
+        "kind": "roof"
+      },
+      {
+        "x": 5120,
+        "y": 393,
+        "w": 140,
+        "h": 75,
+        "kind": "bridge"
+      }
+    ],
+    "beats": []
+  },
+  "act2": {
+    "actIndex": 1,
+    "id": "act2",
+    "title": "第二幕 · 雨夜客栈",
+    "subtitle": "檐下灯笼，水面映刀",
+    "length": 5600,
+    "start": 200,
+    "backdropTheme": "dock",
+    "arenas": [
+      {
+        "name": "客栈檐廊",
+        "x0": 480,
+        "trigger": 820,
+        "waves": [
+          [
+            {
+              "type": "axe",
+              "side": "R",
+              "delay": 0
+            },
+            {
+              "type": "axe",
+              "side": "L",
+              "delay": 30
+            },
+            {
+              "type": "archer",
+              "side": "R",
+              "delay": 55
+            }
+          ],
+          [
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 0
+            },
+            {
+              "type": "axe",
+              "side": "L",
+              "delay": 25
+            },
+            {
+              "type": "archer",
+              "side": "L",
+              "delay": 50
+            }
+          ]
+        ]
+      },
+      {
+        "name": "断桥码头",
+        "x0": 1800,
+        "trigger": 2140,
+        "waves": [
+          [
+            {
+              "type": "shield",
+              "side": "L",
+              "delay": 0
+            },
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 20
+            },
+            {
+              "type": "axe",
+              "side": "R",
+              "delay": 50
+            }
+          ],
+          [
+            {
+              "type": "archer",
+              "side": "R",
+              "delay": 0
+            },
+            {
+              "type": "archer",
+              "side": "L",
+              "delay": 15
+            },
+            {
+              "type": "axe",
+              "side": "R",
+              "delay": 40
+            },
+            {
+              "type": "axe",
+              "side": "L",
+              "delay": 70
+            }
+          ]
+        ]
+      },
+      {
+        "name": "船坞暗巷",
+        "x0": 3200,
+        "trigger": 3540,
+        "waves": [
+          [
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 0
+            },
+            {
+              "type": "archer",
+              "side": "L",
+              "delay": 20
+            },
+            {
+              "type": "archer",
+              "side": "R",
+              "delay": 35
+            }
+          ],
+          [
+            {
+              "type": "axe",
+              "side": "L",
+              "delay": 0
+            },
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 25
+            },
+            {
+              "type": "archer",
+              "side": "R",
+              "delay": 45
+            },
+            {
+              "type": "axe",
+              "side": "R",
+              "delay": 70
+            }
+          ]
+        ]
+      }
+    ],
+    "boss": {
+      "name": "渡口石祠",
+      "x0": 4600,
+      "trigger": 4880,
+      "bossName": "渡口石狮",
+      "bossSubtitle": "雨湿石毛 · 渡口镇守",
+      "bossId": "gargoyle",
+      "hpScale": 1.25,
+      "dmgScale": 1.12,
+      "tint": "ink"
+    },
+    "platforms": [
+      {
+        "x": 480,
+        "y": 378,
+        "w": 160,
+        "h": 90,
+        "kind": "roof"
+      },
+      {
+        "x": 820,
+        "y": 400,
+        "w": 180,
+        "h": 68,
+        "kind": "bridge"
+      },
+      {
+        "x": 1120,
+        "y": 363,
+        "w": 140,
+        "h": 105,
+        "kind": "pavilion"
+      },
+      {
+        "x": 1480,
+        "y": 390,
+        "w": 150,
+        "h": 78,
+        "kind": "roof"
+      },
+      {
+        "x": 1880,
+        "y": 373,
+        "w": 170,
+        "h": 95,
+        "kind": "roof"
+      },
+      {
+        "x": 2200,
+        "y": 398,
+        "w": 190,
+        "h": 70,
+        "kind": "bridge"
+      },
+      {
+        "x": 2520,
+        "y": 356,
+        "w": 150,
+        "h": 112,
+        "kind": "pavilion"
+      },
+      {
+        "x": 2920,
+        "y": 386,
+        "w": 140,
+        "h": 82,
+        "kind": "roof"
+      },
+      {
+        "x": 3320,
+        "y": 368,
+        "w": 180,
+        "h": 100,
+        "kind": "roof"
+      },
+      {
+        "x": 3620,
+        "y": 396,
+        "w": 160,
+        "h": 72,
+        "kind": "bridge"
+      },
+      {
+        "x": 3900,
+        "y": 350,
+        "w": 160,
+        "h": 118,
+        "kind": "pavilion"
+      },
+      {
+        "x": 4300,
+        "y": 380,
+        "w": 150,
+        "h": 88,
+        "kind": "roof"
+      },
+      {
+        "x": 4720,
+        "y": 370,
+        "w": 170,
+        "h": 98,
+        "kind": "roof"
+      },
+      {
+        "x": 5000,
+        "y": 394,
+        "w": 150,
+        "h": 74,
+        "kind": "bridge"
+      }
+    ],
+    "beats": []
+  },
+  "act3": {
+    "actIndex": 2,
+    "id": "act3",
+    "title": "第三幕 · 荒冢残城",
+    "subtitle": "灰雾压城，箭雨如丝",
+    "length": 5700,
+    "start": 200,
+    "backdropTheme": "ash",
+    "arenas": [
+      {
+        "name": "墓道石阶",
+        "x0": 500,
+        "trigger": 840,
+        "waves": [
+          [
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 0
+            },
+            {
+              "type": "archer",
+              "side": "R",
+              "delay": 20
+            },
+            {
+              "type": "archer",
+              "side": "L",
+              "delay": 40
+            }
+          ],
+          [
+            {
+              "type": "shield",
+              "side": "L",
+              "delay": 0
+            },
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 25
+            },
+            {
+              "type": "axe",
+              "side": "R",
+              "delay": 50
+            },
+            {
+              "type": "archer",
+              "side": "L",
+              "delay": 70
+            }
+          ]
+        ]
+      },
+      {
+        "name": "废城残垣",
+        "x0": 1850,
+        "trigger": 2190,
+        "waves": [
+          [
+            {
+              "type": "archer",
+              "side": "R",
+              "delay": 0
+            },
+            {
+              "type": "archer",
+              "side": "L",
+              "delay": 10
+            },
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 35
+            },
+            {
+              "type": "axe",
+              "side": "L",
+              "delay": 55
+            }
+          ],
+          [
+            {
+              "type": "shield",
+              "side": "L",
+              "delay": 0
+            },
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 20
+            },
+            {
+              "type": "archer",
+              "side": "R",
+              "delay": 40
+            },
+            {
+              "type": "archer",
+              "side": "L",
+              "delay": 55
+            },
+            {
+              "type": "axe",
+              "side": "R",
+              "delay": 80
+            }
+          ]
+        ]
+      },
+      {
+        "name": "祭坛废墟",
+        "x0": 3300,
+        "trigger": 3640,
+        "waves": [
+          [
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 0
+            },
+            {
+              "type": "shield",
+              "side": "L",
+              "delay": 15
+            },
+            {
+              "type": "archer",
+              "side": "R",
+              "delay": 30
+            },
+            {
+              "type": "archer",
+              "side": "L",
+              "delay": 45
+            }
+          ],
+          [
+            {
+              "type": "axe",
+              "side": "R",
+              "delay": 0
+            },
+            {
+              "type": "axe",
+              "side": "L",
+              "delay": 20
+            },
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 40
+            },
+            {
+              "type": "archer",
+              "side": "L",
+              "delay": 55
+            },
+            {
+              "type": "archer",
+              "side": "R",
+              "delay": 70
+            }
+          ]
+        ]
+      }
+    ],
+    "boss": {
+      "name": "冢门石阵",
+      "x0": 4680,
+      "trigger": 4960,
+      "bossName": "墓守石俑",
+      "bossSubtitle": "灰土裂开 · 冢门苏醒",
+      "bossId": "gargoyle",
+      "hpScale": 1.45,
+      "dmgScale": 1.22,
+      "tint": "ash"
+    },
+    "platforms": [
+      {
+        "x": 500,
+        "y": 368,
+        "w": 150,
+        "h": 100,
+        "kind": "roof"
+      },
+      {
+        "x": 860,
+        "y": 398,
+        "w": 160,
+        "h": 70,
+        "kind": "bridge"
+      },
+      {
+        "x": 1160,
+        "y": 350,
+        "w": 140,
+        "h": 118,
+        "kind": "pavilion"
+      },
+      {
+        "x": 1520,
+        "y": 383,
+        "w": 155,
+        "h": 85,
+        "kind": "roof"
+      },
+      {
+        "x": 1920,
+        "y": 360,
+        "w": 175,
+        "h": 108,
+        "kind": "roof"
+      },
+      {
+        "x": 2240,
+        "y": 400,
+        "w": 200,
+        "h": 68,
+        "kind": "bridge"
+      },
+      {
+        "x": 2560,
+        "y": 348,
+        "w": 145,
+        "h": 120,
+        "kind": "pavilion"
+      },
+      {
+        "x": 2960,
+        "y": 388,
+        "w": 150,
+        "h": 80,
+        "kind": "roof"
+      },
+      {
+        "x": 3380,
+        "y": 366,
+        "w": 185,
+        "h": 102,
+        "kind": "roof"
+      },
+      {
+        "x": 3680,
+        "y": 393,
+        "w": 155,
+        "h": 75,
+        "kind": "bridge"
+      },
+      {
+        "x": 3960,
+        "y": 346,
+        "w": 165,
+        "h": 122,
+        "kind": "pavilion"
+      },
+      {
+        "x": 4360,
+        "y": 378,
+        "w": 145,
+        "h": 90,
+        "kind": "roof"
+      },
+      {
+        "x": 4780,
+        "y": 363,
+        "w": 165,
+        "h": 105,
+        "kind": "roof"
+      },
+      {
+        "x": 5060,
+        "y": 396,
+        "w": 140,
+        "h": 72,
+        "kind": "bridge"
+      }
+    ],
+    "beats": []
+  },
+  "act4": {
+    "actIndex": 3,
+    "id": "act4",
+    "title": "第四幕 · 月蚀峰巅",
+    "subtitle": "长夜尽头，月色如血",
+    "length": 5750,
+    "start": 200,
+    "backdropTheme": "eclipse",
+    "arenas": [
+      {
+        "name": "绝壁栈道",
+        "x0": 460,
+        "trigger": 800,
+        "waves": [
+          [
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 0
+            },
+            {
+              "type": "axe",
+              "side": "L",
+              "delay": 15
+            },
+            {
+              "type": "archer",
+              "side": "R",
+              "delay": 30
+            },
+            {
+              "type": "archer",
+              "side": "L",
+              "delay": 50
+            }
+          ],
+          [
+            {
+              "type": "shield",
+              "side": "L",
+              "delay": 0
+            },
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 20
+            },
+            {
+              "type": "axe",
+              "side": "R",
+              "delay": 40
+            },
+            {
+              "type": "archer",
+              "side": "L",
+              "delay": 55
+            },
+            {
+              "type": "axe",
+              "side": "L",
+              "delay": 80
+            }
+          ]
+        ]
+      },
+      {
+        "name": "峰腰祭坛",
+        "x0": 1800,
+        "trigger": 2140,
+        "waves": [
+          [
+            {
+              "type": "archer",
+              "side": "R",
+              "delay": 0
+            },
+            {
+              "type": "archer",
+              "side": "L",
+              "delay": 8
+            },
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 30
+            },
+            {
+              "type": "shield",
+              "side": "L",
+              "delay": 45
+            },
+            {
+              "type": "axe",
+              "side": "R",
+              "delay": 65
+            }
+          ],
+          [
+            {
+              "type": "axe",
+              "side": "L",
+              "delay": 0
+            },
+            {
+              "type": "axe",
+              "side": "R",
+              "delay": 15
+            },
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 35
+            },
+            {
+              "type": "archer",
+              "side": "L",
+              "delay": 50
+            },
+            {
+              "type": "archer",
+              "side": "R",
+              "delay": 65
+            },
+            {
+              "type": "axe",
+              "side": "L",
+              "delay": 90
+            }
+          ]
+        ]
+      },
+      {
+        "name": "月蚀台",
+        "x0": 3200,
+        "trigger": 3540,
+        "waves": [
+          [
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 0
+            },
+            {
+              "type": "shield",
+              "side": "L",
+              "delay": 12
+            },
+            {
+              "type": "archer",
+              "side": "R",
+              "delay": 28
+            },
+            {
+              "type": "archer",
+              "side": "L",
+              "delay": 40
+            },
+            {
+              "type": "axe",
+              "side": "R",
+              "delay": 60
+            }
+          ],
+          [
+            {
+              "type": "axe",
+              "side": "R",
+              "delay": 0
+            },
+            {
+              "type": "shield",
+              "side": "L",
+              "delay": 18
+            },
+            {
+              "type": "shield",
+              "side": "R",
+              "delay": 32
+            },
+            {
+              "type": "archer",
+              "side": "L",
+              "delay": 48
+            },
+            {
+              "type": "archer",
+              "side": "R",
+              "delay": 60
+            },
+            {
+              "type": "axe",
+              "side": "L",
+              "delay": 85
+            }
+          ]
+        ]
+      }
+    ],
+    "boss": {
+      "name": "长夜祭台",
+      "x0": 4620,
+      "trigger": 4900,
+      "bossName": "长夜石魔",
+      "bossSubtitle": "月蚀峰巅 · 长夜尽头",
+      "bossId": "gargoyle",
+      "hpScale": 1.75,
+      "dmgScale": 1.35,
+      "tint": "blood"
+    },
+    "platforms": [
+      {
+        "x": 460,
+        "y": 370,
+        "w": 155,
+        "h": 98,
+        "kind": "roof"
+      },
+      {
+        "x": 800,
+        "y": 396,
+        "w": 170,
+        "h": 72,
+        "kind": "bridge"
+      },
+      {
+        "x": 1100,
+        "y": 353,
+        "w": 145,
+        "h": 115,
+        "kind": "pavilion"
+      },
+      {
+        "x": 1460,
+        "y": 380,
+        "w": 150,
+        "h": 88,
+        "kind": "roof"
+      },
+      {
+        "x": 1860,
+        "y": 363,
+        "w": 180,
+        "h": 105,
+        "kind": "roof"
+      },
+      {
+        "x": 2180,
+        "y": 398,
+        "w": 195,
+        "h": 70,
+        "kind": "bridge"
+      },
+      {
+        "x": 2500,
+        "y": 348,
+        "w": 150,
+        "h": 120,
+        "kind": "pavilion"
+      },
+      {
+        "x": 2880,
+        "y": 386,
+        "w": 145,
+        "h": 82,
+        "kind": "roof"
+      },
+      {
+        "x": 3280,
+        "y": 360,
+        "w": 190,
+        "h": 108,
+        "kind": "roof"
+      },
+      {
+        "x": 3580,
+        "y": 394,
+        "w": 160,
+        "h": 74,
+        "kind": "bridge"
+      },
+      {
+        "x": 3880,
+        "y": 344,
+        "w": 170,
+        "h": 124,
+        "kind": "pavilion"
+      },
+      {
+        "x": 4280,
+        "y": 376,
+        "w": 155,
+        "h": 92,
+        "kind": "roof"
+      },
+      {
+        "x": 4700,
+        "y": 358,
+        "w": 175,
+        "h": 110,
+        "kind": "roof"
+      },
+      {
+        "x": 5000,
+        "y": 392,
+        "w": 150,
+        "h": 76,
+        "kind": "bridge"
+      }
+    ],
+    "beats": []
+  }
+}

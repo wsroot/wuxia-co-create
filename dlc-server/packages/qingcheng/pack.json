@@ -1,0 +1,11 @@
+{
+  "id": "qingcheng",
+  "kind": "menpai",
+  "name": "青城",
+  "version": "1.0.0",
+  "description": "青城山门一脉，擅护体遁甲之术。",
+  "builtin": true,
+  "tags": [
+    "skill"
+  ]
+}

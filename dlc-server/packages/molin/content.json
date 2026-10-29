@@ -1,0 +1,26 @@
+{
+  "pills": [
+    {
+      "id": "molindan",
+      "name": "墨鳞丹",
+      "lore": "墨色鳞光入腹，皮膜如甲，刀剑暂难近身。",
+      "tip": "出征：14 秒减伤护体 · 内力微回",
+      "cost": { "herb": 3, "cinnabar": 1, "hide": 1 },
+      "fee": 15,
+      "carryCap": 3,
+      "sortie": true,
+      "quality": "huang",
+      "grade": "zhong",
+      "effect": {
+        "defBuffSec": 14,
+        "defBuffMax": true,
+        "neili": 20,
+        "floatText": "墨鳞丹",
+        "floatColor": "#6a8a9a",
+        "sfx": "potion",
+        "castFeel": { "hitstop": 4, "shake": { "amp": 2, "frames": 6 }, "flash": { "color": "#6a8a9a", "a": 0.2 } },
+        "whileActive": { "auraPreset": "tint", "color": "#6a8a9a", "period": 22, "hudTint": "#6a8a9a", "rimGlow": true }
+      }
+    }
+  ]
+}

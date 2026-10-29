@@ -1,0 +1,29 @@
+{
+  "name": "requiem-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host --port 4173",
+    "shots": "node scripts/shots.mjs",
+    "test:parry": "node scripts/parrytest.mjs",
+    "test:meta": "node scripts/meta-shots.mjs",
+    "test:weapons": "node scripts/weapon-shots.mjs",
+    "test:tune": "node scripts/weapon-tune.mjs",
+    "test:menpai": "esbuild scripts/menpai-smoke.ts --bundle --platform=node --format=esm --packages=external --outfile=node_modules/.cache/menpai-smoke.mjs --log-level=warning && node node_modules/.cache/menpai-smoke.mjs",
+    "dlc:regen": "npm --prefix dlc-server run regen",
+    "dlc:start": "npm --prefix dlc-server start",
+    "dlc:pack": "npm --prefix dlc-server run seed-zips",
+    "designer:regen-core": "esbuild scripts/regen-designer-core.ts --bundle --platform=node --format=esm --packages=external --outfile=node_modules/.cache/regen-designer-core.mjs --log-level=warning && node node_modules/.cache/regen-designer-core.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.64.1",
+    "typescript": "^5.6.0",
+    "vite": "^5.4.0"
+  },
+  "dependencies": {
+    "cordis": "^3.18.1"
+  }
+}

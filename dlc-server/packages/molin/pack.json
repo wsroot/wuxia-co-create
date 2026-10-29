@@ -1,0 +1,11 @@
+{
+  "id": "molin",
+  "kind": "pack",
+  "name": "墨鳞",
+  "version": "1.0.0",
+  "description": "墨色鳞光一丹：入腹护体，刀剑暂难近身。",
+  "builtin": true,
+  "tags": [
+    "pill"
+  ]
+}

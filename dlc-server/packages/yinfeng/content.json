@@ -1,0 +1,56 @@
+{
+  "talismanScripts": [
+    {
+      "id": "yinfengDash",
+      "steps": [
+        {
+          "kind": "banner",
+          "text": "灵符",
+          "sub": "隐风一纵",
+          "dur": 70
+        },
+        {
+          "kind": "flash",
+          "color": "#c8e0d8",
+          "a": 0.2
+        },
+        {
+          "kind": "fx",
+          "preset": "qi",
+          "at": "caster",
+          "n": 10,
+          "color": "#a8d0c0"
+        },
+        {
+          "kind": "sfx",
+          "id": "slash"
+        },
+        {
+          "kind": "wait",
+          "frames": 12
+        }
+      ]
+    }
+  ],
+  "talismans": [
+    {
+      "id": "yinfengfu",
+      "name": "隐风符",
+      "fogName": "灵符·风??",
+      "lore": "风过无痕，身形一纵。馆中试笔，未必入正传。",
+      "tip": "出征：轻身一瞬（试篇）",
+      "color": "#a8d0c0",
+      "cost": {
+        "herb": 1,
+        "silk": 1
+      },
+      "fee": 8,
+      "stockCap": 2,
+      "runCharges": 1,
+      "quality": "fan",
+      "grade": "xia",
+      "scriptId": "yinfengDash",
+      "icon": "H-05-tal-4"
+    }
+  ]
+}

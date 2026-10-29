@@ -1,0 +1,12 @@
+{
+  "id": "canye",
+  "kind": "pack",
+  "name": "残夜",
+  "version": "1.0.0",
+  "description": "残夜一脉：薄铜精英、裂气残页、夜行套装调参。只登记玩法副目录，不改关卡几何。",
+  "builtin": true,
+  "tags": [
+    "affix",
+    "armor"
+  ]
+}

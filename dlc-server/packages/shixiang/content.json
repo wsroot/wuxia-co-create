@@ -1,0 +1,338 @@
+{
+  "armorPieces": [
+    {
+      "id": "shixiang_yejia",
+      "name": "夜巡石甲",
+      "slot": "body",
+      "lore": "古刹石像胸口凝出的一层灰鳞甲，夜巡时犹有余温。",
+      "base": {
+        "hp": 40,
+        "def": 8
+      },
+      "weight": 0,
+      "quality": "huang",
+      "tier": 3,
+      "fogName": "石甲·夜??"
+    }
+  ],
+  "colliders": [
+    {
+      "id": "shixiang_box",
+      "w": 70,
+      "h": 130,
+      "label": "石像夜巡盒"
+    }
+  ],
+  "silhouettes": [
+    {
+      "id": "shixiang_yong",
+      "body": "axe",
+      "baseRig": "axe",
+      "label": "夜巡石俑剪影",
+      "parts": [
+        {
+          "kind": "palette",
+          "coat": "#6a6860",
+          "arm": "#7a7870",
+          "armB": "#5a5850",
+          "leg": "#5c5a52",
+          "legB": "#4a4840",
+          "boot": "#3a3830",
+          "skin": "#8a8680",
+          "sash": "#4a4840",
+          "collar": "#707068",
+          "eye": "#c8c0a8"
+        },
+        {
+          "kind": "armorLayer",
+          "slot": "chest",
+          "style": "plate",
+          "color": "#7a7870"
+        },
+        {
+          "kind": "armorLayer",
+          "slot": "shoulder",
+          "style": "plate",
+          "color": "#6a6860"
+        },
+        {
+          "kind": "scale",
+          "value": 1.08
+        },
+        {
+          "kind": "faceMark",
+          "style": "mask",
+          "color": "#5a5850"
+        },
+        {
+          "kind": "stanceBias",
+          "lean": 0.05,
+          "crouch": 0.08
+        }
+      ]
+    },
+    {
+      "id": "shixiang_yexun",
+      "body": "gargoyle",
+      "baseRig": "gargoyle",
+      "label": "夜巡石兽剪影",
+      "parts": [
+        {
+          "kind": "palette",
+          "coat": "#6a6860",
+          "arm": "#7a7870",
+          "armB": "#5a5850",
+          "leg": "#5c5a52",
+          "legB": "#4a4840",
+          "boot": "#3a3830",
+          "skin": "#8a8680",
+          "sash": "#4a4840",
+          "collar": "#707068",
+          "eye": "#c8c0a8"
+        },
+        {
+          "kind": "scale",
+          "value": 1.12
+        },
+        {
+          "kind": "faceMark",
+          "style": "mask",
+          "color": "#5a5850"
+        },
+        {
+          "kind": "armorLayer",
+          "slot": "chest",
+          "style": "plate",
+          "color": "#7a7870"
+        },
+        {
+          "kind": "armorLayer",
+          "slot": "shoulder",
+          "style": "plate",
+          "color": "#6a6860"
+        },
+        {
+          "kind": "ornament",
+          "slot": "neck",
+          "style": "pendant",
+          "color": "#c8b070"
+        },
+        {
+          "kind": "cloak",
+          "style": "long",
+          "color": "rgba(80,78,70,0.55)"
+        }
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "shixiang_yexun_pace",
+      "body": "gargoyle",
+      "label": "夜巡空档步",
+      "steps": [
+        {
+          "kind": "facePlayer"
+        },
+        {
+          "kind": "keepDistance",
+          "idealMin": 180,
+          "idealMax": 280,
+          "chase": 520,
+          "retreatSpeed": 2.4
+        },
+        {
+          "kind": "circleStrafe",
+          "radius": 200,
+          "speed": 1.2,
+          "weight": 0.6
+        },
+        {
+          "kind": "idlePace",
+          "speed": 1.0
+        },
+        {
+          "kind": "flank",
+          "preferBehind": true,
+          "weight": 0.35
+        },
+        {
+          "kind": "phaseAtHp",
+          "below": 0.45,
+          "setPhase": "夜醒"
+        },
+        {
+          "kind": "phaseGate",
+          "phase": "夜醒",
+          "steps": [
+            {
+              "kind": "keepDistance",
+              "idealMin": 140,
+              "idealMax": 220,
+              "chase": 600,
+              "retreatSpeed": 2.8
+            },
+            {
+              "kind": "circleStrafe",
+              "radius": 160,
+              "speed": 1.5,
+              "weight": 0.9
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "bossMoves": [
+    {
+      "id": "shixiang_slam_heavy",
+      "kind": "slam",
+      "label": "石重震",
+      "radius": 240,
+      "damage": 24,
+      "hitstop": 12
+    },
+    {
+      "id": "shixiang_roar_swift",
+      "kind": "roar",
+      "label": "夜巡短啸",
+      "windFrames": 8,
+      "radius": 160,
+      "frames": 20
+    },
+    {
+      "id": "shixiang_fireball_swift",
+      "kind": "fireball",
+      "label": "夜巡急火",
+      "frames": 10,
+      "count": 1,
+      "windFrames": 6,
+      "projectileId": "fireball"
+    },
+    {
+      "id": "shixiang_dive_swift",
+      "kind": "dive",
+      "label": "夜巡迅潜",
+      "windFrames": 12,
+      "radius": 80,
+      "frames": 18
+    }
+  ],
+  "enemies": [
+    {
+      "id": "shixiang_yexun",
+      "name": "石像夜巡",
+      "hp": 900,
+      "isBoss": true,
+      "eliteEligible": false,
+      "silhouetteId": "shixiang_yexun",
+      "behaviorId": "shixiang_yexun_pace",
+      "colliderId": "shixiang_box",
+      "kitId": "shixiang_yexun",
+      "gear": [
+        {
+          "id": "shixiang_yejia"
+        }
+      ],
+      "skills": [
+        {
+          "id": "tuci",
+          "weight": 1.2,
+          "minRange": 0,
+          "maxRange": 9999,
+          "cooldown": 140
+        }
+      ]
+    },
+    {
+      "id": "shixiang_yong",
+      "name": "夜巡石俑",
+      "hp": 72,
+      "eliteEligible": true,
+      "silhouetteId": "shixiang_yong",
+      "behaviorId": "axe",
+      "colliderId": "axe",
+      "dropChance": 0.22,
+      "loot": [
+        {
+          "kind": "material",
+          "id": "bone",
+          "chance": 0.3,
+          "amount": 1
+        },
+        {
+          "kind": "material",
+          "id": "iron",
+          "chance": 0.25,
+          "amount": 1
+        },
+        {
+          "kind": "crystal",
+          "chance": 0.15,
+          "amount": 2
+        }
+      ]
+    }
+  ],
+  "bossKits": [
+    {
+      "id": "shixiang_yexun",
+      "close": [
+        {
+          "move": "claw",
+          "weight": 4
+        },
+        {
+          "move": "shixiang_slam_heavy",
+          "weight": 2.5
+        },
+        {
+          "move": "sweep",
+          "weight": 1.6
+        },
+        {
+          "move": "charge",
+          "weight": 1.8
+        },
+        {
+          "move": "shixiang_roar_swift",
+          "weight": 1.5
+        }
+      ],
+      "far": [
+        {
+          "move": "shixiang_dive_swift",
+          "weight": 2.5
+        },
+        {
+          "move": "charge",
+          "weight": 2.8
+        },
+        {
+          "move": "shixiang_slam_heavy",
+          "weight": 2.0
+        },
+        {
+          "move": "shixiang_fireball_swift",
+          "weight": 1.4
+        },
+        {
+          "move": "walk",
+          "weight": 1.8
+        },
+        {
+          "move": "inkNova",
+          "weight": 1.0
+        },
+        {
+          "move": "summonAdds",
+          "weight": 0.5
+        },
+        {
+          "move": "shixiang_roar_swift",
+          "weight": 1.3
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "chixia",
+  "kind": "pack",
+  "name": "赤霞",
+  "version": "1.0.0",
+  "description": "赤霞秘符一脉，焚身成焰，近身者皆退。",
+  "builtin": true,
+  "tags": [
+    "talisman"
+  ]
+}

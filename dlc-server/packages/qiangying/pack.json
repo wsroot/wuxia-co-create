@@ -1,0 +1,14 @@
+{
+  "id": "qiangying",
+  "kind": "pack",
+  "name": "枪影",
+  "version": "1.1.0",
+  "description": "雨巷枪影：中距突刺杂兵入第一幕；枪影先锋可挂外功/符/丹/装。需客户端已含 spear 机体与敌人负载解释器。",
+  "builtin": true,
+  "tags": [
+    "enemy",
+    "stage",
+    "talisman",
+    "skill"
+  ]
+}

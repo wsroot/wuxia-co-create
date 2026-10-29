@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1180" viewBox="0 0 1480 1180" role="img" aria-label="长夜安魂曲系统总图">
+  <defs>
+    <style type="text/css"><![CDATA[
+      .bg { fill: #0e0a12; }
+      .title { fill: #f0e0d0; font: 700 28px "Noto Sans SC", "PingFang SC", sans-serif; }
+      .sub { fill: #a890a0; font: 400 13px "Noto Sans SC", sans-serif; }
+      .region { fill: #1a1220; stroke: #5a4060; stroke-width: 2; rx: 12; }
+      .region-title { fill: #e8c8a0; font: 700 16px "Noto Sans SC", sans-serif; }
+      .node { fill: #241830; stroke: #7a6088; stroke-width: 1.5; rx: 8; }
+      .node-t { fill: #f0e8f0; font: 600 12px "Noto Sans SC", sans-serif; }
+      .node-s { fill: #b0a0b8; font: 400 10px "Noto Sans SC", sans-serif; }
+      .note { fill: #2a1830; stroke: #c07090; stroke-width: 1.5; rx: 8; }
+      .note-t { fill: #ffb0c8; font: 600 11px "Noto Sans SC", sans-serif; }
+      .expand { fill: #2a2210; stroke: #c9a227; stroke-width: 2; stroke-dasharray: 7 4; rx: 8; }
+      .expand-t { fill: #e8c84a; font: 700 11px "Noto Sans SC", sans-serif; }
+      .expand-s { fill: #c0a860; font: 400 10px "Noto Sans SC", sans-serif; }
+      .arrow { stroke: #806070; stroke-width: 1.6; fill: none; marker-end: url(#ah); }
+      .arrow-dash { stroke: #c9a227; stroke-width: 1.4; fill: none; stroke-dasharray: 5 4; marker-end: url(#ahg); }
+      .legend-box { fill: #161018; stroke: #504058; stroke-width: 1; rx: 8; }
+    ]]></style>
+    <marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#806070"/>
+    </marker>
+    <marker id="ahg" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#c9a227"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1480" height="1180"/>
+  <text class="title" x="40" y="42">《长夜安魂曲》系统总图</text>
+  <text class="sub" x="40" y="64">requiem-web 当前实现 · 存档 v20 · 金色虚线框 =「可扩展」</text>
+
+  <!-- Legend -->
+  <rect class="legend-box" x="1080" y="18" width="360" height="58"/>
+  <rect class="node" x="1095" y="32" width="70" height="28"/>
+  <text class="node-t" x="1105" y="51">已实现</text>
+  <rect class="expand" x="1185" y="32" width="100" height="28"/>
+  <text class="expand-t" x="1195" y="51">可扩展</text>
+  <rect class="note" x="1305" y="32" width="120" height="28"/>
+  <text class="note-t" x="1315" y="51">硬规则注记</text>
+
+  <!-- ========== 山门 ========== -->
+  <rect class="region" x="30" y="90" width="700" height="320"/>
+  <text class="region-title" x="48" y="118">山门 Hub</text>
+
+  <rect class="node" x="48" y="138" width="150" height="58"/>
+  <text class="node-t" x="58" y="158">铁匠铺</text>
+  <text class="node-s" x="58" y="176">打造 · 强化 · 鉴定</text>
+  <text class="node-s" x="58" y="190">兵器词缀重锻</text>
+
+  <rect class="node" x="218" y="138" width="150" height="58"/>
+  <text class="node-t" x="228" y="158">丹房</text>
+  <text class="node-s" x="228" y="176">炼丹 · 绘制灵符</text>
+  <text class="node-s" x="228" y="190">雾名至材料/首次绘制</text>
+
+  <rect class="node" x="388" y="138" width="160" height="58"/>
+  <text class="node-t" x="398" y="158">备战</text>
+  <text class="node-s" x="398" y="176">七槽防具 · 兵刃实例</text>
+  <text class="node-s" x="398" y="190">丹 1–4 · 符双槽 · 套装</text>
+
+  <rect class="node" x="568" y="138" width="140" height="58"/>
+  <text class="node-t" x="578" y="158">功法</text>
+  <text class="node-s" x="578" y="176">心法层数 · 外功身法</text>
+  <text class="node-s" x="578" y="190">按兵器门类高亮</text>
+
+  <rect class="node" x="48" y="214" width="150" height="50"/>
+  <text class="node-t" x="58" y="234">仓库</text>
+  <text class="node-s" x="58" y="252">材料 · 图纸 · 装备 · 丹</text>
+
+  <rect class="node" x="218" y="214" width="150" height="50"/>
+  <text class="node-t" x="228" y="234">战绩墙</text>
+  <text class="node-s" x="228" y="252">称号 · QoL 加成</text>
+
+  <rect class="node" x="388" y="214" width="160" height="50"/>
+  <text class="node-t" x="398" y="234">图鉴</text>
+  <text class="node-s" x="398" y="252">精英/词缀/残页/符 · 雾显</text>
+
+  <rect class="node" x="568" y="214" width="140" height="50"/>
+  <text class="node-t" x="578" y="234">训练场</text>
+  <text class="node-s" x="578" y="252">无结算练习</text>
+
+  <rect class="note" x="48" y="282" width="660" height="52"/>
+  <text class="note-t" x="58" y="304">心法硬规则：仅局外（山门）重修换心法 · 局内不可换 · 满级效果在功法页直显</text>
+  <text class="node-s" x="58" y="322">内功层数清空代价 · 不进局内热切换</text>
+
+  <rect class="expand" x="48" y="348" width="200" height="44"/>
+  <text class="expand-t" x="58" y="368">「可扩展」剧情 / CG / 语音</text>
+  <text class="expand-s" x="58" y="384">叙事线 · 幕演出挂点</text>
+
+  <rect class="expand" x="268" y="348" width="220" height="44"/>
+  <text class="expand-t" x="278" y="368">「可扩展」难度 / 周常挑战</text>
+  <text class="expand-s" x="278" y="384">开局修正 · 限定规则</text>
+
+  <rect class="expand" x="508" y="348" width="200" height="44"/>
+  <text class="expand-t" x="518" y="368">「可扩展」云存档 / 排行</text>
+  <text class="expand-s" x="518" y="384">现仅本地 localStorage</text>
+
+  <!-- ========== 局内 ========== -->
+  <rect class="region" x="750" y="90" width="700" height="320"/>
+  <text class="region-title" x="768" y="118">局内 Run</text>
+
+  <rect class="node" x="768" y="138" width="160" height="58"/>
+  <text class="node-t" x="778" y="158">四幕 Act 0–3</text>
+  <text class="node-s" x="778" y="176">专属 Boss 套路权重</text>
+  <text class="node-s" x="778" y="190">精英/掉落/套装偏向</text>
+
+  <rect class="node" x="948" y="138" width="150" height="58"/>
+  <text class="node-t" x="958" y="158">场地词缀</text>
+  <text class="node-s" x="958" y="176">毒雾·逆风·滑湿·阴火</text>
+  <text class="node-s" x="958" y="190">残月·安魂钟 · 可双次级</text>
+
+  <rect class="node" x="1118" y="138" width="150" height="58"/>
+  <text class="node-t" x="1128" y="158">精英词条</text>
+  <text class="node-s" x="1128" y="176">铜皮·闪步·嗜血</text>
+  <text class="node-s" x="1128" y="190">邪火·反伤·重击</text>
+
+  <rect class="node" x="768" y="214" width="160" height="50"/>
+  <text class="node-t" x="778" y="234">心法残页 ≤2</text>
+  <text class="node-s" x="778" y="252">标签互斥 · 黑残页诅咒</text>
+
+  <rect class="node" x="948" y="214" width="150" height="50"/>
+  <text class="node-t" x="958" y="234">邪气潮</text>
+  <text class="node-s" x="958" y="252">肃清 → 潮汐箱</text>
+
+  <rect class="node" x="1118" y="214" width="150" height="50"/>
+  <text class="node-t" x="1128" y="234">幕间事件</text>
+  <text class="node-s" x="1128" y="252">三选一 · 诅咒交易等</text>
+
+  <rect class="node" x="768" y="280" width="160" height="50"/>
+  <text class="node-t" x="778" y="300">安魂目标</text>
+  <text class="node-s" x="778" y="318">雾名 → 真名 · 失败条件</text>
+
+  <rect class="node" x="948" y="280" width="150" height="50"/>
+  <text class="node-t" x="958" y="300">据点</text>
+  <text class="node-s" x="958" y="318">服药 / 鉴定 / 传闻</text>
+
+  <rect class="node" x="1118" y="280" width="150" height="50"/>
+  <text class="node-t" x="1128" y="300">遗产</text>
+  <text class="node-s" x="1128" y="318">死后山门选择</text>
+
+  <rect class="expand" x="768" y="348" width="500" height="44"/>
+  <text class="expand-t" x="778" y="368">「可扩展」更多专属 Boss / 精英与招式</text>
+  <text class="expand-s" x="778" y="384">actPools · Boss kit · eliteMods · 招式表可继续加</text>
+
+  <!-- flow hub -> run -->
+  <path class="arrow" d="M380 410 L380 440"/>
+  <path class="arrow" d="M1100 410 L1100 440"/>
+
+  <!-- ========== 战斗 ========== -->
+  <rect class="region" x="30" y="450" width="920" height="340"/>
+  <text class="region-title" x="48" y="478">战斗 Combat</text>
+
+  <rect class="node" x="48" y="498" width="130" height="50"/>
+  <text class="node-t" x="58" y="518">读招破绽</text>
+  <text class="node-s" x="58" y="536">反击窗口</text>
+
+  <rect class="node" x="198" y="498" width="120" height="50"/>
+  <text class="node-t" x="208" y="518">架势</text>
+  <text class="node-s" x="208" y="536">破势 · 崩刀</text>
+
+  <rect class="node" x="338" y="498" width="120" height="50"/>
+  <text class="node-t" x="348" y="518">弹反</text>
+  <text class="node-s" x="348" y="536">格挡窗 · 承伤</text>
+
+  <rect class="node" x="478" y="498" width="140" height="50"/>
+  <text class="node-t" x="488" y="518">兵器克制</text>
+  <text class="node-s" x="488" y="536">门类 × 精英词条</text>
+
+  <rect class="node" x="638" y="498" width="140" height="50"/>
+  <text class="node-t" x="648" y="518">连招 / 终结</text>
+  <text class="node-s" x="648" y="536">破韧 · 吸血控距</text>
+
+  <rect class="node" x="798" y="498" width="130" height="50"/>
+  <text class="node-t" x="808" y="518">处决</text>
+  <text class="node-s" x="808" y="536">破势 / 残血确认</text>
+
+  <rect class="node" x="48" y="568" width="200" height="58"/>
+  <text class="node-t" x="58" y="588">外功指令（嵌入连招）</text>
+  <text class="node-s" x="58" y="606">↓→ ↓← ←→ ↑↓ ↓↓ ↓↑</text>
+  <text class="node-s" x="58" y="618">耗内力 · 门类门禁</text>
+
+  <rect class="node" x="268" y="568" width="120" height="58"/>
+  <text class="node-t" x="278" y="588">内力</text>
+  <text class="node-s" x="278" y="606">心法回复</text>
+  <text class="node-s" x="278" y="618">外功耗蓝</text>
+
+  <rect class="node" x="408" y="568" width="140" height="58"/>
+  <text class="node-t" x="418" y="588">气势 · 闪身</text>
+  <text class="node-s" x="418" y="606">闪身耗势</text>
+  <text class="node-s" x="418" y="618">冲刺踢 · 无敌帧</text>
+
+  <rect class="node" x="568" y="568" width="120" height="58"/>
+  <text class="node-t" x="578" y="588">丹药 1–4</text>
+  <text class="node-s" x="578" y="606">备战装槽</text>
+  <text class="node-s" x="578" y="618">键位 / 触控</text>
+
+  <rect class="node" x="708" y="568" width="220" height="58"/>
+  <text class="node-t" x="718" y="588">灵符双槽</text>
+  <text class="node-s" x="718" y="606">U/5 释放 · Y/6 轮换</text>
+  <text class="node-s" x="718" y="618">触控 符/换</text>
+
+  <rect class="node" x="48" y="646" width="200" height="50"/>
+  <text class="node-t" x="58" y="666">环境</text>
+  <text class="node-s" x="58" y="684">安魂钟 · 道具 · 场地 DOT</text>
+
+  <rect class="node" x="268" y="646" width="160" height="50"/>
+  <text class="node-t" x="278" y="666">召唤 / 潮汐</text>
+  <text class="node-s" x="278" y="684">邪气潮增援敌</text>
+
+  <rect class="expand" x="448" y="646" width="240" height="50"/>
+  <text class="expand-t" x="458" y="666">「可扩展」手柄与打击感</text>
+  <text class="expand-s" x="458" y="684">输入映射 · hitstop · 镜头</text>
+
+  <rect class="expand" x="708" y="646" width="220" height="50"/>
+  <text class="expand-t" x="718" y="666">「可扩展」音效 BGM / 美术</text>
+  <text class="expand-s" x="718" y="684">audio · 立绘 · 场景资源</text>
+
+  <rect class="expand" x="48" y="714" width="400" height="54"/>
+  <text class="expand-t" x="58" y="734">「可扩展」更多兵器图纸 / 丹药 / 符咒 / 外功</text>
+  <text class="expand-s" x="58" y="752">内容表垂直扩展 · 指令映射跟进</text>
+
+  <!-- ========== 成长 ========== -->
+  <rect class="region" x="970" y="450" width="480" height="340"/>
+  <text class="region-title" x="988" y="478">成长与掉落 · 无角色等级</text>
+
+  <rect class="node" x="988" y="498" width="200" height="58"/>
+  <text class="node-t" x="998" y="518">兵刃</text>
+  <text class="node-s" x="998" y="536">图纸打造 · 实例强化</text>
+  <text class="node-s" x="998" y="550">品质 · 词缀重锻</text>
+
+  <rect class="node" x="1210" y="498" width="220" height="58"/>
+  <text class="node-t" x="1220" y="518">防具（掉落-only）</text>
+  <text class="node-s" x="1220" y="536">七部位 · 鉴定强化</text>
+  <text class="node-s" x="1220" y="550">不可打造</text>
+
+  <rect class="node" x="988" y="574" width="442" height="70"/>
+  <text class="node-t" x="998" y="594">七套装 · 2/3/4 件</text>
+  <text class="node-s" x="998" y="612">夜行残响 · 铁骨僧衣 · 饮血罗刹 · 破军锐意</text>
+  <text class="node-s" x="998" y="628">清心定魂 · 安魂铃绪 · 影织 · （无具名时品质「影」兜底）</text>
+
+  <rect class="node" x="988" y="662" width="200" height="50"/>
+  <text class="node-t" x="998" y="682">Boss / 击杀宝箱</text>
+  <text class="node-s" x="998" y="700">爆地拾取 · 幕偏向</text>
+
+  <rect class="node" x="1210" y="662" width="220" height="50"/>
+  <text class="node-t" x="1220" y="682">秘籍熟练</text>
+  <text class="node-s" x="1220" y="700">掉落悟招 · 实战升阶</text>
+
+  <rect class="expand" x="988" y="730" width="442" height="42"/>
+  <text class="expand-t" x="998" y="750">「可扩展」更多套装与兵器词缀池</text>
+  <text class="expand-s" x="998" y="764">armorSets · weaponInstAffix</text>
+
+  <!-- arrows combat <-> grow -->
+  <path class="arrow" d="M950 620 L970 620"/>
+  <path class="arrow" d="M1210 790 L1210 820 L380 820 L380 790"/>
+
+  <!-- bottom loop note -->
+  <rect class="region" x="30" y="860" width="1420" height="100"/>
+  <text class="region-title" x="48" y="888">循环</text>
+  <text class="node-s" x="48" y="912">山门备战 → 出征四幕 → 战斗结算战利品回仓库 → 铁匠/丹房/功法成长 → 再出征</text>
+  <text class="node-s" x="48" y="932">鉴定雾规则贯穿：套装名 / 灵符 / 图鉴 / 安魂目标 / 未获外功均雾至已知</text>
+  <text class="node-s" x="48" y="948">存档：本地 SaveData v20（套装 setId · knownArmorSets · 技能/丹/符内容表扩展兼容）</text>
+
+  <!-- expansion strip -->
+  <text class="expand-t" x="40" y="1000">「可扩展」一览（与上图金色虚线框对应）</text>
+  <rect class="expand" x="30" y="1015" width="340" height="40"/>
+  <text class="expand-s" x="40" y="1040">① 专属 Boss/精英与招式</text>
+  <rect class="expand" x="390" y="1015" width="340" height="40"/>
+  <text class="expand-s" x="400" y="1040">② 兵器图纸 / 丹药 / 符咒 / 外功</text>
+  <rect class="expand" x="750" y="1015" width="340" height="40"/>
+  <text class="expand-s" x="760" y="1040">③ 套装与兵器词缀池</text>
+  <rect class="expand" x="1110" y="1015" width="340" height="40"/>
+  <text class="expand-s" x="1120" y="1040">④ 剧情演出 / CG / 语音</text>
+
+  <rect class="expand" x="30" y="1070" width="340" height="40"/>
+  <text class="expand-s" x="40" y="1095">⑤ 难度模式 / 周常挑战</text>
+  <rect class="expand" x="390" y="1070" width="340" height="40"/>
+  <text class="expand-s" x="400" y="1095">⑥ 手柄完善与打击手感</text>
+  <rect class="expand" x="750" y="1070" width="340" height="40"/>
+  <text class="expand-s" x="760" y="1095">⑦ 音效 BGM 与美术资源</text>
+  <rect class="expand" x="1110" y="1070" width="340" height="40"/>
+  <text class="expand-s" x="1120" y="1095">⑧ 云存档 / 排行等远期</text>
+
+  <text class="sub" x="40" y="1145">文档：docs/system-map.svg · docs/system-map.md（Mermaid 同构）</text>
+</svg>

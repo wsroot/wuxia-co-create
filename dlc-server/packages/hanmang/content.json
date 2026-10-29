@@ -1,0 +1,37 @@
+{
+  "talismanScripts": [
+    {
+      "id": "hanmangSlash",
+      "steps": [
+        { "kind": "banner", "text": "灵符", "sub": "寒芒一斩", "dur": 80 },
+        { "kind": "flash", "color": "#a8d8ff", "a": 0.28 },
+        { "kind": "hitstop", "frames": 5 },
+        { "kind": "sfx", "id": "slash" },
+        { "kind": "fx", "preset": "flare", "at": "caster", "size": 70, "color": "#c0e0ff" },
+        { "kind": "fx", "preset": "swordQi", "at": "caster", "size": 90, "color": "#90c8ff", "n": 10 },
+        { "kind": "fx", "preset": "qi", "at": "caster", "n": 8, "color": "#a8d8ff" },
+        { "kind": "damageCone", "reach": 170, "halfH": 54, "damage": 22, "kbX": 7, "kbY": -2, "hitstun": 14, "heavy": true },
+        { "kind": "shake", "amp": 4, "frames": 8 },
+        { "kind": "wait", "frames": 16 }
+      ]
+    }
+  ],
+  "talismans": [
+    {
+      "id": "hanmangfu",
+      "name": "寒芒符",
+      "fogName": "灵符·寒??",
+      "lore": "纸上凝霜，一挥成芒。寒刃出鞘，近前锋锐尽摧。",
+      "tip": "出征：身前寒刃锥击 · 破势推敌",
+      "color": "#90c8ff",
+      "cost": { "cinnabar": 2, "silk": 1, "bone": 1 },
+      "fee": 16,
+      "stockCap": 3,
+      "runCharges": 1,
+      "quality": "huang",
+      "grade": "zhong",
+      "scriptId": "hanmangSlash",
+      "icon": "H-05-tal-1"
+    }
+  ]
+}

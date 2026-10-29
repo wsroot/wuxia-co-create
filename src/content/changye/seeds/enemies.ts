@@ -1,0 +1,56 @@
+/** Oc4: 出厂 CORE_ENEMIES 字面量（原 entities/enemies/factory.ts）。 */
+import type { EnemyDef } from '../../../entities/enemies/factory';
+
+export const CORE_ENEMIES: EnemyDef[] = [
+  {
+    id: 'axe',
+    name: '山贼亡魂',
+    body: 'axe',
+    silhouetteId: 'axe',
+    behaviorId: 'axe',
+    hp: 60,
+    dropChance: 0.22,
+    eliteEligible: true,
+  },
+  {
+    id: 'shield',
+    name: '官差尸兵',
+    body: 'shield',
+    silhouetteId: 'shield',
+    behaviorId: 'shield',
+    hp: 80,
+    dropChance: 0.22,
+    eliteEligible: true,
+    parriedDur: 60,
+  },
+  {
+    id: 'archer',
+    name: '蒙面刺客',
+    body: 'archer',
+    silhouetteId: 'archer',
+    behaviorId: 'archer',
+    hp: 45,
+    dropChance: 0.3,
+    eliteEligible: true,
+  },
+  {
+    id: 'spear',
+    name: '枪影亡魂',
+    body: 'spear',
+    silhouetteId: 'spear',
+    behaviorId: 'spear',
+    hp: 55,
+    dropChance: 0.24,
+    eliteEligible: true,
+  },
+  {
+    id: 'gargoyle',
+    name: '镇山石兽',
+    body: 'gargoyle',
+    silhouetteId: 'gargoyle',
+    behaviorId: 'gargoyle',
+    hp: 900,
+    eliteEligible: false,
+    isBoss: true,
+  },
+];

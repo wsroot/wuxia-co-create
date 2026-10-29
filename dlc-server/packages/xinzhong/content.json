@@ -1,0 +1,34 @@
+{
+  "acts": {
+    "pools": [
+      {
+        "actIndex": 0,
+        "kit": "stone",
+        "tint": "jade",
+        "eliteWeights": {
+          "tongpi": 1,
+          "zhongji": 1,
+          "shanbu": 8,
+          "fanshang": 1,
+          "shixue": 1,
+          "xiehuo": 1
+        },
+        "dropLean": ["iron", "bone", "hide"],
+        "blueprintLean": ["silver", "thorn", "softsword", "clawglove"],
+        "setLean": ["tiegu", "qingxinding", "yingzhi"],
+        "loreLine": "新钟初鸣，山门石兽侧耳。闪步客影偏多。"
+      }
+    ],
+    "beats": [
+      {
+        "fromAct": 0,
+        "id": "betweenActs.xinzhong.1to2",
+        "when": "betweenActs",
+        "title": "钟声未歇…",
+        "subtitle": "雨巷灯火，闪步客影交错",
+        "holdFrames": 160,
+        "slowmo": 0.5
+      }
+    ]
+  }
+}

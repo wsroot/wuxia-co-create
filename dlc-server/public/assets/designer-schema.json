@@ -1,0 +1,8116 @@
+{
+  "version": 2,
+  "note": "设计台白名单。用大白话拼装；技术编号可改可藏。禁任意脚本。W4：兵器/外观/外功（attackKey 挂既有盒）可编；可编 CombatStyle（普攻链）并挂兵器 combatStyleId。A3：可编/导出 attacks（攻击盒）；attackKey datalist=长夜目录+本卷；含 charge/arrow。 X2：可编/导出 fxRecipes（特效配方）；emitter 闭集七选一 flare/ring/spark/qi/fire/dust/swordQi。 X3：可编/导出 poses（攻击姿态三帧 PoseNums）；playPose.poseId / fx·inkBurst.recipeId datalist=核心+本卷。 G2：可编/导出 bossMoves（Boss 招式别名·kind 闭集 10）与 bossKits（close/far 加权）；关卡 Boss 可挂 kit；敌寇可挂 kitId。 R2：可编/导出 projectiles（drawKind 闭集 arrow|fireball；ArrowProj2 可选 attackKey datalist=核心+本卷 attacks；改伤害请挂攻击盒）与 volleys（style 闭集 skySword|thunder|waterPulse）；rangedAttack.projectileId / spawnVolley.volleyId datalist=核心+本卷。 R2b：可编/导出 sheets（src 须 ./art/；禁 http）/ sfx（synth 和/或 src+format）/ backdrops（theme 闭集四 + tint）。R4b：sfx 文件通道已通；src 建议 ./art/audio/；新音频须放 public/art/audio/（馆 tgz 不塞二进制）；武器 sheetId / 符 sfx / 关卡 backdropTheme datalist=核心+本卷。 D1：可编/导出 eliteMods（精英词条·闭集数值/旗标）/ fragments（残页·tag 闭集五 qi|body|speed|sustain|curse）/ titles（称号·极瘦 QoL）；关卡 arena.eliteWeight datalist=本卷+核心精英 id。 D2：可编/导出 materials（材料·极瘦）/ armorSets（套装·slots 闭集七；two/full 加成）/ armorPieces（单件·slot 闭集七）/ wepAffixes（兵器词缀·瘦数值）；armorSets 键序先于 armorPieces；兵器 craft.materials / 符 cost datalist=本卷+核心 materials。 禁任意脚本；不扩 FragmentTag/装甲槽；D3：可编/导出 affixes（场地词缀·闭集 tick/战斗字段；evolveTo datalist）；关卡 arena.affixBias datalist=本卷+核心词缀 id（导演已读 prefer-subset·债#5）。D4：可编/导出 pills（丹药·effect 点路径嵌套；cost→materialIds）/ neigong（内功·effects 五阶数组+签名上限；meditateCost→materialIds）；不扩 aura/sfx lit / 效果词汇；不做喝药实时预览；affixBias 导演已接线（债#5）。Act2：可编/导出 acts 幕池（嵌套 pools/beats；七字段 ± 幕间 betweenActs；kit 开放 string=核心+本卷 bossKits；与 stages 页分栏；不做掉落模拟）。 Pose2：招式样子 playPose 可勾 timeline strike|full（缺省=strike；full=按 frames 播 wind→strike→rec；预览 scrub 三态；export 不丢 full）。 Loco3：poses 可编 locomotion 前缀 hp.*/sp.*（闭集 idle/run/walk/hurt；三帧同填快捷）；export 含这些 id；与攻击姿 slash/skel/garg 区分。",
+  "tags": [
+    {
+      "id": "talisman",
+      "label": "符"
+    },
+    {
+      "id": "pill",
+      "label": "丹"
+    },
+    {
+      "id": "skill",
+      "label": "外功"
+    },
+    {
+      "id": "neigong",
+      "label": "内功"
+    },
+    {
+      "id": "weapon",
+      "label": "兵刃"
+    },
+    {
+      "id": "material",
+      "label": "材料"
+    },
+    {
+      "id": "armor",
+      "label": "防具"
+    },
+    {
+      "id": "enemy",
+      "label": "敌寇"
+    },
+    {
+      "id": "stage",
+      "label": "关隘"
+    },
+    {
+      "id": "affix",
+      "label": "词缀"
+    },
+    {
+      "id": "menpai-bundle",
+      "label": "门派束"
+    }
+  ],
+  "bodies": [
+    {
+      "id": "axe",
+      "label": "斧"
+    },
+    {
+      "id": "shield",
+      "label": "盾"
+    },
+    {
+      "id": "archer",
+      "label": "弓"
+    },
+    {
+      "id": "spear",
+      "label": "枪"
+    },
+    {
+      "id": "gargoyle",
+      "label": "石像（Boss）"
+    }
+  ],
+  "bladeShapes": [
+    "sword",
+    "dagger",
+    "axe",
+    "spear",
+    "twin",
+    "greatsword"
+  ],
+  "weaponLooks": {
+    "label": "兵器长相",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "外观号"
+      },
+      {
+        "key": "label",
+        "type": "string",
+        "label": "称谓"
+      },
+      {
+        "key": "baseShape",
+        "type": "enum",
+        "enum": [
+          "sword",
+          "dagger",
+          "axe",
+          "spear",
+          "twin",
+          "greatsword"
+        ],
+        "label": "基形"
+      }
+    ],
+    "parts": [
+      {
+        "kind": "grip",
+        "label": "柄",
+        "fields": [
+          {
+            "key": "length",
+            "type": "number"
+          },
+          {
+            "key": "width",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "wrapStyle",
+            "type": "enum",
+            "enum": [
+              "cord",
+              "leather",
+              "silk",
+              "none"
+            ],
+            "label": "缠柄"
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "柄"
+      },
+      {
+        "kind": "guard",
+        "label": "护手",
+        "fields": [
+          {
+            "key": "style",
+            "type": "enum",
+            "enum": [
+              "cross",
+              "disk",
+              "wing",
+              "none"
+            ]
+          },
+          {
+            "key": "width",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "护"
+      },
+      {
+        "kind": "tsuba",
+        "label": "镡",
+        "fields": [
+          {
+            "key": "style",
+            "type": "enum",
+            "enum": [
+              "cross",
+              "disk",
+              "wing",
+              "none"
+            ]
+          },
+          {
+            "key": "width",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "radius",
+            "type": "number"
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "镡"
+      },
+      {
+        "kind": "pommel",
+        "label": "柄头",
+        "fields": [
+          {
+            "key": "size",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "ring",
+            "type": "boolean"
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "柄"
+      },
+      {
+        "kind": "blade",
+        "label": "刃身",
+        "fields": [
+          {
+            "key": "profile",
+            "type": "enum",
+            "enum": [
+              "straight",
+              "curved",
+              "leaf",
+              "needle",
+              "broad",
+              "sword",
+              "dagger",
+              "axe",
+              "spear",
+              "twin",
+              "greatsword"
+            ]
+          },
+          {
+            "key": "lengthFrac",
+            "type": "number",
+            "min": 0.4,
+            "max": 1.2
+          },
+          {
+            "key": "width",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "curveAmount",
+            "type": "number",
+            "label": "弯度"
+          },
+          {
+            "key": "taper",
+            "type": "number",
+            "label": "收尖"
+          },
+          {
+            "key": "fuller",
+            "type": "number",
+            "label": "血槽"
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "刃"
+      },
+      {
+        "kind": "tip",
+        "label": "锋尖",
+        "fields": [
+          {
+            "key": "style",
+            "type": "enum",
+            "enum": [
+              "point",
+              "chisel",
+              "hook",
+              "blunt",
+              "fork",
+              "leaf",
+              "barbed",
+              "crescent"
+            ]
+          },
+          {
+            "key": "size",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "锋"
+      },
+      {
+        "kind": "haft",
+        "label": "杆",
+        "fields": [
+          {
+            "key": "length",
+            "type": "number"
+          },
+          {
+            "key": "width",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "杆"
+      },
+      {
+        "kind": "head",
+        "label": "枪斧头",
+        "fields": [
+          {
+            "key": "style",
+            "type": "enum",
+            "enum": [
+              "axe",
+              "spear",
+              "hammer",
+              "halberd",
+              "crescent"
+            ]
+          },
+          {
+            "key": "size",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "枪"
+      },
+      {
+        "kind": "chain",
+        "label": "链",
+        "fields": [
+          {
+            "key": "style",
+            "type": "enum",
+            "enum": [
+              "links",
+              "line"
+            ]
+          },
+          {
+            "key": "length",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "links",
+            "type": "number"
+          },
+          {
+            "key": "swayAmp",
+            "type": "number",
+            "label": "摆幅"
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "链"
+      },
+      {
+        "kind": "tassel",
+        "label": "穗",
+        "fields": [
+          {
+            "key": "style",
+            "type": "enum",
+            "enum": [
+              "short",
+              "long",
+              "knot"
+            ]
+          },
+          {
+            "key": "length",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "swayAmp",
+            "type": "number",
+            "label": "摆幅"
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "穗"
+      },
+      {
+        "kind": "ring",
+        "label": "环",
+        "fields": [
+          {
+            "key": "radius",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "at",
+            "type": "enum",
+            "enum": [
+              "pommel",
+              "guard"
+            ]
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "环"
+      },
+      {
+        "kind": "twinOffset",
+        "label": "双生偏移",
+        "fields": [
+          {
+            "key": "dx",
+            "type": "number"
+          },
+          {
+            "key": "dy",
+            "type": "number"
+          },
+          {
+            "key": "scale",
+            "type": "number"
+          },
+          {
+            "key": "mirror",
+            "type": "boolean",
+            "label": "镜像"
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "双"
+      },
+      {
+        "kind": "palette",
+        "label": "配色",
+        "fields": [
+          {
+            "key": "blade",
+            "type": "color"
+          },
+          {
+            "key": "trail",
+            "type": "color"
+          },
+          {
+            "key": "edge",
+            "type": "color"
+          },
+          {
+            "key": "grip",
+            "type": "color"
+          },
+          {
+            "key": "metal",
+            "type": "color"
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "配"
+      },
+      {
+        "kind": "inkEdge",
+        "label": "墨锋",
+        "fields": [
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "width",
+            "type": "number"
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "墨"
+      },
+      {
+        "kind": "glow",
+        "label": "微光",
+        "fields": [
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "radius",
+            "type": "number"
+          },
+          {
+            "key": "alpha",
+            "type": "number",
+            "min": 0,
+            "max": 1
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "微"
+      },
+      {
+        "kind": "runeInlay",
+        "label": "符文",
+        "fields": [
+          {
+            "key": "text",
+            "type": "string"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "along",
+            "type": "number"
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "符"
+      },
+      {
+        "kind": "idleTrail",
+        "label": "闲置拖影",
+        "fields": [
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "width",
+            "type": "number"
+          },
+          {
+            "key": "alpha",
+            "type": "number",
+            "min": 0,
+            "max": 1
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "闲"
+      },
+      {
+        "kind": "swingHint",
+        "label": "挥击提示",
+        "fields": [
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "width",
+            "type": "number"
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "挥"
+      },
+      {
+        "kind": "spriteOverlay",
+        "label": "贴图叠层",
+        "fields": [
+          {
+            "key": "sheetId",
+            "type": "string",
+            "required": true,
+            "datalist": "sheetIds",
+            "hint": "本卷 sheets + 长夜 CORE_SHEETS",
+            "label": "图集编号"
+          },
+          {
+            "key": "frame",
+            "type": "number"
+          },
+          {
+            "key": "scale",
+            "type": "number"
+          }
+        ],
+        "group": "兵器零件",
+        "icon": "贴"
+      }
+    ]
+  },
+  "animRecipes": {
+    "label": "招式样子",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "配方号"
+      },
+      {
+        "key": "label",
+        "type": "string",
+        "label": "称谓"
+      }
+    ],
+    "steps": [
+      {
+        "kind": "wait",
+        "label": "等待",
+        "group": "共用",
+        "fields": [
+          {
+            "key": "frames",
+            "type": "number",
+            "required": true
+          }
+        ]
+      },
+      {
+        "kind": "playPose",
+        "label": "播姿",
+        "group": "共用",
+        "fields": [
+          {
+            "key": "poseId",
+            "type": "string",
+            "required": true,
+            "datalist": "poseIds",
+            "label": "姿态编号",
+            "hint": "本卷 poses + 长夜 CORE_POSES"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          },
+          {
+            "key": "timeline",
+            "type": "enum",
+            "enum": [
+              "strike",
+              "full"
+            ],
+            "label": "时间轴",
+            "hint": "缺省/不写=strike：只定格击发帧（与解释器一致）。full=按 frames 比例播蓄势→击发→收势（wind→strike→rec）。导出时 full 必保留；strike 可省略。"
+          }
+        ]
+      },
+      {
+        "kind": "holdPose",
+        "label": "持姿",
+        "group": "共用",
+        "fields": [
+          {
+            "key": "poseId",
+            "type": "string",
+            "required": true,
+            "datalist": "poseIds",
+            "label": "姿态编号",
+            "hint": "本卷 poses + 长夜 CORE_POSES"
+          },
+          {
+            "key": "frames",
+            "type": "number",
+            "required": true
+          }
+        ]
+      },
+      {
+        "kind": "afterimage",
+        "label": "残影",
+        "group": "共用",
+        "fields": [
+          {
+            "key": "count",
+            "type": "number"
+          },
+          {
+            "key": "life",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "alpha",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "weaponTrail",
+        "label": "拖影",
+        "group": "共用",
+        "fields": [
+          {
+            "key": "frames",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "width",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "swingArc",
+        "label": "挥砍弧",
+        "group": "共用",
+        "fields": [
+          {
+            "key": "radius",
+            "type": "number"
+          },
+          {
+            "key": "sweep",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "inkBurst",
+        "label": "墨爆",
+        "group": "共用",
+        "fields": [
+          {
+            "key": "size",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "n",
+            "type": "number"
+          },
+          {
+            "key": "recipeId",
+            "type": "string",
+            "datalist": "fxRecipeIds",
+            "label": "配方编号",
+            "hint": "本卷 fxRecipes + 长夜 CORE_FX_RECIPES"
+          }
+        ]
+      },
+      {
+        "kind": "tintCaster",
+        "label": "染身",
+        "group": "共用",
+        "fields": [
+          {
+            "key": "color",
+            "type": "color",
+            "required": true
+          },
+          {
+            "key": "frames",
+            "type": "number",
+            "required": true
+          },
+          {
+            "key": "alpha",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "sfx",
+        "label": "音效",
+        "group": "共用",
+        "fields": [
+          {
+            "key": "id",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      {
+        "kind": "flash",
+        "label": "闪白",
+        "group": "共用",
+        "fields": [
+          {
+            "key": "color",
+            "type": "color",
+            "required": true
+          },
+          {
+            "key": "a",
+            "type": "number",
+            "required": true
+          }
+        ]
+      },
+      {
+        "kind": "hitstop",
+        "label": "顿帧",
+        "group": "共用",
+        "fields": [
+          {
+            "key": "frames",
+            "type": "number",
+            "required": true
+          }
+        ]
+      },
+      {
+        "kind": "shake",
+        "label": "震屏",
+        "group": "共用",
+        "fields": [
+          {
+            "key": "amp",
+            "type": "number",
+            "required": true
+          },
+          {
+            "key": "frames",
+            "type": "number",
+            "required": true
+          }
+        ]
+      },
+      {
+        "kind": "hop",
+        "label": "起跳",
+        "group": "共用",
+        "fields": [
+          {
+            "key": "vy",
+            "type": "number"
+          },
+          {
+            "key": "vx",
+            "type": "number"
+          },
+          {
+            "key": "faceMul",
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "kind": "bounce",
+        "label": "连跳",
+        "group": "共用",
+        "fields": [
+          {
+            "key": "hops",
+            "type": "number",
+            "required": true
+          },
+          {
+            "key": "vy",
+            "type": "number"
+          },
+          {
+            "key": "gapFrames",
+            "type": "number"
+          },
+          {
+            "key": "vx",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "hover",
+        "label": "悬停",
+        "group": "共用",
+        "fields": [
+          {
+            "key": "frames",
+            "type": "number",
+            "required": true
+          },
+          {
+            "key": "vy",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "fallStrike",
+        "label": "下扎",
+        "group": "共用",
+        "fields": [
+          {
+            "key": "vy",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "dash",
+        "label": "突进",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "dist",
+            "type": "number"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          },
+          {
+            "key": "faceMul",
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "kind": "face",
+        "label": "转向",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "dir",
+            "type": "enum",
+            "enum": [
+              "1",
+              "-1",
+              "player",
+              "away"
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "scalePunch",
+        "label": "身形弹",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "scale",
+            "type": "number"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "landDust",
+        "label": "落地尘",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "n",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          }
+        ]
+      },
+      {
+        "kind": "sparkBurst",
+        "label": "火花",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "n",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "flareBurst",
+        "label": "闪焰",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "size",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "ringPulse",
+        "label": "环脉冲",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "size",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "swordQiFlash",
+        "label": "剑气闪",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "color",
+            "type": "color"
+          }
+        ]
+      },
+      {
+        "kind": "camZoom",
+        "label": "镜头推近",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "z",
+            "type": "number"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "slowmo",
+        "label": "慢镜",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "rate",
+            "type": "number"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "parryFlash",
+        "label": "格挡闪",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "color",
+            "type": "color"
+          }
+        ]
+      },
+      {
+        "kind": "guardGlow",
+        "label": "护体辉",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "chainPose",
+        "label": "连续姿",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "poseIds",
+            "type": "stringList",
+            "required": true,
+            "datalist": "poseIds",
+            "label": "姿态编号列表",
+            "hint": "逗号分隔；本卷+核心"
+          },
+          {
+            "key": "frameEach",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "loopPose",
+        "label": "循环姿",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "poseId",
+            "type": "string",
+            "required": true,
+            "datalist": "poseIds",
+            "label": "姿态编号",
+            "hint": "本卷 poses + 长夜 CORE_POSES"
+          },
+          {
+            "key": "frames",
+            "type": "number",
+            "required": true
+          }
+        ]
+      },
+      {
+        "kind": "pullIn",
+        "label": "吸附粒子",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "n",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "orbitRing",
+        "label": "绕身环",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "n",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          },
+          {
+            "key": "radius",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "beamLine",
+        "label": "直线光",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "length",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "crescentSlash",
+        "label": "月牙斩",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "radius",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "groundCrack",
+        "label": "地裂",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "width",
+            "type": "number"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          }
+        ]
+      },
+      {
+        "kind": "riseMist",
+        "label": "升雾",
+        "group": "外功",
+        "fields": [
+          {
+            "key": "frames",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          }
+        ]
+      },
+      {
+        "kind": "sealGlyph",
+        "label": "符面字",
+        "group": "符箓",
+        "fields": [
+          {
+            "key": "text",
+            "type": "string"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          },
+          {
+            "key": "scale",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "sealPaper",
+        "label": "符纸",
+        "group": "符箓",
+        "fields": [
+          {
+            "key": "frames",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "w",
+            "type": "number"
+          },
+          {
+            "key": "h",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "sealStamp",
+        "label": "盖印",
+        "group": "符箓",
+        "fields": [
+          {
+            "key": "text",
+            "type": "string"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          },
+          {
+            "key": "scale",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "sealSpin",
+        "label": "符旋",
+        "group": "符箓",
+        "fields": [
+          {
+            "key": "text",
+            "type": "string"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          },
+          {
+            "key": "revs",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "sealRain",
+        "label": "符雨",
+        "group": "符箓",
+        "fields": [
+          {
+            "key": "count",
+            "type": "number"
+          },
+          {
+            "key": "text",
+            "type": "string"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          }
+        ]
+      },
+      {
+        "kind": "sealChain",
+        "label": "连环符",
+        "group": "符箓",
+        "fields": [
+          {
+            "key": "count",
+            "type": "number"
+          },
+          {
+            "key": "gap",
+            "type": "number"
+          },
+          {
+            "key": "text",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "kind": "talismanTrail",
+        "label": "抛符拖尾",
+        "group": "符箓",
+        "fields": [
+          {
+            "key": "frames",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          }
+        ]
+      },
+      {
+        "kind": "inkSplash",
+        "label": "墨溅",
+        "group": "符箓",
+        "fields": [
+          {
+            "key": "size",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          }
+        ]
+      },
+      {
+        "kind": "baguaRing",
+        "label": "八卦环",
+        "group": "符箓",
+        "fields": [
+          {
+            "key": "frames",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          },
+          {
+            "key": "radius",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "runeOrbit",
+        "label": "绕身符",
+        "group": "符箓",
+        "fields": [
+          {
+            "key": "count",
+            "type": "number"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          }
+        ]
+      },
+      {
+        "kind": "paperBurn",
+        "label": "燃符",
+        "group": "符箓",
+        "fields": [
+          {
+            "key": "frames",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          }
+        ]
+      },
+      {
+        "kind": "exorcismWave",
+        "label": "驱邪波",
+        "group": "符箓",
+        "fields": [
+          {
+            "key": "radius",
+            "type": "number"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          }
+        ]
+      },
+      {
+        "kind": "bindThreads",
+        "label": "定身丝",
+        "group": "符箓",
+        "fields": [
+          {
+            "key": "frames",
+            "type": "number"
+          },
+          {
+            "key": "color",
+            "type": "color"
+          }
+        ]
+      },
+      {
+        "kind": "soulBell",
+        "label": "安魂钟",
+        "group": "符箓",
+        "fields": [
+          {
+            "key": "frames",
+            "type": "number"
+          }
+        ]
+      }
+    ]
+  },
+  "silhouettes": {
+    "label": "长相",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）"
+      },
+      {
+        "key": "label",
+        "type": "string",
+        "label": "称谓"
+      },
+      {
+        "key": "body",
+        "type": "enum",
+        "enum": [
+          "axe",
+          "shield",
+          "archer",
+          "spear",
+          "gargoyle"
+        ],
+        "required": true,
+        "label": "机体"
+      },
+      {
+        "key": "baseRig",
+        "type": "enum",
+        "enum": [
+          "axe",
+          "shield",
+          "archer",
+          "spear",
+          "gargoyle"
+        ],
+        "label": "外观基线"
+      }
+    ],
+    "parts": [
+      {
+        "kind": "mainhand",
+        "label": "兵器",
+        "fields": [
+          {
+            "key": "fromWeapon",
+            "type": "boolean"
+          },
+          {
+            "key": "weaponId",
+            "type": "string"
+          },
+          {
+            "key": "shape",
+            "type": "enum",
+            "enum": [
+              "sword",
+              "dagger",
+              "axe",
+              "spear",
+              "twin",
+              "greatsword"
+            ]
+          },
+          {
+            "key": "length",
+            "type": "number"
+          },
+          {
+            "key": "blade",
+            "type": "color"
+          },
+          {
+            "key": "trail",
+            "type": "color"
+          },
+          {
+            "key": "edge",
+            "type": "color"
+          }
+        ],
+        "hint": "手里拿什么",
+        "icon": "兵",
+        "group": "长相"
+      },
+      {
+        "kind": "headgear",
+        "label": "头面",
+        "fields": [
+          {
+            "key": "style",
+            "type": "enum",
+            "enum": [
+              "bandit",
+              "hat",
+              "topknot",
+              "hood",
+              "none"
+            ]
+          }
+        ],
+        "hint": "帽子发髻",
+        "icon": "冠",
+        "group": "长相"
+      },
+      {
+        "kind": "torso",
+        "label": "身形衣",
+        "fields": [
+          {
+            "key": "style",
+            "type": "enum",
+            "enum": [
+              "robe",
+              "light",
+              "heavy"
+            ]
+          }
+        ],
+        "hint": "袍甲轻重",
+        "icon": "衣",
+        "group": "长相"
+      },
+      {
+        "kind": "offhand",
+        "label": "副手",
+        "fields": [
+          {
+            "key": "style",
+            "type": "enum",
+            "enum": [
+              "blade",
+              "shield",
+              "none"
+            ]
+          }
+        ],
+        "hint": "盾或短刃",
+        "icon": "副",
+        "group": "长相"
+      },
+      {
+        "kind": "palette",
+        "label": "配色",
+        "fields": [
+          {
+            "key": "cloak",
+            "type": "color"
+          },
+          {
+            "key": "coat",
+            "type": "color"
+          },
+          {
+            "key": "arm",
+            "type": "color"
+          },
+          {
+            "key": "armB",
+            "type": "color"
+          },
+          {
+            "key": "leg",
+            "type": "color"
+          },
+          {
+            "key": "legB",
+            "type": "color"
+          },
+          {
+            "key": "boot",
+            "type": "color"
+          },
+          {
+            "key": "skin",
+            "type": "color"
+          },
+          {
+            "key": "sash",
+            "type": "color"
+          },
+          {
+            "key": "collar",
+            "type": "color"
+          },
+          {
+            "key": "eye",
+            "type": "color"
+          }
+        ],
+        "hint": "衣甲色调",
+        "icon": "色",
+        "group": "长相"
+      },
+      {
+        "kind": "scale",
+        "label": "体型",
+        "fields": [
+          {
+            "key": "value",
+            "type": "number",
+            "required": true,
+            "min": 0.4,
+            "max": 2.5
+          }
+        ],
+        "hint": "放大缩小",
+        "icon": "尺",
+        "group": "长相"
+      },
+      {
+        "kind": "cloak",
+        "label": "披风",
+        "hint": "短披/长袍/破蓑",
+        "icon": "披",
+        "group": "长相",
+        "fields": [
+          {
+            "key": "style",
+            "type": "enum",
+            "enum": [
+              "short",
+              "long",
+              "ragged",
+              "none"
+            ],
+            "label": "样式"
+          },
+          {
+            "key": "sway",
+            "type": "number",
+            "label": "摆幅"
+          },
+          {
+            "key": "color",
+            "type": "color",
+            "label": "颜色"
+          }
+        ]
+      },
+      {
+        "kind": "armorLayer",
+        "label": "甲片",
+        "hint": "胸/肩/裙甲叠层",
+        "icon": "甲",
+        "group": "长相",
+        "fields": [
+          {
+            "key": "slot",
+            "type": "enum",
+            "enum": [
+              "chest",
+              "shoulder",
+              "skirt"
+            ],
+            "label": "部位"
+          },
+          {
+            "key": "style",
+            "type": "enum",
+            "enum": [
+              "light",
+              "plate",
+              "cloth"
+            ],
+            "label": "质地"
+          },
+          {
+            "key": "color",
+            "type": "color",
+            "label": "颜色"
+          }
+        ]
+      },
+      {
+        "kind": "ornament",
+        "label": "饰物",
+        "hint": "腰铃、背旗、耳坠之类",
+        "icon": "饰",
+        "group": "长相",
+        "fields": [
+          {
+            "key": "slot",
+            "type": "enum",
+            "enum": [
+              "waist",
+              "back",
+              "neck",
+              "ear"
+            ],
+            "label": "挂哪"
+          },
+          {
+            "key": "style",
+            "type": "enum",
+            "enum": [
+              "pendant",
+              "sashKnot",
+              "banner",
+              "bell",
+              "feather",
+              "none"
+            ],
+            "label": "样式"
+          },
+          {
+            "key": "color",
+            "type": "color",
+            "label": "颜色"
+          }
+        ]
+      },
+      {
+        "kind": "faceMark",
+        "label": "面记",
+        "hint": "疤、面具、面纱",
+        "icon": "面",
+        "group": "长相",
+        "fields": [
+          {
+            "key": "style",
+            "type": "enum",
+            "enum": [
+              "none",
+              "scar",
+              "mask",
+              "veil"
+            ],
+            "label": "样式"
+          },
+          {
+            "key": "color",
+            "type": "color",
+            "label": "颜色"
+          }
+        ]
+      },
+      {
+        "kind": "stanceBias",
+        "label": "站姿",
+        "hint": "略倾、略蹲的视觉偏移",
+        "icon": "姿",
+        "group": "长相",
+        "fields": [
+          {
+            "key": "lean",
+            "type": "number",
+            "label": "前倾",
+            "min": -1,
+            "max": 1
+          },
+          {
+            "key": "crouch",
+            "type": "number",
+            "label": "蹲伏",
+            "min": 0,
+            "max": 1
+          }
+        ]
+      }
+    ]
+  },
+  "behaviors": {
+    "label": "怎么打",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）"
+      },
+      {
+        "key": "label",
+        "type": "string",
+        "label": "怎么称呼"
+      },
+      {
+        "key": "body",
+        "type": "enum",
+        "enum": [
+          "axe",
+          "shield",
+          "archer",
+          "spear",
+          "gargoyle"
+        ],
+        "required": true,
+        "label": "身形骨架"
+      }
+    ],
+    "steps": [
+      {
+        "kind": "keepDistance",
+        "label": "控距",
+        "fields": [
+          {
+            "key": "idealMin",
+            "type": "number",
+            "required": true,
+            "label": "最近"
+          },
+          {
+            "key": "idealMax",
+            "type": "number",
+            "required": true,
+            "label": "最远"
+          },
+          {
+            "key": "chase",
+            "type": "number",
+            "required": true,
+            "label": "追击上限"
+          },
+          {
+            "key": "retreatSpeed",
+            "type": "number"
+          }
+        ],
+        "hint": "保持理想远近",
+        "icon": "距",
+        "group": "走位"
+      },
+      {
+        "kind": "meleeAttack",
+        "label": "近劈",
+        "fields": [
+          {
+            "key": "attackKey",
+            "type": "string",
+            "label": "招式",
+            "datalist": "coreAttackKeys",
+            "hint": "只认 ctx.attacks 目录 id（长夜核心或本卷 attacks）；缺则 soft-skip"
+          },
+          {
+            "key": "rangeMin",
+            "type": "number",
+            "label": "最近"
+          },
+          {
+            "key": "rangeMax",
+            "type": "number",
+            "required": true,
+            "label": "最远"
+          },
+          {
+            "key": "weight",
+            "type": "number",
+            "label": "多用程度"
+          },
+          {
+            "key": "cooldown",
+            "type": "number",
+            "label": "冷却"
+          }
+        ],
+        "hint": "凑近挥砍",
+        "icon": "砍",
+        "group": "进攻"
+      },
+      {
+        "kind": "rangedAttack",
+        "label": "远射",
+        "fields": [
+          {
+            "key": "projectileId",
+            "type": "string",
+            "label": "弹种",
+            "datalist": "projectileIds",
+            "hint": "本卷 projectiles + 长夜 CORE_PROJECTILES"
+          },
+          {
+            "key": "rangeMin",
+            "type": "number",
+            "required": true,
+            "label": "最近"
+          },
+          {
+            "key": "rangeMax",
+            "type": "number",
+            "required": true,
+            "label": "最远"
+          },
+          {
+            "key": "aimFrames",
+            "type": "number"
+          },
+          {
+            "key": "weight",
+            "type": "number",
+            "label": "多用程度"
+          },
+          {
+            "key": "cooldown",
+            "type": "number",
+            "label": "冷却"
+          }
+        ],
+        "hint": "拉开放箭/弹",
+        "icon": "射",
+        "group": "进攻"
+      },
+      {
+        "kind": "block",
+        "label": "格挡",
+        "fields": [
+          {
+            "key": "holdFrames",
+            "type": "number"
+          },
+          {
+            "key": "weight",
+            "type": "number",
+            "label": "多用程度"
+          },
+          {
+            "key": "cooldown",
+            "type": "number",
+            "label": "冷却"
+          }
+        ],
+        "hint": "举盾挡一阵（盾兵）",
+        "icon": "挡",
+        "group": "防御"
+      },
+      {
+        "kind": "charge",
+        "label": "冲锋",
+        "fields": [
+          {
+            "key": "speed",
+            "type": "number"
+          },
+          {
+            "key": "frames",
+            "type": "number"
+          },
+          {
+            "key": "rangeMin",
+            "type": "number",
+            "label": "最近"
+          },
+          {
+            "key": "rangeMax",
+            "type": "number",
+            "label": "最远"
+          },
+          {
+            "key": "weight",
+            "type": "number",
+            "label": "多用程度"
+          },
+          {
+            "key": "cooldown",
+            "type": "number",
+            "label": "冷却"
+          }
+        ],
+        "hint": "直线撞过来",
+        "icon": "冲",
+        "group": "进攻"
+      },
+      {
+        "kind": "useLoadout",
+        "label": "用随身",
+        "fields": [
+          {
+            "key": "prefer",
+            "type": "enum",
+            "enum": [
+              "skill",
+              "talisman",
+              "any"
+            ]
+          },
+          {
+            "key": "weight",
+            "type": "number",
+            "label": "多用程度"
+          }
+        ],
+        "hint": "放外功/符/丹",
+        "icon": "携",
+        "group": "特殊"
+      },
+      {
+        "kind": "idlePace",
+        "label": "踱步",
+        "fields": [
+          {
+            "key": "speed",
+            "type": "number"
+          }
+        ],
+        "hint": "没事来回走",
+        "icon": "踱",
+        "group": "姿态"
+      },
+      {
+        "kind": "facePlayer",
+        "label": "盯着你",
+        "fields": [],
+        "hint": "始终面向侠客",
+        "icon": "盯",
+        "group": "姿态"
+      },
+      {
+        "kind": "dodge",
+        "label": "闪身",
+        "hint": "贴身时横跳或后撤",
+        "icon": "閃",
+        "group": "身法",
+        "fields": [
+          {
+            "key": "direction",
+            "type": "enum",
+            "enum": [
+              "away",
+              "side"
+            ],
+            "label": "方向",
+            "presets": [
+              {
+                "label": "躲开",
+                "value": "away"
+              },
+              {
+                "label": "横跳",
+                "value": "side"
+              }
+            ]
+          },
+          {
+            "key": "range",
+            "type": "number",
+            "label": "触发距离",
+            "presets": [
+              {
+                "label": "近",
+                "value": 80
+              },
+              {
+                "label": "中",
+                "value": 120
+              },
+              {
+                "label": "远",
+                "value": 180
+              }
+            ]
+          },
+          {
+            "key": "weight",
+            "type": "number",
+            "label": "多用程度",
+            "presets": [
+              {
+                "label": "少",
+                "value": 0.5
+              },
+              {
+                "label": "常",
+                "value": 1
+              },
+              {
+                "label": "多",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "key": "cooldown",
+            "type": "number",
+            "label": "冷却"
+          }
+        ]
+      },
+      {
+        "kind": "circleStrafe",
+        "label": "绕圈",
+        "hint": "围着你转圈找空档",
+        "icon": "圜",
+        "group": "身法",
+        "fields": [
+          {
+            "key": "radius",
+            "type": "number",
+            "label": "圈半径",
+            "presets": [
+              {
+                "label": "近",
+                "value": 90
+              },
+              {
+                "label": "中",
+                "value": 130
+              },
+              {
+                "label": "远",
+                "value": 180
+              }
+            ]
+          },
+          {
+            "key": "speed",
+            "type": "number",
+            "label": "步速"
+          },
+          {
+            "key": "weight",
+            "type": "number",
+            "label": "多用程度"
+          }
+        ]
+      },
+      {
+        "kind": "flank",
+        "label": "抄后",
+        "hint": "绕到身后偷袭",
+        "icon": "袭",
+        "group": "身法",
+        "fields": [
+          {
+            "key": "preferBehind",
+            "type": "boolean",
+            "label": "优先身后"
+          },
+          {
+            "key": "weight",
+            "type": "number",
+            "label": "多用程度"
+          }
+        ]
+      },
+      {
+        "kind": "callAlly",
+        "label": "呼援",
+        "hint": "叫同伙上场（没有这号人就跳过）",
+        "icon": "召",
+        "group": "特殊",
+        "fields": [
+          {
+            "key": "enemyId",
+            "type": "string",
+            "label": "同伙名号"
+          },
+          {
+            "key": "max",
+            "type": "number",
+            "label": "最多几个"
+          },
+          {
+            "key": "cooldown",
+            "type": "number",
+            "label": "冷却"
+          },
+          {
+            "key": "weight",
+            "type": "number",
+            "label": "多用程度"
+          }
+        ]
+      },
+      {
+        "kind": "phaseAtHp",
+        "label": "残血变招",
+        "hint": "气血掉到某成数换一套打法",
+        "icon": "变",
+        "group": "阶段",
+        "fields": [
+          {
+            "key": "below",
+            "type": "number",
+            "label": "气血低于",
+            "min": 0,
+            "max": 1,
+            "presets": [
+              {
+                "label": "半血",
+                "value": 0.5
+              },
+              {
+                "label": "四成",
+                "value": 0.4
+              },
+              {
+                "label": "两成",
+                "value": 0.2
+              }
+            ]
+          },
+          {
+            "key": "setPhase",
+            "type": "string",
+            "label": "阶段名",
+            "required": true
+          }
+        ]
+      },
+      {
+        "kind": "phaseGate",
+        "label": "阶段门",
+        "hint": "只在某阶段启用里面的招",
+        "icon": "门",
+        "group": "阶段",
+        "fields": [
+          {
+            "key": "phase",
+            "type": "string",
+            "label": "阶段名",
+            "required": true
+          }
+        ]
+      },
+      {
+        "kind": "comboChain",
+        "label": "连斩",
+        "hint": "按顺序打出一串招",
+        "icon": "连",
+        "group": "进攻",
+        "fields": [
+          {
+            "key": "attackKeys",
+            "type": "stringList",
+            "label": "招式序列",
+            "required": true,
+            "datalist": "coreAttackKeys",
+            "hint": "逗号分隔；只认 ctx.attacks 目录 id（本卷+核心）"
+          },
+          {
+            "key": "gapFrames",
+            "type": "number",
+            "label": "招间停顿"
+          },
+          {
+            "key": "rangeMin",
+            "type": "number",
+            "label": "最近"
+          },
+          {
+            "key": "rangeMax",
+            "type": "number",
+            "label": "最远",
+            "presets": [
+              {
+                "label": "近",
+                "value": 100
+              },
+              {
+                "label": "中",
+                "value": 160
+              },
+              {
+                "label": "远",
+                "value": 220
+              }
+            ]
+          },
+          {
+            "key": "weight",
+            "type": "number",
+            "label": "多用程度"
+          }
+        ]
+      },
+      {
+        "kind": "retreatBurst",
+        "label": "急退",
+        "hint": "猛地后跳拉开",
+        "icon": "退",
+        "group": "身法",
+        "fields": [
+          {
+            "key": "dist",
+            "type": "number",
+            "label": "退多远",
+            "presets": [
+              {
+                "label": "短",
+                "value": 60
+              },
+              {
+                "label": "中",
+                "value": 90
+              },
+              {
+                "label": "长",
+                "value": 140
+              }
+            ]
+          },
+          {
+            "key": "frames",
+            "type": "number",
+            "label": "几帧"
+          },
+          {
+            "key": "weight",
+            "type": "number",
+            "label": "多用程度"
+          }
+        ]
+      },
+      {
+        "kind": "taunt",
+        "label": "挑衅",
+        "hint": "说句狠话（轻量）",
+        "icon": "喝",
+        "group": "姿态",
+        "fields": [
+          {
+            "key": "text",
+            "type": "string",
+            "label": "台词"
+          },
+          {
+            "key": "weight",
+            "type": "number",
+            "label": "多用程度"
+          },
+          {
+            "key": "cooldown",
+            "type": "number",
+            "label": "冷却"
+          }
+        ]
+      },
+      {
+        "kind": "idleEmote",
+        "label": "闲态",
+        "hint": "站着时的小动作/低语",
+        "icon": "息",
+        "group": "姿态",
+        "fields": [
+          {
+            "key": "text",
+            "type": "string",
+            "label": "低语"
+          },
+          {
+            "key": "weight",
+            "type": "number",
+            "label": "多用程度"
+          },
+          {
+            "key": "cooldown",
+            "type": "number",
+            "label": "冷却"
+          }
+        ]
+      }
+    ]
+  },
+  "stages": {
+    "label": "编一关浪次",
+    "note": "排出场顺序、Boss 凶法和场地偏重。编号可自动生成。 整幕默认权重/Lore/幕间字幕请到「幕池」页（勿把 ActPool 嵌进本表单）。",
+    "backdropThemes": [
+      "night",
+      "dock",
+      "ash",
+      "eclipse"
+    ],
+    "bossTints": [
+      "jade",
+      "ink",
+      "blood",
+      "ash"
+    ],
+    "platformKinds": [
+      "roof",
+      "bridge",
+      "pavilion"
+    ],
+    "sides": [
+      "L",
+      "R"
+    ],
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "幕号（可改）"
+      },
+      {
+        "key": "actIndex",
+        "type": "number",
+        "required": true,
+        "label": "第几幕（从 0 起）"
+      },
+      {
+        "key": "title",
+        "type": "string",
+        "required": true,
+        "label": "这一幕叫什么"
+      },
+      {
+        "key": "subtitle",
+        "type": "string",
+        "label": "开场一句话"
+      },
+      {
+        "key": "length",
+        "type": "number",
+        "required": true,
+        "label": "关长 length"
+      },
+      {
+        "key": "start",
+        "type": "number",
+        "required": true,
+        "label": "起点 start"
+      },
+      {
+        "key": "backdropTheme",
+        "type": "string",
+        "label": "幕氛围 / theme",
+        "datalist": "backdropIds",
+        "hint": "本卷 backdrops + 长夜 CORE_BACKDROPS（亦可写核心 theme 字面量）"
+      }
+    ],
+    "arenaFields": [
+      {
+        "key": "name",
+        "type": "string",
+        "required": true,
+        "label": "场地名"
+      },
+      {
+        "key": "x0",
+        "type": "number",
+        "required": true,
+        "label": "x0"
+      },
+      {
+        "key": "trigger",
+        "type": "number",
+        "required": true,
+        "label": "trigger"
+      },
+      {
+        "key": "affixBias",
+        "type": "stringList",
+        "label": "场地偏味（词缀倾向）",
+        "hint": "本卷 affixes + 长夜核心（duwu/nifeng/…）；导演已读 prefer-subset（债#5）",
+        "datalist": "affixIds"
+      },
+      {
+        "key": "eliteWeight",
+        "type": "materialMap",
+        "label": "精英词条偏重",
+        "hint": "本卷 eliteMods + 长夜核心（tongpi/shixue/…）；如 tongpi:3,shanbu:1",
+        "datalist": "eliteModIds"
+      }
+    ],
+    "spawnFields": [
+      {
+        "key": "type",
+        "type": "string",
+        "required": true,
+        "label": "敌寇 type"
+      },
+      {
+        "key": "side",
+        "type": "enum",
+        "enum": [
+          "L",
+          "R"
+        ],
+        "required": true,
+        "label": "侧"
+      },
+      {
+        "key": "delay",
+        "type": "number",
+        "required": true,
+        "label": "延迟帧"
+      }
+    ],
+    "bossFields": [
+      {
+        "key": "name",
+        "type": "string",
+        "required": true,
+        "label": "关口名"
+      },
+      {
+        "key": "x0",
+        "type": "number",
+        "required": true,
+        "label": "x0"
+      },
+      {
+        "key": "trigger",
+        "type": "number",
+        "required": true,
+        "label": "trigger"
+      },
+      {
+        "key": "bossName",
+        "type": "string",
+        "required": true,
+        "label": "Boss 名"
+      },
+      {
+        "key": "bossSubtitle",
+        "type": "string",
+        "label": "Boss 副标"
+      },
+      {
+        "key": "bossId",
+        "type": "string",
+        "required": true,
+        "label": "bossId（敌寇 id）"
+      },
+      {
+        "key": "kit",
+        "type": "string",
+        "label": "怎么凶（kit）",
+        "datalist": "bossKitIds",
+        "hint": "本卷 bossKits + 长夜 stone/rain/tomb/night；优先于敌寇 kitId"
+      },
+      {
+        "key": "hpScale",
+        "type": "number",
+        "required": true,
+        "label": "气血倍率"
+      },
+      {
+        "key": "dmgScale",
+        "type": "number",
+        "required": true,
+        "label": "伤害倍率"
+      },
+      {
+        "key": "tint",
+        "type": "enum",
+        "enum": [
+          "jade",
+          "ink",
+          "blood",
+          "ash"
+        ],
+        "label": "染色"
+      }
+    ],
+    "platformFields": [
+      {
+        "key": "x",
+        "type": "number",
+        "required": true
+      },
+      {
+        "key": "y",
+        "type": "number",
+        "required": true
+      },
+      {
+        "key": "w",
+        "type": "number",
+        "required": true
+      },
+      {
+        "key": "h",
+        "type": "number",
+        "required": true
+      },
+      {
+        "key": "kind",
+        "type": "enum",
+        "enum": [
+          "roof",
+          "bridge",
+          "pavilion"
+        ]
+      }
+    ]
+  },
+  "scriptSteps": {
+    "label": "符效 / 招结算（ScriptStep）",
+    "steps": [
+      {
+        "kind": "wait",
+        "label": "等待",
+        "hint": "空等若干帧",
+        "icon": "等",
+        "group": "节奏",
+        "fields": [
+          {
+            "key": "frames",
+            "type": "number",
+            "label": "帧",
+            "required": true,
+            "min": 0
+          }
+        ]
+      },
+      {
+        "kind": "banner",
+        "label": "横幅",
+        "hint": "屏幕横幅文案",
+        "icon": "幅",
+        "group": "节奏",
+        "fields": [
+          {
+            "key": "text",
+            "type": "string",
+            "label": "主文",
+            "required": true
+          },
+          {
+            "key": "sub",
+            "type": "string",
+            "label": "副文"
+          },
+          {
+            "key": "dur",
+            "type": "number",
+            "label": "持续帧",
+            "min": 0
+          }
+        ]
+      },
+      {
+        "kind": "float",
+        "label": "飘字",
+        "hint": "飘起一行字",
+        "icon": "飘",
+        "group": "节奏",
+        "fields": [
+          {
+            "key": "text",
+            "type": "string",
+            "label": "文案",
+            "required": true
+          },
+          {
+            "key": "color",
+            "type": "color",
+            "label": "色"
+          },
+          {
+            "key": "size",
+            "type": "number",
+            "label": "字号"
+          },
+          {
+            "key": "bold",
+            "type": "boolean",
+            "label": "加粗"
+          },
+          {
+            "key": "where",
+            "type": "enum",
+            "enum": [
+              "caster",
+              "eachElite",
+              "boss"
+            ],
+            "label": "位置"
+          }
+        ]
+      },
+      {
+        "kind": "fx",
+        "label": "粒子特效",
+        "hint": "flare/ring/spark 等预设，或挂 fxRecipes",
+        "icon": "效",
+        "group": "观感",
+        "fields": [
+          {
+            "key": "preset",
+            "type": "enum",
+            "enum": [
+              "flare",
+              "ring",
+              "spark",
+              "qi",
+              "fire",
+              "dust",
+              "swordQi"
+            ],
+            "label": "预设"
+          },
+          {
+            "key": "recipeId",
+            "type": "string",
+            "label": "配方编号",
+            "datalist": "fxRecipeIds",
+            "hint": "本卷 fxRecipes + 长夜 CORE_FX_RECIPES；可与 preset 二选一"
+          },
+          {
+            "key": "at",
+            "type": "enum",
+            "enum": [
+              "caster",
+              "ground",
+              "boss"
+            ],
+            "label": "锚点"
+          },
+          {
+            "key": "ox",
+            "type": "number",
+            "label": "横偏"
+          },
+          {
+            "key": "oy",
+            "type": "number",
+            "label": "纵偏"
+          },
+          {
+            "key": "size",
+            "type": "number",
+            "label": "大小"
+          },
+          {
+            "key": "color",
+            "type": "color",
+            "label": "色"
+          },
+          {
+            "key": "life",
+            "type": "number",
+            "label": "寿命"
+          },
+          {
+            "key": "n",
+            "type": "number",
+            "label": "数量",
+            "min": 0
+          },
+          {
+            "key": "heavy",
+            "type": "boolean",
+            "label": "加重"
+          }
+        ]
+      },
+      {
+        "kind": "shake",
+        "label": "震屏",
+        "hint": "镜头抖一下",
+        "icon": "震",
+        "group": "观感",
+        "fields": [
+          {
+            "key": "amp",
+            "type": "number",
+            "label": "幅度",
+            "required": true
+          },
+          {
+            "key": "frames",
+            "type": "number",
+            "label": "帧",
+            "required": true,
+            "min": 0
+          }
+        ]
+      },
+      {
+        "kind": "hitstop",
+        "label": "顿帧",
+        "hint": "命中停顿",
+        "icon": "顿",
+        "group": "观感",
+        "fields": [
+          {
+            "key": "frames",
+            "type": "number",
+            "label": "帧",
+            "required": true,
+            "min": 0
+          }
+        ]
+      },
+      {
+        "kind": "flash",
+        "label": "闪白",
+        "hint": "全屏闪一下",
+        "icon": "闪",
+        "group": "观感",
+        "fields": [
+          {
+            "key": "color",
+            "type": "color",
+            "label": "色",
+            "required": true
+          },
+          {
+            "key": "a",
+            "type": "number",
+            "label": "透明度",
+            "required": true,
+            "min": 0,
+            "max": 1
+          }
+        ]
+      },
+      {
+        "kind": "sfx",
+        "label": "音效",
+        "hint": "播一条引擎音效 id",
+        "icon": "声",
+        "group": "观感",
+        "fields": [
+          {
+            "key": "id",
+            "type": "string",
+            "label": "音效编号",
+            "required": true,
+            "presets": [
+              {
+                "label": "斩",
+                "value": "slash"
+              },
+              {
+                "label": "重击",
+                "value": "heavy"
+              },
+              {
+                "label": "命中",
+                "value": "hit"
+              },
+              {
+                "label": "破空",
+                "value": "superSlash"
+              },
+              {
+                "label": "轰",
+                "value": "boom"
+              }
+            ],
+            "datalist": "sfxIds",
+            "hint": " · 本卷 sfx + 长夜 CORE_SFX"
+          }
+        ]
+      },
+      {
+        "kind": "damageRadius",
+        "label": "圆伤",
+        "hint": "椭圆/圆形范围伤害",
+        "icon": "圆",
+        "group": "伤害",
+        "fields": [
+          {
+            "key": "rx",
+            "type": "number",
+            "label": "横半径",
+            "required": true
+          },
+          {
+            "key": "ry",
+            "type": "number",
+            "label": "纵半径"
+          },
+          {
+            "key": "damage",
+            "type": "number",
+            "label": "伤害",
+            "required": true
+          },
+          {
+            "key": "ox",
+            "type": "number",
+            "label": "横偏"
+          },
+          {
+            "key": "oy",
+            "type": "number",
+            "label": "纵偏"
+          },
+          {
+            "key": "kbX",
+            "type": "number",
+            "label": "击退X"
+          },
+          {
+            "key": "kbY",
+            "type": "number",
+            "label": "击退Y"
+          },
+          {
+            "key": "hitstun",
+            "type": "number",
+            "label": "硬直"
+          },
+          {
+            "key": "hitstop",
+            "type": "number",
+            "label": "顿帧"
+          },
+          {
+            "key": "shake",
+            "type": "number",
+            "label": "震幅"
+          },
+          {
+            "key": "heavy",
+            "type": "boolean",
+            "label": "加重"
+          }
+        ]
+      },
+      {
+        "kind": "damageCone",
+        "label": "锥伤",
+        "hint": "身前扇形/锥形伤害",
+        "icon": "锥",
+        "group": "伤害",
+        "fields": [
+          {
+            "key": "reach",
+            "type": "number",
+            "label": "射程",
+            "required": true
+          },
+          {
+            "key": "halfH",
+            "type": "number",
+            "label": "半高",
+            "required": true
+          },
+          {
+            "key": "damage",
+            "type": "number",
+            "label": "伤害",
+            "required": true
+          },
+          {
+            "key": "kbX",
+            "type": "number",
+            "label": "击退X"
+          },
+          {
+            "key": "kbY",
+            "type": "number",
+            "label": "击退Y"
+          },
+          {
+            "key": "hitstun",
+            "type": "number",
+            "label": "硬直"
+          },
+          {
+            "key": "heavy",
+            "type": "boolean",
+            "label": "加重"
+          }
+        ]
+      },
+      {
+        "kind": "damageBox",
+        "label": "方框伤",
+        "hint": "身前一块矩形伤害",
+        "icon": "框",
+        "group": "伤害",
+        "fields": [
+          {
+            "key": "w",
+            "type": "number",
+            "label": "宽",
+            "required": true
+          },
+          {
+            "key": "h",
+            "type": "number",
+            "label": "高",
+            "required": true
+          },
+          {
+            "key": "damage",
+            "type": "number",
+            "label": "伤害",
+            "required": true
+          },
+          {
+            "key": "ox",
+            "type": "number",
+            "label": "横向偏"
+          },
+          {
+            "key": "oy",
+            "type": "number",
+            "label": "纵向偏"
+          },
+          {
+            "key": "kbX",
+            "type": "number"
+          },
+          {
+            "key": "kbY",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "damageDonut",
+        "label": "环伤",
+        "hint": "内空外实的圆环",
+        "icon": "环",
+        "group": "伤害",
+        "fields": [
+          {
+            "key": "rInner",
+            "type": "number",
+            "label": "内径",
+            "required": true
+          },
+          {
+            "key": "rOuter",
+            "type": "number",
+            "label": "外径",
+            "required": true
+          },
+          {
+            "key": "damage",
+            "type": "number",
+            "label": "伤害",
+            "required": true
+          }
+        ]
+      },
+      {
+        "kind": "multihit",
+        "label": "连段伤",
+        "hint": "同一击重复几次",
+        "icon": "连",
+        "group": "伤害",
+        "fields": [
+          {
+            "key": "times",
+            "type": "number",
+            "label": "几次",
+            "required": true
+          },
+          {
+            "key": "gapFrames",
+            "type": "number",
+            "label": "间隔",
+            "required": true
+          }
+        ]
+      },
+      {
+        "kind": "spawnVolley",
+        "label": "召击",
+        "hint": "飞剑/落雷/水脉等齐射",
+        "icon": "召",
+        "group": "伤害",
+        "fields": [
+          {
+            "key": "style",
+            "type": "enum",
+            "enum": [
+              "skySword",
+              "thunder",
+              "waterPulse"
+            ],
+            "label": "样式"
+          },
+          {
+            "key": "volleyId",
+            "type": "string",
+            "label": "齐射配方编号",
+            "datalist": "volleyIds",
+            "hint": "本卷 volleys + 长夜 CORE_VOLLEYS；可与 style 二选一优先 volleyId"
+          },
+          {
+            "key": "count",
+            "type": "number",
+            "label": "次数",
+            "required": true,
+            "min": 0
+          },
+          {
+            "key": "interval",
+            "type": "number",
+            "label": "间隔帧",
+            "required": true,
+            "min": 0
+          },
+          {
+            "key": "damage",
+            "type": "number",
+            "label": "伤害",
+            "required": true
+          },
+          {
+            "key": "spread",
+            "type": "number",
+            "label": "散布"
+          },
+          {
+            "key": "radius",
+            "type": "number",
+            "label": "半径"
+          }
+        ]
+      },
+      {
+        "kind": "knockback",
+        "label": "击退圈",
+        "hint": "范围内推开敌人",
+        "icon": "推",
+        "group": "控制",
+        "fields": [
+          {
+            "key": "r",
+            "type": "number",
+            "label": "半径",
+            "required": true
+          },
+          {
+            "key": "kbX",
+            "type": "number",
+            "label": "击退X",
+            "required": true
+          },
+          {
+            "key": "kbY",
+            "type": "number",
+            "label": "击退Y",
+            "required": true
+          }
+        ]
+      },
+      {
+        "kind": "status",
+        "label": "状态",
+        "hint": "驱邪/护身/定身/安魂等白名单状态",
+        "icon": "态",
+        "group": "控制",
+        "fields": [
+          {
+            "key": "affixSuppress",
+            "type": "number",
+            "label": "词缀压制帧"
+          },
+          {
+            "key": "clearHazards",
+            "type": "boolean",
+            "label": "清障"
+          },
+          {
+            "key": "eliteSuppress",
+            "type": "number",
+            "label": "精英压制帧"
+          },
+          {
+            "key": "clearControl",
+            "type": "boolean",
+            "label": "解控"
+          },
+          {
+            "key": "invuln",
+            "type": "number",
+            "label": "无敌帧"
+          },
+          {
+            "key": "heal",
+            "type": "number",
+            "label": "回血"
+          },
+          {
+            "key": "stamina",
+            "type": "number",
+            "label": "回气"
+          },
+          {
+            "key": "hushen",
+            "type": "number",
+            "label": "护身帧"
+          },
+          {
+            "key": "poshi",
+            "type": "boolean",
+            "label": "破势"
+          },
+          {
+            "key": "dingshen",
+            "type": "number",
+            "label": "定身帧"
+          },
+          {
+            "key": "anhun",
+            "type": "number",
+            "label": "安魂帧"
+          },
+          {
+            "key": "floatEachElite",
+            "type": "string",
+            "label": "精英飘字"
+          },
+          {
+            "key": "root",
+            "type": "number",
+            "label": "定根帧"
+          },
+          {
+            "key": "rootRadius",
+            "type": "number",
+            "label": "定根半径"
+          }
+        ]
+      },
+      {
+        "kind": "zone",
+        "label": "符域",
+        "hint": "留在地上的持续区",
+        "icon": "域",
+        "group": "控制",
+        "fields": [
+          {
+            "key": "shape",
+            "type": "enum",
+            "enum": [
+              "circle",
+              "box"
+            ],
+            "label": "形状",
+            "required": true
+          },
+          {
+            "key": "duration",
+            "type": "number",
+            "label": "持续",
+            "required": true
+          },
+          {
+            "key": "tickDamage",
+            "type": "number",
+            "label": "每跳伤害"
+          },
+          {
+            "key": "status",
+            "type": "enum",
+            "enum": [
+              "root",
+              "slow",
+              "burn"
+            ],
+            "label": "附加"
+          },
+          {
+            "key": "radius",
+            "type": "number",
+            "label": "半径"
+          },
+          {
+            "key": "w",
+            "type": "number"
+          },
+          {
+            "key": "h",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "kind": "pull",
+        "label": "拉扯",
+        "hint": "把人往中心拽",
+        "icon": "吸",
+        "group": "控制",
+        "fields": [
+          {
+            "key": "radius",
+            "type": "number",
+            "label": "范围",
+            "required": true
+          },
+          {
+            "key": "strength",
+            "type": "number",
+            "label": "力度",
+            "required": true
+          },
+          {
+            "key": "frames",
+            "type": "number",
+            "label": "持续"
+          }
+        ]
+      },
+      {
+        "kind": "root",
+        "label": "定身",
+        "hint": "范围内动弹不得",
+        "icon": "定",
+        "group": "控制",
+        "fields": [
+          {
+            "key": "duration",
+            "type": "number",
+            "label": "多久",
+            "required": true
+          },
+          {
+            "key": "radius",
+            "type": "number",
+            "label": "范围"
+          }
+        ]
+      }
+    ],
+    "note": "ScriptStep 白名单 19 kind（符箓 timeline 与外功 castFx 共用）。符效编辑器用全部 steps；外功 castFx 仍用 skills.castFx.kinds 轻量子集。"
+  },
+  "bossMoves": {
+    "label": "Boss 招式",
+    "note": "BossMoveDef：id + kind（闭集 10，无 perch/takeoff）+ 可选 label/radius/damage/hitstop/width/enemyId/count/side/frames/color + Gsm3 claw soft：startupMul/recoveryMul/damageMul + Gsm4 windFrames（charge/slam/sweep 蓄力帧，缺省 38/28/22）+ Dfr1 roar 复用 windFrames（缺省 40；可选 radius/frames）+ Dfr2 fireball：frames=rise（缺省 34）、count=弹数（缺省 3）、windFrames=弹间隔 gap（缺省 20；phase2 gap 仍壳 14）、projectileId soft（缺省 fireball；不扩 drawKind）+ Dfr3 dive：windFrames=aim 切下（缺省 68；仍 ÷ spd）、radius=落地波半宽（缺省 150）、frames=recover（缺省 60；仍 ÷ spd）、可选 attackKey 体/波（缺省 gDive/gDiveWave；无盒 soft-skip）。供 bossKits 权重引用；slam/sweep/summonAdds/inkNova 运行时读调参；claw 读倍率改爪节奏（缺省=今日）；walk 的 frames 读为空档踱步 CD（缺省 50）；roar 的 frames=active（缺省 44）、radius=环最大半径（缺省 300）；伤害仍 gRoar。Dfr4：拓扑仍壳、只 soft；CORE dive/fireball/roar 可 omit；示范挂载见内容包（勿为三招新建 class）。禁任意脚本；不扩 kind。对照 CORE_BOSS_MOVES / BossMoveSchema。",
+    "kinds": [
+      {
+        "kind": "claw",
+        "label": "裂爪",
+        "hint": "Gsm3 可读 startupMul/recoveryMul/damageMul"
+      },
+      {
+        "kind": "charge",
+        "label": "冲撞",
+        "hint": "Gsm4 windFrames=蓄力帧（缺省 38；仍 ÷ spd）"
+      },
+      {
+        "kind": "fireball",
+        "label": "火球",
+        "hint": "Dfr2 frames=rise（缺省 34）；count 弹数（缺省 3）；windFrames=gap（缺省 20）；projectileId soft（缺省 fireball；不扩 drawKind）"
+      },
+      {
+        "kind": "dive",
+        "label": "俯冲",
+        "hint": "Dfr3 windFrames=aim 切下（缺省 68；仍 ÷ spd）；radius 落地波半宽（缺省 150）；frames recover（缺省 60）；可选 attackKey 体/波（缺省 gDive/gDiveWave；无盒 soft-skip）；diveAim 仍免疫"
+      },
+      {
+        "kind": "roar",
+        "label": "震啸",
+        "hint": "Dfr1 windFrames 蓄力（缺省 40）；radius 环 max（缺省 300）；frames active（缺省 44）；伤仍 gRoar"
+      },
+      {
+        "kind": "walk",
+        "label": "踱步",
+        "hint": "Gsm3 frames=踱步 CD（缺省 50）"
+      },
+      {
+        "kind": "slam",
+        "label": "震地",
+        "hint": "Gsm4 windFrames 蓄力（缺省 28）；radius/damage/hitstop soft"
+      },
+      {
+        "kind": "sweep",
+        "label": "横扫",
+        "hint": "Gsm4 windFrames 蓄力（缺省 22）；width/damage soft"
+      },
+      {
+        "kind": "summonAdds",
+        "label": "召卫",
+        "hint": "叫小兵（软引用）"
+      },
+      {
+        "kind": "inkNova",
+        "label": "墨爆",
+        "hint": "纸墨环形爆发"
+      }
+    ],
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；kit 权重引用此 id"
+      },
+      {
+        "key": "kind",
+        "type": "enum",
+        "required": true,
+        "enum": [
+          "claw",
+          "charge",
+          "fireball",
+          "dive",
+          "roar",
+          "walk",
+          "slam",
+          "sweep",
+          "summonAdds",
+          "inkNova"
+        ],
+        "label": "原语 kind",
+        "hint": "闭集 10；勿填 perch/takeoff"
+      },
+      {
+        "key": "label",
+        "type": "string",
+        "label": "称谓"
+      },
+      {
+        "key": "radius",
+        "type": "number",
+        "label": "半径",
+        "hint": "slam / inkNova / Dfr1 roar 环 max（缺省 300）/ Dfr3 dive 落地波半宽（缺省 150）"
+      },
+      {
+        "key": "damage",
+        "type": "number",
+        "label": "伤害",
+        "hint": "slam / sweep / inkNova（绝对值）；爪请用 damageMul"
+      },
+      {
+        "key": "hitstop",
+        "type": "number",
+        "label": "顿帧"
+      },
+      {
+        "key": "width",
+        "type": "number",
+        "label": "宽度",
+        "hint": "sweep"
+      },
+      {
+        "key": "enemyId",
+        "type": "string",
+        "label": "召卫敌寇 id",
+        "hint": "summonAdds 软引用"
+      },
+      {
+        "key": "count",
+        "type": "number",
+        "label": "数量",
+        "hint": "summonAdds 召卫数；Dfr2 fireball 弹数（缺省 3；约 1…8）",
+        "min": 0
+      },
+      {
+        "key": "side",
+        "type": "enum",
+        "enum": [
+          "L",
+          "R",
+          "both"
+        ],
+        "label": "召卫侧"
+      },
+      {
+        "key": "frames",
+        "type": "number",
+        "label": "帧数",
+        "hint": "inkNova 示意/寿命；walk 空档踱步 CD（缺省 50）；Dfr1 roar active（缺省 44）；Dfr2 fireball rise（缺省 34）；Dfr3 dive recover（缺省 60；仍 ÷ spd）",
+        "min": 0
+      },
+      {
+        "key": "color",
+        "type": "color",
+        "label": "色",
+        "hint": "inkNova"
+      },
+      {
+        "key": "startupMul",
+        "type": "number",
+        "label": "爪起手倍率",
+        "hint": "Gsm3 claw：乘 AttackDef.startup；缺省/1=今日；约 0.25…4",
+        "min": 0
+      },
+      {
+        "key": "recoveryMul",
+        "type": "number",
+        "label": "爪收招倍率",
+        "hint": "Gsm3 claw：乘 recovery（段间隔感）；缺省/1=今日；约 0.25…4",
+        "min": 0
+      },
+      {
+        "key": "damageMul",
+        "type": "number",
+        "label": "爪伤害倍率",
+        "hint": "Gsm3 claw：乘各段 damage；缺省/1=今日；约 0.1…5",
+        "min": 0
+      },
+      {
+        "key": "windFrames",
+        "type": "number",
+        "label": "蓄力帧",
+        "hint": "Gsm4 charge/slam/sweep + Dfr1 roar 蓄力；Dfr2 fireball 弹间隔 gap；Dfr3 diveAim 切下；缺省 charge 38 / slam 28 / sweep 22 / roar 40 / fireball gap 20 / diveAim 68；约 1…180",
+        "min": 0
+      },
+      {
+        "key": "projectileId",
+        "type": "string",
+        "label": "投射物 id",
+        "hint": "Dfr2 fireball soft；缺省/缺 Def→fireball；datalist=核心+本卷 projectiles；不扩 drawKind",
+        "datalist": "projectileIds"
+      },
+      {
+        "key": "attackKey",
+        "type": "string",
+        "label": "攻击盒 id",
+        "hint": "Dfr3 dive soft 体/波；缺省 body=gDive / wave=gDiveWave；挂同一 id 时体波共用；无盒 soft-skip；datalist=核心+本卷 attacks",
+        "datalist": "coreAttackKeys"
+      }
+    ]
+  },
+  "colliders": {
+    "label": "碰撞盒",
+    "note": "只改物理盒大小。禁任意脚本。Enemy 可引用 colliderId，或内联 collider（内联优先）。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）"
+      },
+      {
+        "key": "label",
+        "type": "string",
+        "label": "称谓"
+      },
+      {
+        "key": "w",
+        "type": "number",
+        "required": true,
+        "label": "宽（≥1）"
+      },
+      {
+        "key": "h",
+        "type": "number",
+        "required": true,
+        "label": "高（≥1）"
+      },
+      {
+        "key": "hurtInset",
+        "type": "number",
+        "label": "受击内缩（≥0，P0 可暂不生效）"
+      },
+      {
+        "key": "gravityScale",
+        "type": "number",
+        "label": "重力倍率（>0，组装时写一次）"
+      }
+    ]
+  },
+  "enemies": {
+    "label": "敌人原型",
+    "note": "组装键：碰撞 + 长相 + 怎么打。Boss 另可挂 kitId（怎么凶）。body 可选（软别名）。无 body 时须有 colliderId 或内联 collider，以及 silhouetteId、behaviorId。禁任意脚本。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号"
+      },
+      {
+        "key": "name",
+        "type": "string",
+        "required": true,
+        "label": "名字"
+      },
+      {
+        "key": "body",
+        "type": "enum",
+        "enum": [
+          "axe",
+          "shield",
+          "archer",
+          "spear",
+          "gargoyle"
+        ],
+        "required": false,
+        "label": "机体别名（兼容，可选）"
+      },
+      {
+        "key": "hp",
+        "type": "number",
+        "required": true,
+        "label": "气血"
+      },
+      {
+        "key": "isBoss",
+        "type": "boolean",
+        "label": "是 Boss",
+        "hint": "进 makeBoss 壳；与 body=gargoyle 等价路由"
+      },
+      {
+        "key": "silhouetteId",
+        "type": "string",
+        "label": "长相编号",
+        "datalist": "silhouetteIds",
+        "hint": "本卷 silhouettes + 长夜核心"
+      },
+      {
+        "key": "behaviorId",
+        "type": "string",
+        "label": "怎么打编号",
+        "datalist": "behaviorIds",
+        "hint": "本卷 behaviors + 长夜核心"
+      },
+      {
+        "key": "colliderId",
+        "type": "string",
+        "label": "碰撞盒编号",
+        "datalist": "colliderIds",
+        "hint": "本卷 colliders + 长夜核心"
+      },
+      {
+        "key": "kitId",
+        "type": "string",
+        "label": "怎么凶（kitId）",
+        "datalist": "bossKitIds",
+        "hint": "Boss 用；本卷 bossKits + 长夜核心；stage.boss.kit 优先"
+      },
+      {
+        "key": "collider",
+        "type": "object",
+        "label": "内联碰撞（优先于 colliderId）",
+        "fields": [
+          {
+            "key": "w",
+            "type": "number",
+            "required": true
+          },
+          {
+            "key": "h",
+            "type": "number",
+            "required": true
+          },
+          {
+            "key": "hurtInset",
+            "type": "number"
+          },
+          {
+            "key": "gravityScale",
+            "type": "number"
+          }
+        ]
+      }
+    ]
+  },
+  "weaponWeights": [
+    "light",
+    "medium",
+    "heavy"
+  ],
+  "weaponCategories": [
+    "bare",
+    "blade",
+    "spear",
+    "heavy"
+  ],
+  "affinities": [
+    "bossGargoyle",
+    "shieldBreak",
+    "antiArmor",
+    "juggle",
+    "dashFocus",
+    "rage"
+  ],
+  "inherentQualities": [
+    "tian",
+    "di",
+    "xuan",
+    "huang",
+    "fan",
+    "lie"
+  ],
+  "weaponGates": [
+    "bare",
+    "blade",
+    "spear",
+    "heavy",
+    "any"
+  ],
+  "skillCastKinds": [
+    "heal",
+    "pojun",
+    "ningqi",
+    "attack"
+  ],
+  "skillKinds": [
+    "passive",
+    "active"
+  ],
+  "unlockTypes": [
+    "starter",
+    "bossClear",
+    "blueprint",
+    "eliteDrop"
+  ],
+  "coreAttackKeys": [
+    "slash1",
+    "slash2",
+    "slash3",
+    "finisherPoise",
+    "finisherDrain",
+    "finisher",
+    "launcher",
+    "sweep",
+    "dashKick",
+    "airA",
+    "airB",
+    "rising",
+    "plunge",
+    "counter",
+    "throw",
+    "jab1",
+    "jab2",
+    "palm",
+    "claw",
+    "hook",
+    "bareKick",
+    "bengquan",
+    "huzhua",
+    "huzhua2",
+    "huzhua3",
+    "daomang",
+    "qiangjue",
+    "huixuan",
+    "zhanma",
+    "tuci",
+    "chuanxin",
+    "hengsao",
+    "kaitian",
+    "tieshan",
+    "fanyun",
+    "plungeWave",
+    "superSlash",
+    "superFinal",
+    "axeChop",
+    "bash",
+    "charge",
+    "whip",
+    "thrust",
+    "lunge",
+    "arrow",
+    "claw1",
+    "claw2",
+    "claw3",
+    "gCharge",
+    "gDive",
+    "gDiveWave",
+    "gRoar",
+    "gFire"
+  ],
+  "attacks": {
+    "label": "攻击盒",
+    "note": "AttackBoxDef 闭集：id(=name) + startup/active/recovery + box + damage/kbX/kbY；可选 hitstun/swing 等。软引用供 Behavior attackKey / 外功。禁任意脚本；勿发明 Schema 外字段。对照 CORE_ATTACK_BOXES / bodyAttacks 七内置。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜与 name 相同"
+      },
+      {
+        "key": "name",
+        "type": "string",
+        "required": true,
+        "label": "内部名",
+        "hint": "AttackDef.name；通常与 id 同"
+      },
+      {
+        "key": "startup",
+        "type": "number",
+        "required": true,
+        "label": "前摇帧",
+        "min": 0
+      },
+      {
+        "key": "active",
+        "type": "number",
+        "required": true,
+        "label": "判定帧",
+        "min": 0
+      },
+      {
+        "key": "recovery",
+        "type": "number",
+        "required": true,
+        "label": "后摇帧",
+        "min": 0
+      },
+      {
+        "key": "box.x",
+        "type": "number",
+        "required": true,
+        "label": "盒·X"
+      },
+      {
+        "key": "box.y",
+        "type": "number",
+        "required": true,
+        "label": "盒·Y"
+      },
+      {
+        "key": "box.w",
+        "type": "number",
+        "required": true,
+        "label": "盒·宽",
+        "min": 0
+      },
+      {
+        "key": "box.h",
+        "type": "number",
+        "required": true,
+        "label": "盒·高",
+        "min": 0
+      },
+      {
+        "key": "damage",
+        "type": "number",
+        "required": true,
+        "label": "伤害"
+      },
+      {
+        "key": "kbX",
+        "type": "number",
+        "required": true,
+        "label": "击退 X"
+      },
+      {
+        "key": "kbY",
+        "type": "number",
+        "required": true,
+        "label": "击退 Y"
+      },
+      {
+        "key": "hitstun",
+        "type": "number",
+        "label": "硬直"
+      },
+      {
+        "key": "hitstop",
+        "type": "number",
+        "label": "顿帧"
+      },
+      {
+        "key": "shake",
+        "type": "number",
+        "label": "震屏"
+      },
+      {
+        "key": "parryable",
+        "type": "boolean",
+        "label": "可招架"
+      },
+      {
+        "key": "swing",
+        "type": "enum",
+        "enum": [
+          "slash",
+          "heavy",
+          "claw",
+          "bash",
+          "kick",
+          "whip",
+          "none"
+        ],
+        "label": "挥砍型"
+      },
+      {
+        "key": "moveX",
+        "type": "number",
+        "label": "前冲"
+      },
+      {
+        "key": "moveFrames",
+        "type": "number",
+        "label": "前冲帧"
+      },
+      {
+        "key": "knockdown",
+        "type": "boolean",
+        "label": "击倒"
+      },
+      {
+        "key": "launch",
+        "type": "boolean",
+        "label": "浮空"
+      },
+      {
+        "key": "pierce",
+        "type": "boolean",
+        "label": "穿刺"
+      },
+      {
+        "key": "guardBreak",
+        "type": "boolean",
+        "label": "破防"
+      },
+      {
+        "key": "heavy",
+        "type": "boolean",
+        "label": "重击"
+      }
+    ]
+  },
+  "fxRecipes": {
+    "label": "特效配方",
+    "note": "FxRecipeDef 闭集：id + emitter（FX_PRESETS 七选一）+ 可选 color/size/life/n/heavy。供 anim inkBurst.recipeId / 符 fx.recipeId 软引用。禁任意脚本；不扩 preset。对照 CORE_FX_RECIPES / FxRecipeSchema。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜稳定；供 recipeId 挂接"
+      },
+      {
+        "key": "emitter",
+        "type": "enum",
+        "required": true,
+        "enum": [
+          "flare",
+          "ring",
+          "spark",
+          "qi",
+          "fire",
+          "dust",
+          "swordQi"
+        ],
+        "label": "发射器",
+        "hint": "闭集七选一；与 FxPreset / FX_PRESETS 对齐；勿发明新 kind"
+      },
+      {
+        "key": "color",
+        "type": "color",
+        "label": "色"
+      },
+      {
+        "key": "size",
+        "type": "number",
+        "label": "大小"
+      },
+      {
+        "key": "life",
+        "type": "number",
+        "label": "寿命帧"
+      },
+      {
+        "key": "n",
+        "type": "number",
+        "label": "粒子数",
+        "min": 0
+      },
+      {
+        "key": "heavy",
+        "type": "boolean",
+        "label": "重效"
+      }
+    ]
+  },
+  "combatStyles": {
+    "label": "普攻链 Style",
+    "note": "CombatStyleDef / AttackChainStyle 闭集：id + groundKeys + branches + noChainOpen；可选 plungeWaveKey。attackKeys 软引用 ctx.attacks。禁任意脚本。对照核心 blade/bare 与 bingren_canfeng_chain。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号",
+        "hint": "稳定 id，如 my_chain"
+      },
+      {
+        "key": "groundKeys",
+        "type": "stringList",
+        "required": true,
+        "label": "地面普攻链",
+        "hint": "逗号分隔 attackKey，≥1；如 slash1, slash2, slash3, finisher",
+        "datalist": "coreAttackKeys"
+      },
+      {
+        "key": "branches.dash",
+        "type": "string",
+        "required": true,
+        "label": "冲刺枝",
+        "datalist": "coreAttackKeys"
+      },
+      {
+        "key": "branches.groundUp",
+        "type": "string",
+        "required": true,
+        "label": "地上↑枝",
+        "datalist": "coreAttackKeys"
+      },
+      {
+        "key": "branches.groundDown",
+        "type": "string",
+        "required": true,
+        "label": "地上↓枝",
+        "datalist": "coreAttackKeys"
+      },
+      {
+        "key": "branches.airDown",
+        "type": "string",
+        "required": true,
+        "label": "空中↓枝",
+        "datalist": "coreAttackKeys"
+      },
+      {
+        "key": "branches.airUp",
+        "type": "string",
+        "required": true,
+        "label": "空中↑枝",
+        "datalist": "coreAttackKeys"
+      },
+      {
+        "key": "branches.airNeutral",
+        "type": "stringList",
+        "required": true,
+        "label": "空中中性（须 2 个）",
+        "hint": "恰好两个 attackKey，交替空中普攻",
+        "datalist": "coreAttackKeys"
+      },
+      {
+        "key": "branches.finisherPoise",
+        "type": "string",
+        "label": "破定终结（可选）",
+        "datalist": "coreAttackKeys"
+      },
+      {
+        "key": "branches.finisherDrain",
+        "type": "string",
+        "label": "吸怒终结（可选）",
+        "datalist": "coreAttackKeys"
+      },
+      {
+        "key": "branches.throw",
+        "type": "string",
+        "required": true,
+        "label": "投技枝",
+        "datalist": "coreAttackKeys"
+      },
+      {
+        "key": "noChainOpen",
+        "type": "stringList",
+        "required": true,
+        "label": "不开链窗的招",
+        "hint": "逗号分隔；这些招名结束后不开普攻链窗（可空）",
+        "datalist": "coreAttackKeys"
+      },
+      {
+        "key": "plungeWaveKey",
+        "type": "string",
+        "label": "下落冲击波（可选）",
+        "hint": "plunge 落地冲击波 attackKey",
+        "datalist": "coreAttackKeys"
+      }
+    ]
+  },
+  "weapons": {
+    "label": "兵器",
+    "note": "WeaponDef 全套必填 + lookId（或内联 parts）+ 可选 combatStyleId / feel.boxTune。对照 qiangying / bingren。禁任意脚本/外链。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号"
+      },
+      {
+        "key": "name",
+        "type": "string",
+        "required": true,
+        "label": "名称"
+      },
+      {
+        "key": "lore",
+        "type": "string",
+        "required": true,
+        "label": "跋语"
+      },
+      {
+        "key": "tip",
+        "type": "string",
+        "required": true,
+        "label": "提示"
+      },
+      {
+        "key": "unlock.type",
+        "type": "enum",
+        "enum": [
+          "starter",
+          "bossClear",
+          "blueprint",
+          "eliteDrop"
+        ],
+        "required": true,
+        "label": "解锁方式"
+      },
+      {
+        "key": "unlock.hint",
+        "type": "string",
+        "label": "解锁提示"
+      },
+      {
+        "key": "damage",
+        "type": "number",
+        "required": true,
+        "label": "伤害倍率"
+      },
+      {
+        "key": "speed",
+        "type": "number",
+        "required": true,
+        "label": "速度倍率"
+      },
+      {
+        "key": "reach",
+        "type": "number",
+        "required": true,
+        "label": "触及倍率"
+      },
+      {
+        "key": "poise",
+        "type": "number",
+        "required": true,
+        "label": "破定倍率"
+      },
+      {
+        "key": "rage",
+        "type": "number",
+        "required": true,
+        "label": "怒气倍率"
+      },
+      {
+        "key": "airHover",
+        "type": "number",
+        "required": true,
+        "label": "滞空倍率"
+      },
+      {
+        "key": "weight",
+        "type": "enum",
+        "enum": [
+          "light",
+          "medium",
+          "heavy"
+        ],
+        "required": true,
+        "label": "重量档"
+      },
+      {
+        "key": "category",
+        "type": "enum",
+        "enum": [
+          "bare",
+          "blade",
+          "spear",
+          "heavy"
+        ],
+        "required": true,
+        "label": "类别"
+      },
+      {
+        "key": "affinities",
+        "type": "stringList",
+        "required": true,
+        "label": "克制标签",
+        "hint": "逗号分隔，闭集见 affinities"
+      },
+      {
+        "key": "affinityBonus",
+        "type": "number",
+        "required": true,
+        "label": "克制加成"
+      },
+      {
+        "key": "blade",
+        "type": "color",
+        "required": true,
+        "label": "刃色"
+      },
+      {
+        "key": "trail",
+        "type": "color",
+        "required": true,
+        "label": "拖影"
+      },
+      {
+        "key": "edge",
+        "type": "color",
+        "required": true,
+        "label": "刃锋"
+      },
+      {
+        "key": "length",
+        "type": "number",
+        "required": true,
+        "label": "长度"
+      },
+      {
+        "key": "shape",
+        "type": "enum",
+        "enum": [
+          "sword",
+          "dagger",
+          "axe",
+          "spear",
+          "twin",
+          "greatsword"
+        ],
+        "required": true,
+        "label": "形"
+      },
+      {
+        "key": "quality",
+        "type": "enum",
+        "enum": [
+          "tian",
+          "di",
+          "xuan",
+          "huang",
+          "fan",
+          "lie"
+        ],
+        "label": "固有品质"
+      },
+      {
+        "key": "tier",
+        "type": "number",
+        "min": 1,
+        "max": 9,
+        "label": "装备阶位 1–9"
+      },
+      {
+        "key": "lookId",
+        "type": "string",
+        "label": "兵器长相编号",
+        "hint": "引用本卷 weaponLooks.id 或长夜 coreWeaponLookIds；亦可内联 parts"
+      },
+      {
+        "key": "combatStyleId",
+        "type": "string",
+        "label": "普攻链 Style",
+        "hint": "软引用 combatStyles.id；核心 blade/bare 或本卷新增；缺则按类别默认",
+        "datalist": "combatStyleIds"
+      },
+      {
+        "key": "feel.boxTune.tipXPush",
+        "type": "number",
+        "label": "手感·枪尖前推"
+      },
+      {
+        "key": "feel.boxTune.tipWFloorMul",
+        "type": "number",
+        "label": "手感·尖宽下限倍率"
+      },
+      {
+        "key": "craft.fee",
+        "type": "number",
+        "label": "锻造费用"
+      },
+      {
+        "key": "craft.materials",
+        "type": "materialMap",
+        "label": "锻造材料",
+        "hint": "本卷 materials + 长夜核心；如 iron:2, silk:1",
+        "datalist": "materialIds"
+      }
+    ]
+  },
+  "skills": {
+    "label": "外功",
+    "note": "castKind:attack 时 attackKey 挂既有 ctx.attacks id（长夜种子或本卷自造）。禁任意脚本；可选 castAnim 挂招式样子配方；可选 castFx 挂轻量 ScriptStep 结算/观感（复用 scriptSteps 子集）。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号"
+      },
+      {
+        "key": "name",
+        "type": "string",
+        "required": true,
+        "label": "名称"
+      },
+      {
+        "key": "fogName",
+        "type": "string",
+        "required": true,
+        "label": "未得雾名"
+      },
+      {
+        "key": "kind",
+        "type": "enum",
+        "enum": [
+          "passive",
+          "active"
+        ],
+        "required": true,
+        "label": "主动/被动"
+      },
+      {
+        "key": "track",
+        "type": "enum",
+        "enum": [
+          "combat"
+        ],
+        "required": true,
+        "label": "轨道"
+      },
+      {
+        "key": "lore",
+        "type": "string",
+        "required": true,
+        "label": "跋语"
+      },
+      {
+        "key": "tip",
+        "type": "string",
+        "required": true,
+        "label": "提示"
+      },
+      {
+        "key": "profHint",
+        "type": "string",
+        "required": true,
+        "label": "熟练提示"
+      },
+      {
+        "key": "fee",
+        "type": "number",
+        "required": true,
+        "label": "费用"
+      },
+      {
+        "key": "quality",
+        "type": "enum",
+        "enum": [
+          "tian",
+          "di",
+          "xuan",
+          "huang",
+          "fan",
+          "lie"
+        ],
+        "label": "固有品质"
+      },
+      {
+        "key": "weaponGate",
+        "type": "enum",
+        "enum": [
+          "bare",
+          "blade",
+          "spear",
+          "heavy",
+          "any"
+        ],
+        "label": "兵器门控"
+      },
+      {
+        "key": "neiliCost",
+        "type": "number",
+        "min": 0,
+        "label": "内力消耗"
+      },
+      {
+        "key": "castKind",
+        "type": "enum",
+        "enum": [
+          "heal",
+          "pojun",
+          "ningqi",
+          "attack"
+        ],
+        "label": "施放类型"
+      },
+      {
+        "key": "attackKey",
+        "type": "string",
+        "label": "攻击盒编号",
+        "hint": "只认 ctx.attacks 目录 id（长夜核心或本卷 attacks）；缺则「招式未备」soft-skip",
+        "presets": [
+          {
+            "label": "刀芒",
+            "value": "daomang"
+          },
+          {
+            "label": "刺枪",
+            "value": "qiangjue"
+          },
+          {
+            "label": "崩拳",
+            "value": "bengquan"
+          },
+          {
+            "label": "横扫",
+            "value": "hengsao"
+          },
+          {
+            "label": "突刺",
+            "value": "tuci"
+          },
+          {
+            "label": "slash1",
+            "value": "slash1"
+          }
+        ],
+        "datalist": "coreAttackKeys"
+      },
+      {
+        "key": "castAnim",
+        "type": "string",
+        "label": "招式样子编号",
+        "hint": "挂 ctx.animRecipes 配方 id（长夜核心 13 条或本卷「招式样子」）；播放时 soft-resolve，错 id 无动画",
+        "datalist": "animRecipeIds",
+        "presets": [
+          {
+            "label": "墨斩",
+            "value": "slashInk"
+          },
+          {
+            "label": "墨刺",
+            "value": "thrustInk"
+          },
+          {
+            "label": "跃斩",
+            "value": "hopSlash"
+          },
+          {
+            "label": "突进刺",
+            "value": "dashThrust"
+          },
+          {
+            "label": "月牙墨斩",
+            "value": "crescentInk"
+          },
+          {
+            "label": "地裂",
+            "value": "groundBreak"
+          },
+          {
+            "label": "升雾",
+            "value": "mistRise"
+          },
+          {
+            "label": "符面爆",
+            "value": "sealBurst"
+          }
+        ]
+      },
+      {
+        "key": "commandLabel",
+        "type": "string",
+        "label": "指令标签"
+      },
+      {
+        "key": "hudHint",
+        "type": "string",
+        "label": "HUD 提示"
+      },
+      {
+        "key": "touchPriority",
+        "type": "number",
+        "label": "触控优先"
+      },
+      {
+        "key": "attackChain",
+        "type": "stringList",
+        "label": "多段攻击盒",
+        "hint": "逗号分隔 AttackBox id"
+      }
+    ],
+    "castFx": {
+      "label": "施放特效 / 结算",
+      "note": "轻量：外功详情区嵌短步骤列表；不做完整符箓脚本编辑器。kind 须在白名单内。",
+      "kinds": [
+        "wait",
+        "fx",
+        "shake",
+        "hitstop",
+        "flash",
+        "sfx",
+        "damageBox",
+        "damageDonut",
+        "zone",
+        "pull",
+        "root",
+        "multihit"
+      ]
+    }
+  },
+  "coreCombatStyleIds": [
+    "blade",
+    "bare"
+  ],
+  "coreAnimRecipeIds": [
+    "slashInk",
+    "thrustInk",
+    "sealBurst",
+    "hopSlash",
+    "dashThrust",
+    "crescentInk",
+    "groundBreak",
+    "mistRise",
+    "sealStampFull",
+    "sealRainCast",
+    "baguaBind",
+    "paperBurnBurst",
+    "exorcismPulse"
+  ],
+  "talismanScripts": {
+    "label": "符效时间轴",
+    "note": "TalismanScriptDef：id + steps（全量 19 ScriptStep）+ 可选 anim。积木白名单见 scriptSteps。导出须先于 talismans。",
+    "useStepsFrom": "scriptSteps",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "label": "编号",
+        "required": true
+      },
+      {
+        "key": "label",
+        "type": "string",
+        "label": "备注名"
+      },
+      {
+        "key": "anim",
+        "type": "string",
+        "label": "anim（符向配方）",
+        "datalist": "talismanAnimRecipeIds",
+        "hint": "核心符向配方或本卷 animRecipes"
+      }
+    ]
+  },
+  "talismans": {
+    "label": "灵符",
+    "note": "TalismanDef（Schema 必填齐）。scriptId 挂本卷 talismanScripts；anim 可选覆盖。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "label": "编号",
+        "required": true
+      },
+      {
+        "key": "name",
+        "type": "string",
+        "label": "名称",
+        "required": true
+      },
+      {
+        "key": "fogName",
+        "type": "string",
+        "label": "雾名",
+        "required": true,
+        "hint": "如 灵符·寒??"
+      },
+      {
+        "key": "lore",
+        "type": "string",
+        "label": "传闻",
+        "required": true
+      },
+      {
+        "key": "tip",
+        "type": "string",
+        "label": "提示",
+        "required": true
+      },
+      {
+        "key": "color",
+        "type": "color",
+        "label": "色",
+        "required": true
+      },
+      {
+        "key": "cost",
+        "type": "materialMap",
+        "label": "材料消耗",
+        "required": true,
+        "hint": "本卷 materials + 长夜核心；如 cinnabar:2, silk:1",
+        "datalist": "materialIds"
+      },
+      {
+        "key": "fee",
+        "type": "number",
+        "label": "银钱费用",
+        "required": true,
+        "min": 0
+      },
+      {
+        "key": "stockCap",
+        "type": "number",
+        "label": "库存上限",
+        "required": true,
+        "min": 0
+      },
+      {
+        "key": "runCharges",
+        "type": "number",
+        "label": "每局次数",
+        "required": true,
+        "min": 0
+      },
+      {
+        "key": "scriptId",
+        "type": "string",
+        "label": "符效编号",
+        "datalist": "talismanScriptIds",
+        "hint": "本卷 talismanScripts.id；默认等于符 id · 可选长夜 coreScriptIds"
+      },
+      {
+        "key": "anim",
+        "type": "string",
+        "label": "anim（覆盖脚本）",
+        "datalist": "talismanAnimRecipeIds"
+      },
+      {
+        "key": "quality",
+        "type": "enum",
+        "enum": [
+          "tian",
+          "di",
+          "xuan",
+          "huang",
+          "fan",
+          "lie"
+        ],
+        "label": "品质"
+      },
+      {
+        "key": "grade",
+        "type": "enum",
+        "enum": [
+          "shang",
+          "zhong",
+          "xia"
+        ],
+        "label": "品级"
+      },
+      {
+        "key": "icon",
+        "type": "string",
+        "label": "图标 key",
+        "hint": "既有 key 或 ./art/…；禁外链"
+      }
+    ]
+  },
+  "coreTalismanAnimRecipeIds": [
+    "sealBurst",
+    "sealStampFull",
+    "sealRainCast",
+    "baguaBind",
+    "paperBurnBurst",
+    "exorcismPulse"
+  ],
+  "consumableGrades": [
+    "shang",
+    "zhong",
+    "xia"
+  ],
+  "coreBehaviorIds": [
+    "axe",
+    "shield",
+    "archer",
+    "spear",
+    "gargoyle"
+  ],
+  "coreSilhouetteIds": [
+    "axe",
+    "shield",
+    "archer",
+    "spear",
+    "gargoyle"
+  ],
+  "coreColliderIds": [
+    "axe",
+    "shield",
+    "archer",
+    "spear",
+    "gargoyle"
+  ],
+  "fxEmitters": [
+    "flare",
+    "ring",
+    "spark",
+    "qi",
+    "fire",
+    "dust",
+    "swordQi"
+  ],
+  "coreFxRecipeIds": [
+    "flare",
+    "ring",
+    "spark",
+    "qi",
+    "fire",
+    "dust",
+    "swordQi"
+  ],
+  "poses": {
+    "label": "攻击姿态（含 loco）",
+    "note": "PoseDef 闭集：id + wind/strike/rec 各帧 PoseNums（y lean head rot ft fk bt bk fa fe ba be w）。攻击姿供 anim playPose/holdPose/loopPose/chainPose 软引用（slash/skel.*/garg.*）。locomotion 另用前缀约定（与攻击姿区分）：玩家 hp.idle|idle2|run1|run2|hurt；杂兵 sp.idle|walk1|walk2|hurt；运行时 locoPose 只读 strike，建议三帧同填（台面有「三帧同填 strike」快捷）。可从核心拷贝再改。禁骨骼拖拽；不扩字段；不灌 CORE 全树 loco。对照 CORE_POSES / PoseSchema / locoPose。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜稳定。攻击姿供 playPose.poseId；loco 用闭集 hp.idle|idle2|run1|run2|hurt 或 sp.idle|walk1|walk2|hurt（datalist 提示）",
+        "datalist": "locoPoseIds"
+      },
+      {
+        "key": "wind.y",
+        "type": "number",
+        "required": true,
+        "label": "蓄势·纵偏",
+        "hint": "PoseNums.y（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "wind.lean",
+        "type": "number",
+        "required": true,
+        "label": "蓄势·倾身",
+        "hint": "PoseNums.lean（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "wind.head",
+        "type": "number",
+        "required": true,
+        "label": "蓄势·头角",
+        "hint": "PoseNums.head（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "wind.rot",
+        "type": "number",
+        "required": true,
+        "label": "蓄势·扭转",
+        "hint": "PoseNums.rot（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "wind.ft",
+        "type": "number",
+        "required": true,
+        "label": "蓄势·前大腿",
+        "hint": "PoseNums.ft（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "wind.fk",
+        "type": "number",
+        "required": true,
+        "label": "蓄势·前膝",
+        "hint": "PoseNums.fk（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "wind.bt",
+        "type": "number",
+        "required": true,
+        "label": "蓄势·后大腿",
+        "hint": "PoseNums.bt（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "wind.bk",
+        "type": "number",
+        "required": true,
+        "label": "蓄势·后膝",
+        "hint": "PoseNums.bk（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "wind.fa",
+        "type": "number",
+        "required": true,
+        "label": "蓄势·前上臂",
+        "hint": "PoseNums.fa（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "wind.fe",
+        "type": "number",
+        "required": true,
+        "label": "蓄势·前肘",
+        "hint": "PoseNums.fe（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "wind.ba",
+        "type": "number",
+        "required": true,
+        "label": "蓄势·后上臂",
+        "hint": "PoseNums.ba（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "wind.be",
+        "type": "number",
+        "required": true,
+        "label": "蓄势·后肘",
+        "hint": "PoseNums.be（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "wind.w",
+        "type": "number",
+        "required": true,
+        "label": "蓄势·兵刃角",
+        "hint": "PoseNums.w（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "strike.y",
+        "type": "number",
+        "required": true,
+        "label": "击发·纵偏",
+        "hint": "PoseNums.y（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "strike.lean",
+        "type": "number",
+        "required": true,
+        "label": "击发·倾身",
+        "hint": "PoseNums.lean（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "strike.head",
+        "type": "number",
+        "required": true,
+        "label": "击发·头角",
+        "hint": "PoseNums.head（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "strike.rot",
+        "type": "number",
+        "required": true,
+        "label": "击发·扭转",
+        "hint": "PoseNums.rot（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "strike.ft",
+        "type": "number",
+        "required": true,
+        "label": "击发·前大腿",
+        "hint": "PoseNums.ft（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "strike.fk",
+        "type": "number",
+        "required": true,
+        "label": "击发·前膝",
+        "hint": "PoseNums.fk（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "strike.bt",
+        "type": "number",
+        "required": true,
+        "label": "击发·后大腿",
+        "hint": "PoseNums.bt（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "strike.bk",
+        "type": "number",
+        "required": true,
+        "label": "击发·后膝",
+        "hint": "PoseNums.bk（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "strike.fa",
+        "type": "number",
+        "required": true,
+        "label": "击发·前上臂",
+        "hint": "PoseNums.fa（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "strike.fe",
+        "type": "number",
+        "required": true,
+        "label": "击发·前肘",
+        "hint": "PoseNums.fe（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "strike.ba",
+        "type": "number",
+        "required": true,
+        "label": "击发·后上臂",
+        "hint": "PoseNums.ba（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "strike.be",
+        "type": "number",
+        "required": true,
+        "label": "击发·后肘",
+        "hint": "PoseNums.be（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "strike.w",
+        "type": "number",
+        "required": true,
+        "label": "击发·兵刃角",
+        "hint": "PoseNums.w（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "rec.y",
+        "type": "number",
+        "required": true,
+        "label": "收势·纵偏",
+        "hint": "PoseNums.y（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "rec.lean",
+        "type": "number",
+        "required": true,
+        "label": "收势·倾身",
+        "hint": "PoseNums.lean（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "rec.head",
+        "type": "number",
+        "required": true,
+        "label": "收势·头角",
+        "hint": "PoseNums.head（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "rec.rot",
+        "type": "number",
+        "required": true,
+        "label": "收势·扭转",
+        "hint": "PoseNums.rot（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "rec.ft",
+        "type": "number",
+        "required": true,
+        "label": "收势·前大腿",
+        "hint": "PoseNums.ft（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "rec.fk",
+        "type": "number",
+        "required": true,
+        "label": "收势·前膝",
+        "hint": "PoseNums.fk（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "rec.bt",
+        "type": "number",
+        "required": true,
+        "label": "收势·后大腿",
+        "hint": "PoseNums.bt（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "rec.bk",
+        "type": "number",
+        "required": true,
+        "label": "收势·后膝",
+        "hint": "PoseNums.bk（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "rec.fa",
+        "type": "number",
+        "required": true,
+        "label": "收势·前上臂",
+        "hint": "PoseNums.fa（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "rec.fe",
+        "type": "number",
+        "required": true,
+        "label": "收势·前肘",
+        "hint": "PoseNums.fe（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "rec.ba",
+        "type": "number",
+        "required": true,
+        "label": "收势·后上臂",
+        "hint": "PoseNums.ba（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "rec.be",
+        "type": "number",
+        "required": true,
+        "label": "收势·后肘",
+        "hint": "PoseNums.be（弧度骨角；对照 PoseSchema）"
+      },
+      {
+        "key": "rec.w",
+        "type": "number",
+        "required": true,
+        "label": "收势·兵刃角",
+        "hint": "PoseNums.w（弧度骨角；对照 PoseSchema）"
+      }
+    ]
+  },
+  "corePoseIds": [
+    "slash1",
+    "slash2",
+    "slash3",
+    "finisher",
+    "launcher",
+    "rising",
+    "sweep",
+    "dashKick",
+    "airA",
+    "airB",
+    "plunge",
+    "counter",
+    "skel.axe",
+    "skel.bash",
+    "skel.charge",
+    "skel.whip",
+    "skel.thrust",
+    "skel.lunge",
+    "garg.claw1",
+    "garg.claw2",
+    "garg.claw3"
+  ],
+  "locoPoseIds": [
+    "hp.idle",
+    "hp.idle2",
+    "hp.run1",
+    "hp.run2",
+    "hp.hurt",
+    "sp.idle",
+    "sp.walk1",
+    "sp.walk2",
+    "sp.hurt"
+  ],
+  "corePoseTemplates": {
+    "slash1": {
+      "wind": {
+        "y": 4,
+        "lean": -0.08,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.5,
+        "fk": -0.5,
+        "bt": -0.35,
+        "bk": -0.3,
+        "fa": 2.75,
+        "fe": 0.5,
+        "ba": -0.6,
+        "be": 0.6,
+        "w": 0.4
+      },
+      "strike": {
+        "y": 7,
+        "lean": 0.38,
+        "head": -0.1,
+        "rot": 0,
+        "ft": 0.8,
+        "fk": -0.75,
+        "bt": -0.6,
+        "bk": -0.2,
+        "fa": 1,
+        "fe": 0.15,
+        "ba": -1,
+        "be": 0.4,
+        "w": 0.15
+      },
+      "rec": {
+        "y": 6,
+        "lean": 0.32,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.75,
+        "fk": -0.7,
+        "bt": -0.55,
+        "bk": -0.2,
+        "fa": 0.4,
+        "fe": 0.2,
+        "ba": -0.8,
+        "be": 0.5,
+        "w": 0.2
+      }
+    },
+    "slash2": {
+      "wind": {
+        "y": 6,
+        "lean": 0.3,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.6,
+        "fk": -0.7,
+        "bt": -0.5,
+        "bk": -0.2,
+        "fa": -0.5,
+        "fe": 0.2,
+        "ba": 0.3,
+        "be": 0.5,
+        "w": -0.2
+      },
+      "strike": {
+        "y": 3,
+        "lean": 0.12,
+        "head": -0.15,
+        "rot": 0,
+        "ft": 0.7,
+        "fk": -0.6,
+        "bt": -0.5,
+        "bk": -0.3,
+        "fa": 2.3,
+        "fe": 0.25,
+        "ba": -0.8,
+        "be": 0.4,
+        "w": 0.25
+      },
+      "rec": {
+        "y": 3,
+        "lean": 0.08,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.65,
+        "fk": -0.6,
+        "bt": -0.5,
+        "bk": -0.3,
+        "fa": 2,
+        "fe": 0.5,
+        "ba": -0.6,
+        "be": 0.5,
+        "w": 0.4
+      }
+    },
+    "slash3": {
+      "wind": {
+        "y": 6,
+        "lean": -0.15,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.4,
+        "fk": -0.5,
+        "bt": -0.6,
+        "bk": -0.3,
+        "fa": -1.5,
+        "fe": 0.3,
+        "ba": 0.4,
+        "be": 0.6,
+        "w": -0.4
+      },
+      "strike": {
+        "y": 8,
+        "lean": 0.45,
+        "head": -0.15,
+        "rot": 0,
+        "ft": 0.95,
+        "fk": -0.9,
+        "bt": -0.6,
+        "bk": -0.2,
+        "fa": 1.25,
+        "fe": 0,
+        "ba": -1.2,
+        "be": 0.3,
+        "w": 0
+      },
+      "rec": {
+        "y": 8,
+        "lean": 0.4,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.9,
+        "fk": -0.9,
+        "bt": -0.6,
+        "bk": -0.2,
+        "fa": 1,
+        "fe": 0.4,
+        "ba": -1,
+        "be": 0.4,
+        "w": 0.3
+      }
+    },
+    "finisher": {
+      "wind": {
+        "y": 0,
+        "lean": -0.3,
+        "head": -0.2,
+        "rot": 0,
+        "ft": 0.4,
+        "fk": -0.3,
+        "bt": -0.4,
+        "bk": -0.3,
+        "fa": 3.1,
+        "fe": 0.3,
+        "ba": 2.8,
+        "be": 0.3,
+        "w": 0.4
+      },
+      "strike": {
+        "y": 18,
+        "lean": 0.7,
+        "head": -0.3,
+        "rot": 0,
+        "ft": 1.1,
+        "fk": -1.2,
+        "bt": -0.9,
+        "bk": 0,
+        "fa": 0.55,
+        "fe": 0,
+        "ba": 0.4,
+        "be": 0.3,
+        "w": 0
+      },
+      "rec": {
+        "y": 16,
+        "lean": 0.6,
+        "head": 0,
+        "rot": 0,
+        "ft": 1.05,
+        "fk": -1.2,
+        "bt": -0.9,
+        "bk": 0,
+        "fa": 0.4,
+        "fe": 0.1,
+        "ba": 0.3,
+        "be": 0.3,
+        "w": 0.05
+      }
+    },
+    "launcher": {
+      "wind": {
+        "y": 16,
+        "lean": 0.5,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.9,
+        "fk": -1.3,
+        "bt": -0.7,
+        "bk": -0.6,
+        "fa": -0.2,
+        "fe": 0.1,
+        "ba": -0.6,
+        "be": 0.4,
+        "w": -0.4
+      },
+      "strike": {
+        "y": -4,
+        "lean": -0.15,
+        "head": -0.3,
+        "rot": 0,
+        "ft": 0.3,
+        "fk": -0.2,
+        "bt": -0.4,
+        "bk": -0.4,
+        "fa": 3,
+        "fe": 0.1,
+        "ba": -1,
+        "be": 0.4,
+        "w": 0.1
+      },
+      "rec": {
+        "y": -2,
+        "lean": -0.1,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.4,
+        "fk": -0.5,
+        "bt": -0.4,
+        "bk": -0.5,
+        "fa": 2.7,
+        "fe": 0.4,
+        "ba": -0.8,
+        "be": 0.5,
+        "w": 0.3
+      }
+    },
+    "rising": {
+      "wind": {
+        "y": 0,
+        "lean": 0.4,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.9,
+        "fk": -1.4,
+        "bt": 0.1,
+        "bk": -1,
+        "fa": -0.2,
+        "fe": 0.1,
+        "ba": -0.6,
+        "be": 0.4,
+        "w": -0.4
+      },
+      "strike": {
+        "y": 0,
+        "lean": -0.15,
+        "head": -0.3,
+        "rot": 0,
+        "ft": 0.6,
+        "fk": -1.2,
+        "bt": -0.1,
+        "bk": -0.8,
+        "fa": 3,
+        "fe": 0.1,
+        "ba": -1,
+        "be": 0.4,
+        "w": 0.1
+      },
+      "rec": {
+        "y": 0,
+        "lean": -0.1,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.6,
+        "fk": -1.2,
+        "bt": -0.1,
+        "bk": -0.8,
+        "fa": 2.7,
+        "fe": 0.4,
+        "ba": -0.8,
+        "be": 0.5,
+        "w": 0.3
+      }
+    },
+    "sweep": {
+      "wind": {
+        "y": 24,
+        "lean": 0.4,
+        "head": 0,
+        "rot": 0,
+        "ft": 1.3,
+        "fk": -1.8,
+        "bt": -1.4,
+        "bk": -0.2,
+        "fa": -1,
+        "fe": 0.2,
+        "ba": 0.8,
+        "be": 0.4,
+        "w": 0
+      },
+      "strike": {
+        "y": 26,
+        "lean": 0.55,
+        "head": -0.3,
+        "rot": 0,
+        "ft": 1.4,
+        "fk": -1.6,
+        "bt": -1.5,
+        "bk": -0.1,
+        "fa": 0.95,
+        "fe": 0,
+        "ba": -1.2,
+        "be": 0.4,
+        "w": 0
+      },
+      "rec": {
+        "y": 24,
+        "lean": 0.5,
+        "head": 0,
+        "rot": 0,
+        "ft": 1.35,
+        "fk": -1.7,
+        "bt": -1.4,
+        "bk": -0.2,
+        "fa": 0.8,
+        "fe": 0.3,
+        "ba": -1,
+        "be": 0.4,
+        "w": 0.2
+      }
+    },
+    "dashKick": {
+      "wind": {
+        "y": 4,
+        "lean": -0.1,
+        "head": 0,
+        "rot": 0,
+        "ft": 1,
+        "fk": -1.6,
+        "bt": -0.3,
+        "bk": -0.4,
+        "fa": -1,
+        "fe": 0.5,
+        "ba": -1.4,
+        "be": 0.4,
+        "w": 0.5
+      },
+      "strike": {
+        "y": 2,
+        "lean": -0.4,
+        "head": 0.1,
+        "rot": 0,
+        "ft": 1.75,
+        "fk": -0.05,
+        "bt": -0.15,
+        "bk": -0.4,
+        "fa": -1.1,
+        "fe": 0.4,
+        "ba": -1.6,
+        "be": 0.4,
+        "w": 0.5
+      },
+      "rec": {
+        "y": 4,
+        "lean": -0.3,
+        "head": 0,
+        "rot": 0,
+        "ft": 1.4,
+        "fk": -0.6,
+        "bt": -0.2,
+        "bk": -0.4,
+        "fa": -0.8,
+        "fe": 0.5,
+        "ba": -1.2,
+        "be": 0.4,
+        "w": 0.6
+      }
+    },
+    "airA": {
+      "wind": {
+        "y": 0,
+        "lean": -0.1,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.9,
+        "fk": -1.4,
+        "bt": 0.1,
+        "bk": -1,
+        "fa": 2.8,
+        "fe": 0.4,
+        "ba": -0.8,
+        "be": 0.5,
+        "w": 0.4
+      },
+      "strike": {
+        "y": 0,
+        "lean": 0.35,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.9,
+        "fk": -1.2,
+        "bt": -0.1,
+        "bk": -1,
+        "fa": 0.8,
+        "fe": 0.1,
+        "ba": -1,
+        "be": 0.4,
+        "w": 0.1
+      },
+      "rec": {
+        "y": 0,
+        "lean": 0.3,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.8,
+        "fk": -1.2,
+        "bt": -0.1,
+        "bk": -1,
+        "fa": 0.6,
+        "fe": 0.3,
+        "ba": -0.9,
+        "be": 0.5,
+        "w": 0.2
+      }
+    },
+    "airB": {
+      "wind": {
+        "y": 0,
+        "lean": 0.3,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.7,
+        "fk": -1.3,
+        "bt": 0.2,
+        "bk": -1.1,
+        "fa": -0.4,
+        "fe": 0.2,
+        "ba": 0.4,
+        "be": 0.5,
+        "w": -0.2
+      },
+      "strike": {
+        "y": 0,
+        "lean": 0.05,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.8,
+        "fk": -1.3,
+        "bt": 0,
+        "bk": -1,
+        "fa": 2.4,
+        "fe": 0.2,
+        "ba": -0.8,
+        "be": 0.4,
+        "w": 0.2
+      },
+      "rec": {
+        "y": 0,
+        "lean": 0.05,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.8,
+        "fk": -1.3,
+        "bt": 0,
+        "bk": -1,
+        "fa": 2.1,
+        "fe": 0.5,
+        "ba": -0.6,
+        "be": 0.5,
+        "w": 0.4
+      }
+    },
+    "plunge": {
+      "wind": {
+        "y": 0,
+        "lean": -0.2,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.9,
+        "fk": -1.6,
+        "bt": 0.3,
+        "bk": -1.4,
+        "fa": 2.9,
+        "fe": 0.3,
+        "ba": 2.6,
+        "be": 0.3,
+        "w": 0.3
+      },
+      "strike": {
+        "y": 0,
+        "lean": 0.15,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.8,
+        "fk": -1.4,
+        "bt": 0.4,
+        "bk": -1.3,
+        "fa": 0.25,
+        "fe": -0.1,
+        "ba": 0.4,
+        "be": 0.3,
+        "w": -0.35
+      },
+      "rec": {
+        "y": 18,
+        "lean": 0.5,
+        "head": 0,
+        "rot": 0,
+        "ft": 1.1,
+        "fk": -1.6,
+        "bt": -0.8,
+        "bk": -0.6,
+        "fa": 0.4,
+        "fe": -0.1,
+        "ba": 0.3,
+        "be": 0.3,
+        "w": -0.3
+      }
+    },
+    "counter": {
+      "wind": {
+        "y": 10,
+        "lean": 0.6,
+        "head": 0,
+        "rot": 0,
+        "ft": 1,
+        "fk": -1.1,
+        "bt": -1,
+        "bk": -0.2,
+        "fa": -1.6,
+        "fe": 0.2,
+        "ba": 0.5,
+        "be": 0.4,
+        "w": -0.3
+      },
+      "strike": {
+        "y": 10,
+        "lean": 0.55,
+        "head": -0.2,
+        "rot": 0,
+        "ft": 1.15,
+        "fk": -1.1,
+        "bt": -1,
+        "bk": -0.1,
+        "fa": 1.6,
+        "fe": 0,
+        "ba": -1.3,
+        "be": 0.3,
+        "w": 0
+      },
+      "rec": {
+        "y": 10,
+        "lean": 0.5,
+        "head": 0,
+        "rot": 0,
+        "ft": 1.1,
+        "fk": -1.1,
+        "bt": -1,
+        "bk": -0.1,
+        "fa": 1.4,
+        "fe": 0.4,
+        "ba": -1.1,
+        "be": 0.4,
+        "w": 0.4
+      }
+    },
+    "skel.axe": {
+      "wind": {
+        "y": 0,
+        "lean": -0.35,
+        "head": -0.2,
+        "rot": 0,
+        "ft": 0.4,
+        "fk": -0.3,
+        "bt": -0.4,
+        "bk": -0.3,
+        "fa": 3,
+        "fe": 0.4,
+        "ba": 2.7,
+        "be": 0.4,
+        "w": 0.2
+      },
+      "strike": {
+        "y": 12,
+        "lean": 0.6,
+        "head": 0.3,
+        "rot": 0,
+        "ft": 0.9,
+        "fk": -1,
+        "bt": -0.7,
+        "bk": -0.1,
+        "fa": 0.75,
+        "fe": 0.1,
+        "ba": 0.8,
+        "be": 0.2,
+        "w": 0.1
+      },
+      "rec": {
+        "y": 12,
+        "lean": 0.55,
+        "head": 0.3,
+        "rot": 0,
+        "ft": 0.85,
+        "fk": -1,
+        "bt": -0.7,
+        "bk": -0.1,
+        "fa": 0.5,
+        "fe": 0.1,
+        "ba": 0.5,
+        "be": 0.2,
+        "w": 0.1
+      }
+    },
+    "skel.bash": {
+      "wind": {
+        "y": 6,
+        "lean": -0.1,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.4,
+        "fk": -0.6,
+        "bt": -0.4,
+        "bk": -0.4,
+        "fa": 0.4,
+        "fe": 1.3,
+        "ba": -0.4,
+        "be": 0.8,
+        "w": 0
+      },
+      "strike": {
+        "y": 6,
+        "lean": 0.5,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.9,
+        "fk": -0.8,
+        "bt": -0.7,
+        "bk": -0.2,
+        "fa": 1.5,
+        "fe": 0.1,
+        "ba": -0.6,
+        "be": 0.8,
+        "w": 0
+      },
+      "rec": {
+        "y": 6,
+        "lean": 0.4,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.8,
+        "fk": -0.8,
+        "bt": -0.6,
+        "bk": -0.2,
+        "fa": 1.2,
+        "fe": 0.5,
+        "ba": -0.5,
+        "be": 0.8,
+        "w": 0
+      }
+    },
+    "skel.charge": {
+      "wind": {
+        "y": 8,
+        "lean": 0.75,
+        "head": 0.4,
+        "rot": 0,
+        "ft": 1.1,
+        "fk": -0.7,
+        "bt": -0.9,
+        "bk": -0.5,
+        "fa": 0.5,
+        "fe": 1.1,
+        "ba": -0.8,
+        "be": 0.6,
+        "w": 0
+      },
+      "strike": {
+        "y": 8,
+        "lean": 0.75,
+        "head": 0.4,
+        "rot": 0,
+        "ft": 1.1,
+        "fk": -0.7,
+        "bt": -0.9,
+        "bk": -0.5,
+        "fa": 0.5,
+        "fe": 1.1,
+        "ba": -0.8,
+        "be": 0.6,
+        "w": 0
+      },
+      "rec": {
+        "y": 10,
+        "lean": 0.6,
+        "head": 0.6,
+        "rot": 0,
+        "ft": 0.5,
+        "fk": -0.9,
+        "bt": -0.4,
+        "bk": -0.6,
+        "fa": 0,
+        "fe": 0.3,
+        "ba": 0,
+        "be": 0.3,
+        "w": 0
+      }
+    },
+    "skel.whip": {
+      "wind": {
+        "y": 4,
+        "lean": -0.2,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.4,
+        "fk": -0.5,
+        "bt": -0.4,
+        "bk": -0.3,
+        "fa": -1,
+        "fe": 0.3,
+        "ba": 0.4,
+        "be": 0.6,
+        "w": 0
+      },
+      "strike": {
+        "y": 6,
+        "lean": 0.4,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.8,
+        "fk": -0.8,
+        "bt": -0.6,
+        "bk": -0.2,
+        "fa": 1.9,
+        "fe": 0.1,
+        "ba": -0.6,
+        "be": 0.6,
+        "w": 0
+      },
+      "rec": {
+        "y": 6,
+        "lean": 0.35,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.7,
+        "fk": -0.8,
+        "bt": -0.6,
+        "bk": -0.2,
+        "fa": 1.6,
+        "fe": 0.3,
+        "ba": -0.4,
+        "be": 0.6,
+        "w": 0
+      }
+    },
+    "skel.thrust": {
+      "wind": {
+        "y": 4,
+        "lean": -0.25,
+        "head": -0.1,
+        "rot": 0,
+        "ft": 0.5,
+        "fk": -0.55,
+        "bt": -0.45,
+        "bk": -0.35,
+        "fa": -0.6,
+        "fe": 0.2,
+        "ba": 0.5,
+        "be": 0.6,
+        "w": -0.15
+      },
+      "strike": {
+        "y": 5,
+        "lean": 0.35,
+        "head": 0.05,
+        "rot": 0,
+        "ft": 0.85,
+        "fk": -0.75,
+        "bt": -0.65,
+        "bk": -0.15,
+        "fa": 1.85,
+        "fe": -0.05,
+        "ba": -0.7,
+        "be": 0.5,
+        "w": 0
+      },
+      "rec": {
+        "y": 5,
+        "lean": 0.28,
+        "head": 0.05,
+        "rot": 0,
+        "ft": 0.75,
+        "fk": -0.7,
+        "bt": -0.55,
+        "bk": -0.2,
+        "fa": 1.5,
+        "fe": 0.15,
+        "ba": -0.5,
+        "be": 0.55,
+        "w": 0.05
+      }
+    },
+    "skel.lunge": {
+      "wind": {
+        "y": 6,
+        "lean": -0.15,
+        "head": -0.05,
+        "rot": 0,
+        "ft": 0.55,
+        "fk": -0.7,
+        "bt": -0.4,
+        "bk": -0.4,
+        "fa": 0.2,
+        "fe": 0.25,
+        "ba": -0.3,
+        "be": 0.55,
+        "w": 0
+      },
+      "strike": {
+        "y": 4,
+        "lean": 0.55,
+        "head": -0.1,
+        "rot": 0,
+        "ft": 1.05,
+        "fk": -0.85,
+        "bt": -0.85,
+        "bk": -0.1,
+        "fa": 1.7,
+        "fe": -0.05,
+        "ba": -0.9,
+        "be": 0.4,
+        "w": 0
+      },
+      "rec": {
+        "y": 6,
+        "lean": 0.4,
+        "head": 0,
+        "rot": 0,
+        "ft": 0.9,
+        "fk": -0.85,
+        "bt": -0.7,
+        "bk": -0.15,
+        "fa": 1.35,
+        "fe": 0.15,
+        "ba": -0.6,
+        "be": 0.5,
+        "w": 0.05
+      }
+    },
+    "garg.claw1": {
+      "wind": {
+        "y": 4,
+        "lean": 0.2,
+        "head": -0.2,
+        "rot": 0,
+        "ft": 0.5,
+        "fk": -0.9,
+        "bt": -0.4,
+        "bk": -0.8,
+        "fa": 2.8,
+        "fe": 0.5,
+        "ba": 0,
+        "be": 0.6,
+        "w": 0
+      },
+      "strike": {
+        "y": 12,
+        "lean": 0.85,
+        "head": -0.5,
+        "rot": 0,
+        "ft": 0.95,
+        "fk": -1.2,
+        "bt": -0.7,
+        "bk": -0.6,
+        "fa": 0.7,
+        "fe": 0.1,
+        "ba": -0.4,
+        "be": 0.6,
+        "w": 0
+      },
+      "rec": {
+        "y": 12,
+        "lean": 0.8,
+        "head": -0.5,
+        "rot": 0,
+        "ft": 0.95,
+        "fk": -1.2,
+        "bt": -0.7,
+        "bk": -0.6,
+        "fa": 0.4,
+        "fe": 0.3,
+        "ba": -0.2,
+        "be": 0.6,
+        "w": 0
+      }
+    },
+    "garg.claw2": {
+      "wind": {
+        "y": 8,
+        "lean": 0.6,
+        "head": -0.4,
+        "rot": 0,
+        "ft": 0.7,
+        "fk": -1,
+        "bt": -0.5,
+        "bk": -0.8,
+        "fa": 0.3,
+        "fe": 0.5,
+        "ba": 2.8,
+        "be": 0.4,
+        "w": 0
+      },
+      "strike": {
+        "y": 12,
+        "lean": 0.85,
+        "head": -0.5,
+        "rot": 0,
+        "ft": 0.95,
+        "fk": -1.2,
+        "bt": -0.7,
+        "bk": -0.6,
+        "fa": 0,
+        "fe": 0.4,
+        "ba": 0.7,
+        "be": 0.1,
+        "w": 0
+      },
+      "rec": {
+        "y": 12,
+        "lean": 0.8,
+        "head": -0.5,
+        "rot": 0,
+        "ft": 0.95,
+        "fk": -1.2,
+        "bt": -0.7,
+        "bk": -0.6,
+        "fa": 0.1,
+        "fe": 0.4,
+        "ba": 0.4,
+        "be": 0.3,
+        "w": 0
+      }
+    },
+    "garg.claw3": {
+      "wind": {
+        "y": -2,
+        "lean": -0.3,
+        "head": -0.5,
+        "rot": 0,
+        "ft": 0.4,
+        "fk": -0.5,
+        "bt": -0.5,
+        "bk": -0.4,
+        "fa": 3,
+        "fe": 0.4,
+        "ba": 2.9,
+        "be": 0.4,
+        "w": 0
+      },
+      "strike": {
+        "y": 22,
+        "lean": 1.1,
+        "head": -0.8,
+        "rot": 0,
+        "ft": 1.1,
+        "fk": -1.5,
+        "bt": -0.9,
+        "bk": -0.6,
+        "fa": 0.6,
+        "fe": 0,
+        "ba": 0.5,
+        "be": 0,
+        "w": 0
+      },
+      "rec": {
+        "y": 22,
+        "lean": 1,
+        "head": -0.7,
+        "rot": 0,
+        "ft": 1.1,
+        "fk": -1.5,
+        "bt": -0.9,
+        "bk": -0.6,
+        "fa": 0.4,
+        "fe": 0.2,
+        "ba": 0.3,
+        "be": 0.2,
+        "w": 0
+      }
+    }
+  },
+  "bossMoveKinds": [
+    "claw",
+    "charge",
+    "fireball",
+    "dive",
+    "roar",
+    "walk",
+    "slam",
+    "sweep",
+    "summonAdds",
+    "inkNova"
+  ],
+  "coreBossMoveIds": [
+    "claw",
+    "charge",
+    "fireball",
+    "dive",
+    "roar",
+    "walk",
+    "slam",
+    "sweep",
+    "summonAdds",
+    "inkNova"
+  ],
+  "coreBossKitIds": [
+    "stone",
+    "rain",
+    "tomb",
+    "night"
+  ],
+  "bossKits": {
+    "label": "Boss 怎么凶",
+    "note": "BossKitDef：id + close[]/far[] 加权表（{ move, weight }）。move 建议点本卷+核心 bossMoves；运行登记期对缺失 id warn+跳过该权重行（不炸进程）。挂 EnemyDef.kitId / Stage.boss.kit。禁任意脚本；不做战斗预览。对照 CORE_BOSS_KITS。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "kit catalog id；关卡/敌寇挂此 id"
+      }
+    ],
+    "weightFields": [
+      {
+        "key": "move",
+        "type": "string",
+        "required": true,
+        "label": "招式 id",
+        "datalist": "bossMoveIds",
+        "hint": "本卷 bossMoves + 长夜核心；缺失 id 登记期 warn+跳过"
+      },
+      {
+        "key": "weight",
+        "type": "number",
+        "required": true,
+        "label": "权重",
+        "min": 0
+      }
+    ]
+  },
+  "projDrawKinds": [
+    "arrow",
+    "fireball"
+  ],
+  "coreProjectileIds": [
+    "arrow",
+    "fireball"
+  ],
+  "volleyStyles": [
+    "skySword",
+    "thunder",
+    "waterPulse"
+  ],
+  "coreVolleyIds": [
+    "skySword",
+    "thunder",
+    "waterPulse"
+  ],
+  "projectiles": {
+    "label": "投射物",
+    "note": "ProjectileDef 闭集：id + drawKind（arrow|fireball）+ hitW/H + 可选 life/explodeOnGround/trailEvery/hitSfx/explodeSfx + 可选 soft attackKey（→ctx.attacks；缺省：fireball→gFire，其余→arrow；CORE fireball 显式 gFire）。改伤害请挂攻击盒，勿以为改碰撞即改伤。供 Behavior rangedAttack.projectileId 软引用。禁任意脚本；不扩 drawKind。对照 CORE_PROJECTILES / ProjectileSchema。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜稳定；供 projectileId 挂接"
+      },
+      {
+        "key": "drawKind",
+        "type": "enum",
+        "required": true,
+        "enum": [
+          "arrow",
+          "fireball"
+        ],
+        "label": "绘制种",
+        "hint": "闭集二选一；与 ProjDrawKind 对齐；勿发明新 kind"
+      },
+      {
+        "key": "hitW",
+        "type": "number",
+        "required": true,
+        "label": "碰撞宽",
+        "min": 1
+      },
+      {
+        "key": "hitH",
+        "type": "number",
+        "required": true,
+        "label": "碰撞高",
+        "min": 1
+      },
+      {
+        "key": "attackKey",
+        "type": "string",
+        "label": "伤害攻击盒",
+        "datalist": "coreAttackKeys",
+        "hint": "可选；缺省=arrow（drawKind=fireball 时 soft=gFire；CORE fireball 已挂 gFire）。改伤害请挂攻击盒（本卷或长夜 attacks id）"
+      },
+      {
+        "key": "life",
+        "type": "number",
+        "label": "寿命帧",
+        "min": 0
+      },
+      {
+        "key": "explodeOnGround",
+        "type": "boolean",
+        "label": "落地爆炸"
+      },
+      {
+        "key": "trailEvery",
+        "type": "number",
+        "label": "拖尾间隔",
+        "min": 0,
+        "hint": "火球类拖尾；0/空=无"
+      },
+      {
+        "key": "hitSfx",
+        "type": "string",
+        "label": "命中音效 id",
+        "hint": "软引用 sfx / 核心 synth 名"
+      },
+      {
+        "key": "explodeSfx",
+        "type": "string",
+        "label": "爆炸音效 id",
+        "hint": "软引用 sfx / 核心 synth 名"
+      }
+    ]
+  },
+  "volleys": {
+    "label": "弹幕模板",
+    "note": "VolleyDef 闭集：id + style（skySword|thunder|waterPulse）+ 可选 defaultCount/Interval/Spread/Radius/color。供 ScriptStep spawnVolley.volleyId 软引用。禁任意脚本；不扩 style。对照 CORE_VOLLEYS / VolleySchema。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜稳定；供 volleyId 挂接"
+      },
+      {
+        "key": "style",
+        "type": "enum",
+        "required": true,
+        "enum": [
+          "skySword",
+          "thunder",
+          "waterPulse"
+        ],
+        "label": "样式",
+        "hint": "闭集三选一；与 VolleyStyle / VOLLEY_STYLES 对齐；勿发明新 kind"
+      },
+      {
+        "key": "defaultCount",
+        "type": "number",
+        "label": "默认次数",
+        "min": 0
+      },
+      {
+        "key": "defaultInterval",
+        "type": "number",
+        "label": "默认间隔帧",
+        "min": 0
+      },
+      {
+        "key": "defaultSpread",
+        "type": "number",
+        "label": "默认散布"
+      },
+      {
+        "key": "defaultRadius",
+        "type": "number",
+        "label": "默认半径",
+        "hint": "waterPulse 等用"
+      },
+      {
+        "key": "color",
+        "type": "color",
+        "label": "色"
+      }
+    ]
+  },
+  "coreSheetIds": [
+    "blade_ink",
+    "dagger_ink",
+    "spear_ink",
+    "axe_ink",
+    "twin_ink",
+    "greatsword_ink"
+  ],
+  "coreSynthIds": [
+    "slash",
+    "heavy",
+    "kick",
+    "hit",
+    "hitHeavy",
+    "clang",
+    "parry",
+    "block",
+    "bone",
+    "jump",
+    "land",
+    "hurt",
+    "dash",
+    "roar",
+    "arrow",
+    "fire",
+    "boom",
+    "potion",
+    "super",
+    "superSlash",
+    "telegraph",
+    "shieldBang",
+    "claw",
+    "whip",
+    "bash",
+    "ui",
+    "death",
+    "wave",
+    "stagger",
+    "flap"
+  ],
+  "sfxFormats": [
+    "wav",
+    "ogg",
+    "mp3"
+  ],
+  "backdropThemeIds": [
+    "night",
+    "dock",
+    "ash",
+    "eclipse"
+  ],
+  "coreBackdropIds": [
+    "night",
+    "dock",
+    "ash",
+    "eclipse"
+  ],
+  "sheets": {
+    "label": "图集",
+    "note": "SheetDef：id + src（须 ./art/ 相对路径；禁 http(s)/://）+ 可选 frameW/H/frames/maxBytes。供武器 sprite.sheetId / spriteOverlay.sheetId 软引用。对照 CORE_SHEETS / SheetSchema / ART_SRC_RE。不做 PNG 上传。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜稳定；供 sheetId 挂接"
+      },
+      {
+        "key": "src",
+        "type": "string",
+        "required": true,
+        "label": "路径 src",
+        "artSrc": true,
+        "hint": "须 ./art/…；禁外链；指向游戏已有静态（如 ./art/weapons/blade_ink.png）"
+      },
+      {
+        "key": "frameW",
+        "type": "number",
+        "label": "帧宽",
+        "min": 1
+      },
+      {
+        "key": "frameH",
+        "type": "number",
+        "label": "帧高",
+        "min": 1
+      },
+      {
+        "key": "frames",
+        "type": "number",
+        "label": "帧数",
+        "min": 1
+      },
+      {
+        "key": "maxBytes",
+        "type": "number",
+        "label": "体素限额",
+        "min": 0,
+        "hint": "默认 512000；上限 2MB"
+      }
+    ]
+  },
+  "sfx": {
+    "label": "音效",
+    "note": "SfxDef：id + synth（核心合成器名）和/或 src+format（须 ./art/，建议 ./art/audio/）。文件通道已通（R4a decode）；新音频须放游戏静态 public/art/audio/，馆 tgz 不塞二进制。file 优先、无 buffer 回退 synth。供 ScriptStep.sfx / hitSfx 软引用。对照 CORE_SFX / SfxSchema。不做 wav 预览。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜稳定；供符 sfx 步挂接"
+      },
+      {
+        "key": "synth",
+        "type": "enum",
+        "label": "合成器 synth",
+        "enum": [
+          "slash",
+          "heavy",
+          "kick",
+          "hit",
+          "hitHeavy",
+          "clang",
+          "parry",
+          "block",
+          "bone",
+          "jump",
+          "land",
+          "hurt",
+          "dash",
+          "roar",
+          "arrow",
+          "fire",
+          "boom",
+          "potion",
+          "super",
+          "superSlash",
+          "telegraph",
+          "shieldBang",
+          "claw",
+          "whip",
+          "bash",
+          "ui",
+          "death",
+          "wave",
+          "stagger",
+          "flap"
+        ],
+        "hint": "可与 src 并存（无文件 buffer 时回退）；与核心 playSfx 名对齐；可作别名"
+      },
+      {
+        "key": "src",
+        "type": "string",
+        "label": "包内路径 src（可选）",
+        "artSrc": true,
+        "hint": "可选；须 ./art/…（建议 ./art/audio/*.wav|ogg|mp3）；禁外链；文件须预先放游戏静态 public/art/audio/（馆包不送达二进制）"
+      },
+      {
+        "key": "format",
+        "type": "enum",
+        "enum": [
+          "wav",
+          "ogg",
+          "mp3"
+        ],
+        "label": "格式",
+        "hint": "有 src 时必填（与后缀一致）；synth-only 可空"
+      }
+    ]
+  },
+  "backdrops": {
+    "label": "幕氛围",
+    "note": "BackdropDef：id + theme（night|dock|ash|eclipse）+ 可选 skyTint/fogTint/groundTint/label。供关卡 backdropTheme 软引用。不扩 theme 四元。对照 CORE_BACKDROPS / BackdropSchema。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜稳定；关卡 backdropTheme 可挂此 id"
+      },
+      {
+        "key": "theme",
+        "type": "enum",
+        "required": true,
+        "enum": [
+          "night",
+          "dock",
+          "ash",
+          "eclipse"
+        ],
+        "label": "生成器 theme",
+        "hint": "闭集四选一；与 BackdropThemeId 对齐；勿发明新 theme"
+      },
+      {
+        "key": "skyTint",
+        "type": "color",
+        "label": "天空色偏"
+      },
+      {
+        "key": "fogTint",
+        "type": "color",
+        "label": "雾色偏"
+      },
+      {
+        "key": "groundTint",
+        "type": "color",
+        "label": "地面色偏"
+      },
+      {
+        "key": "label",
+        "type": "string",
+        "label": "称谓"
+      }
+    ]
+  },
+  "fragmentTags": [
+    "qi",
+    "body",
+    "speed",
+    "sustain",
+    "curse"
+  ],
+  "coreEliteModIds": [
+    "tongpi",
+    "shixue",
+    "shanbu",
+    "fanshang",
+    "zhongji",
+    "xiehuo"
+  ],
+  "coreFragmentIds": [
+    "lieqi",
+    "guixi",
+    "toujia",
+    "jiying",
+    "yaoli",
+    "tieyi",
+    "heican"
+  ],
+  "coreTitleIds": [
+    "wushang",
+    "chaoxi",
+    "lingbeng",
+    "chujue",
+    "anhun"
+  ],
+  "eliteMods": {
+    "label": "精英词条",
+    "note": "EliteModDef：id + name + color + tag + 可选闭集数值/旗标（dmgTakenMul/reflect/lifesteal/heavyMul/startupMul/dashAway/fireOnDeath/summonMinion/summonEnemyId/summonFire）。weaponCounters 可于导出 JSON 手工补。供关卡 arena.eliteWeight 软引用。禁任意脚本；不改 applyEliteMod。对照 CORE_ELITE_MODS / EliteModSchema。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜稳定；供 eliteWeight 挂接"
+      },
+      {
+        "key": "name",
+        "type": "string",
+        "required": true,
+        "label": "名称"
+      },
+      {
+        "key": "color",
+        "type": "color",
+        "required": true,
+        "label": "色标"
+      },
+      {
+        "key": "tag",
+        "type": "string",
+        "required": true,
+        "label": "短标（HUD）",
+        "hint": "短字如「铜皮」；非 FragmentTag"
+      },
+      {
+        "key": "dmgTakenMul",
+        "type": "number",
+        "label": "承伤倍率",
+        "hint": "铜皮类；1=不变"
+      },
+      {
+        "key": "reflect",
+        "type": "number",
+        "label": "反伤比例"
+      },
+      {
+        "key": "lifesteal",
+        "type": "number",
+        "label": "吸血比例"
+      },
+      {
+        "key": "heavyMul",
+        "type": "number",
+        "label": "输出倍率"
+      },
+      {
+        "key": "startupMul",
+        "type": "number",
+        "label": "前摇倍率"
+      },
+      {
+        "key": "dashAway",
+        "type": "boolean",
+        "label": "闪步"
+      },
+      {
+        "key": "fireOnDeath",
+        "type": "boolean",
+        "label": "亡火"
+      },
+      {
+        "key": "summonMinion",
+        "type": "boolean",
+        "label": "召卫"
+      },
+      {
+        "key": "summonEnemyId",
+        "type": "string",
+        "label": "召卫敌寇 id",
+        "datalist": "enemyIds",
+        "hint": "本卷 enemies + 长夜机体"
+      },
+      {
+        "key": "summonFire",
+        "type": "boolean",
+        "label": "定期火圈"
+      }
+    ]
+  },
+  "fragments": {
+    "label": "残页",
+    "note": "FragmentDef：id + name + fogName + desc + color + tag（闭集五 qi|body|speed|sustain|curse）+ 可选 curse/eventOnly + 闭集效果字段。禁任意脚本；不扩 tag。对照 CORE_FRAGMENTS / FragmentSchema。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜稳定"
+      },
+      {
+        "key": "name",
+        "type": "string",
+        "required": true,
+        "label": "名称"
+      },
+      {
+        "key": "fogName",
+        "type": "string",
+        "required": true,
+        "label": "雾名",
+        "hint": "未鉴定显示名"
+      },
+      {
+        "key": "desc",
+        "type": "string",
+        "required": true,
+        "label": "描述"
+      },
+      {
+        "key": "color",
+        "type": "color",
+        "required": true,
+        "label": "色标"
+      },
+      {
+        "key": "tag",
+        "type": "enum",
+        "required": true,
+        "enum": [
+          "qi",
+          "body",
+          "speed",
+          "sustain",
+          "curse"
+        ],
+        "label": "互斥标签",
+        "hint": "闭集五；同 tag 互斥；勿发明新 tag"
+      },
+      {
+        "key": "curse",
+        "type": "string",
+        "label": "诅咒文案"
+      },
+      {
+        "key": "eventOnly",
+        "type": "boolean",
+        "label": "仅事件（不进普通掉落）"
+      },
+      {
+        "key": "skillDmgMul",
+        "type": "number",
+        "label": "外功伤倍率"
+      },
+      {
+        "key": "neiliRegenMul",
+        "type": "number",
+        "label": "内力回复倍率"
+      },
+      {
+        "key": "armorPierceBonus",
+        "type": "number",
+        "label": "破甲加成"
+      },
+      {
+        "key": "dashCdMul",
+        "type": "number",
+        "label": "闪身冷却倍率"
+      },
+      {
+        "key": "pillHealMul",
+        "type": "number",
+        "label": "丹药回复倍率"
+      },
+      {
+        "key": "pillRageBonus",
+        "type": "number",
+        "label": "丹药怒气加成"
+      },
+      {
+        "key": "dmgTakenMul",
+        "type": "number",
+        "label": "承伤倍率"
+      },
+      {
+        "key": "atkMul",
+        "type": "number",
+        "label": "全伤害倍率"
+      }
+    ]
+  },
+  "titles": {
+    "label": "称号",
+    "note": "TitleDef：id + name + desc + qol + 可选 startPotions/parryWindowBonus/shopDiscount。极瘦 QoL；禁任意脚本。对照 CORE_TITLES / TitleSchema。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜稳定"
+      },
+      {
+        "key": "name",
+        "type": "string",
+        "required": true,
+        "label": "名称"
+      },
+      {
+        "key": "desc",
+        "type": "string",
+        "required": true,
+        "label": "达成条件"
+      },
+      {
+        "key": "qol",
+        "type": "string",
+        "required": true,
+        "label": "QoL 文案"
+      },
+      {
+        "key": "startPotions",
+        "type": "number",
+        "label": "开局丹药 +N",
+        "min": 0
+      },
+      {
+        "key": "parryWindowBonus",
+        "type": "number",
+        "label": "弹反窗加成"
+      },
+      {
+        "key": "shopDiscount",
+        "type": "number",
+        "label": "商店折扣"
+      }
+    ]
+  },
+  "armorSlots": [
+    "head",
+    "body",
+    "arms",
+    "legs",
+    "neck",
+    "ring",
+    "waist"
+  ],
+  "coreMaterialIds": [
+    "iron",
+    "bone",
+    "hide",
+    "herb",
+    "silk",
+    "cinnabar",
+    "coal",
+    "xuaniron",
+    "spiritjade",
+    "yaohe"
+  ],
+  "coreArmorSetIds": [
+    "yexing",
+    "tiegu",
+    "yinixue",
+    "pojunrui",
+    "qingxinding",
+    "anhunling",
+    "yingzhi"
+  ],
+  "coreArmorPieceIds": [
+    "buyi",
+    "pijia",
+    "tiejia",
+    "bumao",
+    "tongmao",
+    "yuguan",
+    "buhuwan",
+    "tiehuwan",
+    "longwenwan",
+    "buxue",
+    "pixue",
+    "yunlv",
+    "muyupei",
+    "yupei",
+    "xuejinglian",
+    "tongjie",
+    "yinjie",
+    "xuejie",
+    "budai",
+    "pidai",
+    "yaopai"
+  ],
+  "coreWepAffixIds": [
+    "poshi",
+    "yinixue",
+    "chouqi",
+    "kuaijie",
+    "zhongji",
+    "qingling"
+  ],
+  "materials": {
+    "label": "材料",
+    "note": "MaterialDef：id + name + lore + weight + 可选 rare。极瘦；供兵器 craft.materials / 符 cost / 丹·内功消耗软引用。禁任意脚本。对照 CORE_MATERIALS / MaterialSchema。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜稳定；供 craft/cost 挂接"
+      },
+      {
+        "key": "name",
+        "type": "string",
+        "required": true,
+        "label": "名称"
+      },
+      {
+        "key": "lore",
+        "type": "string",
+        "required": true,
+        "label": "传闻"
+      },
+      {
+        "key": "weight",
+        "type": "number",
+        "required": true,
+        "label": "掉落相对权重",
+        "min": 0,
+        "hint": "越大越常见"
+      },
+      {
+        "key": "rare",
+        "type": "boolean",
+        "label": "稀有（精英/Boss 偏）"
+      }
+    ]
+  },
+  "armorSets": {
+    "label": "防具套装",
+    "note": "ArmorSetDef：id + fogName + name + lore + slots（闭集七 head|body|arms|legs|neck|ring|waist）+ weight + two/full 数值包 + twoTip/fullTip。键序宜先于 armorPieces；loot setId 软引用。禁任意脚本；不扩槽位。对照 CORE_ARMOR_SETS / ArmorSetSchema。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜稳定；供 loot setId / 单件语义挂接"
+      },
+      {
+        "key": "fogName",
+        "type": "string",
+        "required": true,
+        "label": "雾名",
+        "hint": "未鉴定显示如 套装·夜??"
+      },
+      {
+        "key": "name",
+        "type": "string",
+        "required": true,
+        "label": "名称"
+      },
+      {
+        "key": "lore",
+        "type": "string",
+        "required": true,
+        "label": "传闻"
+      },
+      {
+        "key": "slots",
+        "type": "stringList",
+        "required": true,
+        "label": "可落槽位",
+        "hint": "闭集七逗号分隔：head, body, arms, legs, neck, ring, waist",
+        "datalist": "armorSlotIds"
+      },
+      {
+        "key": "weight",
+        "type": "number",
+        "required": true,
+        "label": "掉落相对权重",
+        "min": 0
+      },
+      {
+        "key": "twoTip",
+        "type": "string",
+        "required": true,
+        "label": "两件提示"
+      },
+      {
+        "key": "fullTip",
+        "type": "string",
+        "required": true,
+        "label": "满件提示"
+      },
+      {
+        "key": "two.def",
+        "type": "number",
+        "label": "两件·减伤"
+      },
+      {
+        "key": "two.atk",
+        "type": "number",
+        "label": "两件·攻击"
+      },
+      {
+        "key": "two.dashCdMul",
+        "type": "number",
+        "label": "两件·闪身冷却倍率"
+      },
+      {
+        "key": "two.dashIframes",
+        "type": "number",
+        "label": "两件·闪身无敌帧"
+      },
+      {
+        "key": "two.dmgTakenMul",
+        "type": "number",
+        "label": "两件·承伤倍率"
+      },
+      {
+        "key": "two.lifesteal",
+        "type": "number",
+        "label": "两件·吸血"
+      },
+      {
+        "key": "two.executeMul",
+        "type": "number",
+        "label": "两件·处决倍率"
+      },
+      {
+        "key": "two.poiseMul",
+        "type": "number",
+        "label": "两件·破韧倍率"
+      },
+      {
+        "key": "two.neiliRegenMul",
+        "type": "number",
+        "label": "两件·内力回复倍率"
+      },
+      {
+        "key": "two.parryWindowBonus",
+        "type": "number",
+        "label": "两件·弹反窗加成"
+      },
+      {
+        "key": "two.affixDmgMul",
+        "type": "number",
+        "label": "两件·场地伤倍率"
+      },
+      {
+        "key": "two.curseTakenMul",
+        "type": "number",
+        "label": "两件·诅咒承伤倍率"
+      },
+      {
+        "key": "two.rage",
+        "type": "number",
+        "label": "两件·气势"
+      },
+      {
+        "key": "full.def",
+        "type": "number",
+        "label": "满件·减伤"
+      },
+      {
+        "key": "full.atk",
+        "type": "number",
+        "label": "满件·攻击"
+      },
+      {
+        "key": "full.dashCdMul",
+        "type": "number",
+        "label": "满件·闪身冷却倍率"
+      },
+      {
+        "key": "full.dashIframes",
+        "type": "number",
+        "label": "满件·闪身无敌帧"
+      },
+      {
+        "key": "full.dmgTakenMul",
+        "type": "number",
+        "label": "满件·承伤倍率"
+      },
+      {
+        "key": "full.lifesteal",
+        "type": "number",
+        "label": "满件·吸血"
+      },
+      {
+        "key": "full.executeMul",
+        "type": "number",
+        "label": "满件·处决倍率"
+      },
+      {
+        "key": "full.poiseMul",
+        "type": "number",
+        "label": "满件·破韧倍率"
+      },
+      {
+        "key": "full.neiliRegenMul",
+        "type": "number",
+        "label": "满件·内力回复倍率"
+      },
+      {
+        "key": "full.parryWindowBonus",
+        "type": "number",
+        "label": "满件·弹反窗加成"
+      },
+      {
+        "key": "full.affixDmgMul",
+        "type": "number",
+        "label": "满件·场地伤倍率"
+      },
+      {
+        "key": "full.curseTakenMul",
+        "type": "number",
+        "label": "满件·诅咒承伤倍率"
+      },
+      {
+        "key": "full.rage",
+        "type": "number",
+        "label": "满件·气势"
+      }
+    ]
+  },
+  "armorPieces": {
+    "label": "防具单件",
+    "note": "ArmorDef：id + name + slot（闭集七）+ lore + base{hp/atk/def/rage/wugong} + weight + 可选 common/quality/tier/fogName。语义挂套装靠掉落 setId（非 Def 必填）。禁任意脚本；不扩槽位。对照 CORE_ARMOR_PIECES / ArmorPieceSchema。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜稳定"
+      },
+      {
+        "key": "name",
+        "type": "string",
+        "required": true,
+        "label": "名称"
+      },
+      {
+        "key": "slot",
+        "type": "enum",
+        "required": true,
+        "enum": [
+          "head",
+          "body",
+          "arms",
+          "legs",
+          "neck",
+          "ring",
+          "waist"
+        ],
+        "label": "槽位",
+        "hint": "闭集七；勿发明新槽"
+      },
+      {
+        "key": "lore",
+        "type": "string",
+        "required": true,
+        "label": "传闻"
+      },
+      {
+        "key": "base.hp",
+        "type": "number",
+        "label": "底·生命"
+      },
+      {
+        "key": "base.atk",
+        "type": "number",
+        "label": "底·攻击"
+      },
+      {
+        "key": "base.def",
+        "type": "number",
+        "label": "底·减伤"
+      },
+      {
+        "key": "base.rage",
+        "type": "number",
+        "label": "底·气势"
+      },
+      {
+        "key": "base.wugong",
+        "type": "number",
+        "label": "底·武功%"
+      },
+      {
+        "key": "weight",
+        "type": "number",
+        "required": true,
+        "label": "掉落相对权重",
+        "min": 0
+      },
+      {
+        "key": "common",
+        "type": "boolean",
+        "label": "常见（早期保底）"
+      },
+      {
+        "key": "quality",
+        "type": "enum",
+        "enum": [
+          "tian",
+          "di",
+          "xuan",
+          "huang",
+          "fan",
+          "lie"
+        ],
+        "label": "固有品质提示"
+      },
+      {
+        "key": "tier",
+        "type": "number",
+        "min": 1,
+        "max": 9,
+        "label": "装备阶位 1–9"
+      },
+      {
+        "key": "fogName",
+        "type": "string",
+        "label": "雾名（可选）"
+      }
+    ]
+  },
+  "wepAffixes": {
+    "label": "兵器词缀",
+    "note": "WepAffixDef：id + name + fogName + tip + 可选六乘区（poiseMul/lifesteal/neiliOnHit/speedMul/heavyDmgMul/staminaRefund）。瘦；锻造实例 roll。禁任意脚本。对照 CORE_WEP_AFFIXES / WepAffixSchema。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜稳定"
+      },
+      {
+        "key": "name",
+        "type": "string",
+        "required": true,
+        "label": "名称"
+      },
+      {
+        "key": "fogName",
+        "type": "string",
+        "required": true,
+        "label": "雾名",
+        "hint": "未鉴定如 词缀·??"
+      },
+      {
+        "key": "tip",
+        "type": "string",
+        "required": true,
+        "label": "提示"
+      },
+      {
+        "key": "poiseMul",
+        "type": "number",
+        "label": "破韧倍率"
+      },
+      {
+        "key": "lifesteal",
+        "type": "number",
+        "label": "吸血比例"
+      },
+      {
+        "key": "neiliOnHit",
+        "type": "number",
+        "label": "命中回内"
+      },
+      {
+        "key": "speedMul",
+        "type": "number",
+        "label": "攻速倍率",
+        "hint": "<1 更快"
+      },
+      {
+        "key": "heavyDmgMul",
+        "type": "number",
+        "label": "重击伤倍率"
+      },
+      {
+        "key": "staminaRefund",
+        "type": "number",
+        "label": "体力返还"
+      }
+    ]
+  },
+  "coreAffixIds": [
+    "duwu",
+    "nifeng",
+    "huashi",
+    "yinhuo",
+    "canyue",
+    "anhuenzhong",
+    "zhanghai"
+  ],
+  "affixes": {
+    "label": "场地词缀",
+    "note": "AffixDef：id + name + fogName + desc + color + 可选闭集 tick/战斗字段（毒雾 DOT / 阴火立定 / 安魂钟 / 逆风击退 / 残月轻功 / 滑湿闪身 / 权重 / evolve）。evolveTo 软引用其它 affix。供关卡 arena.affixBias。禁任意脚本；不扩效果词汇；不改 tickAffix；导演已读 prefer-subset（债#5）。对照 CORE_AFFIXES / AffixSchema。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜稳定；供 affixBias / evolveTo 挂接"
+      },
+      {
+        "key": "name",
+        "type": "string",
+        "required": true,
+        "label": "名称"
+      },
+      {
+        "key": "fogName",
+        "type": "string",
+        "required": true,
+        "label": "雾名",
+        "hint": "未入场如 ??·雾"
+      },
+      {
+        "key": "desc",
+        "type": "string",
+        "required": true,
+        "label": "描述"
+      },
+      {
+        "key": "color",
+        "type": "color",
+        "required": true,
+        "label": "色标"
+      },
+      {
+        "key": "primaryWeight",
+        "type": "number",
+        "label": "主池权重",
+        "hint": "省略/0=不进主池"
+      },
+      {
+        "key": "secondaryWeight",
+        "type": "number",
+        "label": "副池权重",
+        "hint": "省略/0=不进副池"
+      },
+      {
+        "key": "evolveOnly",
+        "type": "boolean",
+        "label": "仅演化",
+        "hint": "不进主/副池（如瘴海）"
+      },
+      {
+        "key": "dotPeriod",
+        "type": "number",
+        "label": "毒雾·周期帧",
+        "hint": "毒雾/瘴海；更大=更慢"
+      },
+      {
+        "key": "dotDamage",
+        "type": "number",
+        "label": "毒雾·伤害"
+      },
+      {
+        "key": "dotFloatEvery",
+        "type": "number",
+        "label": "毒雾·飘字每N跳"
+      },
+      {
+        "key": "stillDotPeriod",
+        "type": "number",
+        "label": "阴火·立定周期"
+      },
+      {
+        "key": "stillDotDamage",
+        "type": "number",
+        "label": "阴火·立定伤害"
+      },
+      {
+        "key": "secondaryStillDotPeriod",
+        "type": "number",
+        "label": "阴火·副槽周期"
+      },
+      {
+        "key": "secondaryStillDotDamage",
+        "type": "number",
+        "label": "阴火·副槽伤害"
+      },
+      {
+        "key": "bellCycle",
+        "type": "number",
+        "label": "钟·周期帧"
+      },
+      {
+        "key": "bellWindow",
+        "type": "number",
+        "label": "钟·窗口帧"
+      },
+      {
+        "key": "bellBannerTitle",
+        "type": "string",
+        "label": "钟·横幅题"
+      },
+      {
+        "key": "bellBannerSub",
+        "type": "string",
+        "label": "钟·横幅副"
+      },
+      {
+        "key": "bellBannerDur",
+        "type": "number",
+        "label": "钟·横幅时长"
+      },
+      {
+        "key": "bellRingSize",
+        "type": "number",
+        "label": "钟·环大小"
+      },
+      {
+        "key": "evolveTo",
+        "type": "string",
+        "label": "演化目标 id",
+        "datalist": "affixIds",
+        "hint": "本卷 affixes + 长夜核心"
+      },
+      {
+        "key": "evolveAfter",
+        "type": "number",
+        "label": "演化·帧数",
+        "hint": "如 60*90"
+      },
+      {
+        "key": "evolveBannerTitle",
+        "type": "string",
+        "label": "演化·横幅题"
+      },
+      {
+        "key": "evolveBannerSub",
+        "type": "string",
+        "label": "演化·横幅副"
+      },
+      {
+        "key": "playerWideHitMul",
+        "type": "number",
+        "label": "逆风·宽招伤倍率"
+      },
+      {
+        "key": "playerWideHitMinW",
+        "type": "number",
+        "label": "逆风·宽招最小宽"
+      },
+      {
+        "key": "playerWideHitNames",
+        "type": "stringList",
+        "label": "逆风·宽招名",
+        "hint": "逗号分隔攻击名"
+      },
+      {
+        "key": "enemyIncomingKbMul",
+        "type": "number",
+        "label": "敌→我击退倍率"
+      },
+      {
+        "key": "playerOutgoingKbMul",
+        "type": "number",
+        "label": "我→敌击退倍率"
+      },
+      {
+        "key": "dashCdMul",
+        "type": "number",
+        "label": "残月·闪身冷却倍率"
+      },
+      {
+        "key": "dashIframeBonus",
+        "type": "number",
+        "label": "残月·闪身无敌+"
+      },
+      {
+        "key": "jumpBoost",
+        "type": "number",
+        "label": "残月·跳跃倍率"
+      },
+      {
+        "key": "dashKickBonus",
+        "type": "number",
+        "label": "残月·闪踢加成"
+      },
+      {
+        "key": "dashLenMul",
+        "type": "number",
+        "label": "滑湿·闪身长度倍率"
+      },
+      {
+        "key": "dashSlideVx",
+        "type": "number",
+        "label": "滑湿·滑行vx"
+      },
+      {
+        "key": "dashSpeed",
+        "type": "number",
+        "label": "滑湿·闪身速度"
+      }
+    ]
+  },
+  "corePillIds": [
+    "heal",
+    "rage",
+    "atkIncense",
+    "qingxin",
+    "baofa",
+    "xuhang",
+    "jiekongdan",
+    "porendan",
+    "hutidan",
+    "jingzhou",
+    "baoqi",
+    "yingbu",
+    "xuming",
+    "pojia"
+  ],
+  "coreNeigongIds": [
+    "hunyuan",
+    "xueying",
+    "qingxu",
+    "lieshan"
+  ],
+  "pillAuraPresets": [
+    "ring",
+    "qi",
+    "ember",
+    "tint"
+  ],
+  "pillSfxKinds": [
+    "potion",
+    "ui"
+  ],
+  "pills": {
+    "label": "丹药",
+    "note": "PillDef：id+name+lore+tip+cost(materialMap)+fee+carryCap+可选 quality/grade/sortie + 嵌套 effect（闭集战斗字段；castFeel/whileActive 点路径）。cost 挂本卷+核心 materials。禁任意脚本；不扩 aura/sfx lit / 效果词汇；不做喝药预览。对照 CORE_PILLS / PillSchema。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜稳定"
+      },
+      {
+        "key": "name",
+        "type": "string",
+        "required": true,
+        "label": "名称"
+      },
+      {
+        "key": "lore",
+        "type": "string",
+        "required": true,
+        "label": "传闻"
+      },
+      {
+        "key": "tip",
+        "type": "string",
+        "required": true,
+        "label": "提示"
+      },
+      {
+        "key": "cost",
+        "type": "materialMap",
+        "required": true,
+        "label": "炼制材料",
+        "hint": "本卷 materials + 长夜核心；如 herb:2, cinnabar:1",
+        "datalist": "materialIds"
+      },
+      {
+        "key": "fee",
+        "type": "number",
+        "required": true,
+        "label": "银钱费用",
+        "min": 0
+      },
+      {
+        "key": "carryCap",
+        "type": "number",
+        "required": true,
+        "label": "携带上限",
+        "min": 0
+      },
+      {
+        "key": "quality",
+        "type": "enum",
+        "enum": [
+          "tian",
+          "di",
+          "xuan",
+          "huang",
+          "fan",
+          "lie"
+        ],
+        "label": "品质"
+      },
+      {
+        "key": "grade",
+        "type": "enum",
+        "enum": [
+          "shang",
+          "zhong",
+          "xia"
+        ],
+        "label": "品级"
+      },
+      {
+        "key": "sortie",
+        "type": "boolean",
+        "label": "可出征",
+        "hint": "true=可打入备战丹槽"
+      },
+      {
+        "key": "effect.heal",
+        "type": "number",
+        "label": "效果·回血"
+      },
+      {
+        "key": "effect.healWithFrag",
+        "type": "boolean",
+        "label": "效果·回血吃残页"
+      },
+      {
+        "key": "effect.rage",
+        "type": "number",
+        "label": "效果·气势"
+      },
+      {
+        "key": "effect.rageWithFrag",
+        "type": "boolean",
+        "label": "效果·气势吃残页"
+      },
+      {
+        "key": "effect.neili",
+        "type": "number",
+        "label": "效果·内力"
+      },
+      {
+        "key": "effect.neiliWithFrag",
+        "type": "boolean",
+        "label": "效果·内力吃残页"
+      },
+      {
+        "key": "effect.stamina",
+        "type": "number",
+        "label": "效果·体力"
+      },
+      {
+        "key": "effect.armor",
+        "type": "number",
+        "label": "效果·护甲"
+      },
+      {
+        "key": "effect.invuln",
+        "type": "number",
+        "label": "效果·无敌帧"
+      },
+      {
+        "key": "effect.clearControl",
+        "type": "boolean",
+        "label": "效果·解控"
+      },
+      {
+        "key": "effect.atkBuffSec",
+        "type": "number",
+        "label": "效果·攻击buff秒"
+      },
+      {
+        "key": "effect.defBuffSec",
+        "type": "number",
+        "label": "效果·减伤buff秒"
+      },
+      {
+        "key": "effect.defBuffMax",
+        "type": "boolean",
+        "label": "效果·减伤取max"
+      },
+      {
+        "key": "effect.porenBuffSec",
+        "type": "number",
+        "label": "效果·破韧秒"
+      },
+      {
+        "key": "effect.pojiaBuffSec",
+        "type": "number",
+        "label": "效果·破甲秒"
+      },
+      {
+        "key": "effect.jingzhouSec",
+        "type": "number",
+        "label": "效果·净咒秒"
+      },
+      {
+        "key": "effect.affixSuppressSec",
+        "type": "number",
+        "label": "效果·抑词缀秒"
+      },
+      {
+        "key": "effect.baoqiSec",
+        "type": "number",
+        "label": "效果·暴气秒"
+      },
+      {
+        "key": "effect.yingbuSec",
+        "type": "number",
+        "label": "效果·影步秒"
+      },
+      {
+        "key": "effect.xuhangSec",
+        "type": "number",
+        "label": "效果·续航秒"
+      },
+      {
+        "key": "effect.xuhangTicks",
+        "type": "number",
+        "label": "效果·续航跳数"
+      },
+      {
+        "key": "effect.durScaleWithPillMul",
+        "type": "boolean",
+        "label": "效果·时长吃残页乘"
+      },
+      {
+        "key": "effect.floatText",
+        "type": "string",
+        "label": "效果·飘字"
+      },
+      {
+        "key": "effect.floatColor",
+        "type": "color",
+        "label": "效果·飘字色"
+      },
+      {
+        "key": "effect.sfx",
+        "type": "enum",
+        "enum": [
+          "potion",
+          "ui"
+        ],
+        "label": "效果·音效",
+        "hint": "闭集 potion|ui；不扩"
+      },
+      {
+        "key": "effect.castFeel.hitstop",
+        "type": "number",
+        "label": "手感·顿帧"
+      },
+      {
+        "key": "effect.castFeel.shake.amp",
+        "type": "number",
+        "label": "手感·震幅"
+      },
+      {
+        "key": "effect.castFeel.shake.frames",
+        "type": "number",
+        "label": "手感·震帧"
+      },
+      {
+        "key": "effect.castFeel.flash.color",
+        "type": "color",
+        "label": "手感·闪色"
+      },
+      {
+        "key": "effect.castFeel.flash.a",
+        "type": "number",
+        "label": "手感·闪透明",
+        "min": 0,
+        "max": 1
+      },
+      {
+        "key": "effect.whileActive.auraPreset",
+        "type": "enum",
+        "enum": [
+          "ring",
+          "qi",
+          "ember",
+          "tint"
+        ],
+        "label": "光环·预设",
+        "hint": "闭集 ring|qi|ember|tint；不扩"
+      },
+      {
+        "key": "effect.whileActive.color",
+        "type": "color",
+        "label": "光环·色"
+      },
+      {
+        "key": "effect.whileActive.period",
+        "type": "number",
+        "label": "光环·周期帧"
+      },
+      {
+        "key": "effect.whileActive.hudTint",
+        "type": "color",
+        "label": "光环·HUD色"
+      },
+      {
+        "key": "effect.whileActive.rimGlow",
+        "type": "boolean",
+        "label": "光环·描边"
+      }
+    ]
+  },
+  "neigong": {
+    "label": "内功",
+    "note": "NeigongDef：id+name+lore+tip+signature+style+meditateCost(materialMap)+fee+可选 quality + effects（四必填五阶数组 + 可选签名上限）。meditateCost 挂本卷+核心 materials。禁任意脚本；不扩效果表结构；不做打坐预览。对照 CORE_NEIGONGS / NeigongSchema。",
+    "defFields": [
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "编号（可改）",
+        "hint": "目录 id；宜稳定"
+      },
+      {
+        "key": "name",
+        "type": "string",
+        "required": true,
+        "label": "名称"
+      },
+      {
+        "key": "lore",
+        "type": "string",
+        "required": true,
+        "label": "传闻"
+      },
+      {
+        "key": "tip",
+        "type": "string",
+        "required": true,
+        "label": "提示"
+      },
+      {
+        "key": "signature",
+        "type": "string",
+        "required": true,
+        "label": "满级签名",
+        "hint": "化境门派签名文案"
+      },
+      {
+        "key": "style",
+        "type": "string",
+        "required": true,
+        "label": "路数",
+        "hint": "如 均衡/烈攻/守中/霸道"
+      },
+      {
+        "key": "meditateCost",
+        "type": "materialMap",
+        "required": true,
+        "label": "打坐材料",
+        "hint": "本卷 materials + 长夜核心；如 cinnabar:2, herb:2",
+        "datalist": "materialIds"
+      },
+      {
+        "key": "fee",
+        "type": "number",
+        "required": true,
+        "label": "银钱费用",
+        "min": 0
+      },
+      {
+        "key": "quality",
+        "type": "enum",
+        "enum": [
+          "tian",
+          "di",
+          "xuan",
+          "huang",
+          "fan",
+          "lie"
+        ],
+        "label": "品质"
+      },
+      {
+        "key": "effects.damageBonus",
+        "type": "numberList",
+        "required": true,
+        "label": "效果·武功加成[]",
+        "hint": "五阶逗号分隔；如 0.06, 0.09, 0.12, 0.16, 0.20"
+      },
+      {
+        "key": "effects.rageBonus",
+        "type": "numberList",
+        "required": true,
+        "label": "效果·气势加成[]",
+        "hint": "五阶逗号分隔"
+      },
+      {
+        "key": "effects.defBonus",
+        "type": "numberList",
+        "required": true,
+        "label": "效果·减伤加成[]",
+        "hint": "五阶逗号分隔"
+      },
+      {
+        "key": "effects.neiliRegenMul",
+        "type": "numberList",
+        "required": true,
+        "label": "效果·内力回复倍率[]",
+        "hint": "五阶逗号分隔；如 1.0, 1.05, 1.1, 1.15, 1.2"
+      },
+      {
+        "key": "effects.executeMulBonus",
+        "type": "number",
+        "label": "签名·处决加成",
+        "hint": "满级加到 1 上；随 rank/max 缩放"
+      },
+      {
+        "key": "effects.lifestealMax",
+        "type": "number",
+        "label": "签名·满级吸血"
+      },
+      {
+        "key": "effects.parryWindowBonusMax",
+        "type": "number",
+        "label": "签名·满级弹反窗+"
+      },
+      {
+        "key": "effects.parryRageBonusMax",
+        "type": "number",
+        "label": "签名·满级弹反回气+"
+      },
+      {
+        "key": "effects.poiseMulBonus",
+        "type": "number",
+        "label": "签名·破韧加成",
+        "hint": "满级加到 1 上"
+      }
+    ]
+  },
+  "coreWeaponIds": [
+    "silver",
+    "thorn",
+    "spear",
+    "axe",
+    "twin",
+    "ironfist",
+    "clawglove",
+    "dao",
+    "softsword",
+    "halberd",
+    "pike",
+    "hammer",
+    "guandao",
+    "bell"
+  ],
+  "acts": {
+    "label": "幕池（整幕默认）",
+    "note": "整幕默认权重 / Lore / 幕间字幕。与「关卡浪次」分家：stages=几何/波次/场内 beat/单场 eliteWeight；本页=整幕 eliteWeights/掉落偏向/loreLine + betweenActs。kit 开放 string 软引用 bossKits（Act1.5）。导出同构 content.acts={pools,beats}，可被 applyContent 吃。不做掉落模拟预览。",
+    "tints": [
+      "jade",
+      "ink",
+      "blood",
+      "ash"
+    ],
+    "beatWhen": [
+      "betweenActs"
+    ],
+    "poolFields": [
+      {
+        "key": "actIndex",
+        "type": "number",
+        "required": true,
+        "label": "幕序 actIndex（从 0 起）"
+      },
+      {
+        "key": "kit",
+        "type": "string",
+        "required": true,
+        "label": "整幕默认怎么凶 kit",
+        "datalist": "bossKitIds",
+        "hint": "核心 stone|rain|tomb|night + 本卷 bossKits（开放 string · Act1.5）；stage.boss.kit 优先"
+      },
+      {
+        "key": "tint",
+        "type": "enum",
+        "enum": [
+          "jade",
+          "ink",
+          "blood",
+          "ash"
+        ],
+        "required": true,
+        "label": "整幕默认 Boss 染色 tint"
+      },
+      {
+        "key": "eliteWeights",
+        "type": "materialMap",
+        "required": true,
+        "label": "整幕精英偏重",
+        "datalist": "eliteModIds",
+        "hint": "如 tongpi:3,shanbu:1；单场 arena.eliteWeight 可覆盖"
+      },
+      {
+        "key": "dropLean",
+        "type": "stringList",
+        "required": true,
+        "label": "材料掉落偏向",
+        "datalist": "materialIds"
+      },
+      {
+        "key": "blueprintLean",
+        "type": "stringList",
+        "required": true,
+        "label": "图纸偏向",
+        "datalist": "weaponIds",
+        "hint": "兵器 id（本卷+核心）"
+      },
+      {
+        "key": "setLean",
+        "type": "stringList",
+        "required": true,
+        "label": "防具套装偏向",
+        "datalist": "armorSetIds"
+      },
+      {
+        "key": "loreLine",
+        "type": "string",
+        "required": true,
+        "label": "开幕 Lore 一句"
+      }
+    ],
+    "beatFields": [
+      {
+        "key": "fromAct",
+        "type": "number",
+        "required": true,
+        "label": "离开的幕序 fromAct"
+      },
+      {
+        "key": "id",
+        "type": "string",
+        "required": true,
+        "label": "字幕 id"
+      },
+      {
+        "key": "when",
+        "type": "enum",
+        "enum": [
+          "betweenActs"
+        ],
+        "required": true,
+        "label": "时机（幕间锁 betweenActs）",
+        "hint": "场内 enter/beforeBoss 等请走关卡 beats"
+      },
+      {
+        "key": "title",
+        "type": "string",
+        "required": true,
+        "label": "标题"
+      },
+      {
+        "key": "subtitle",
+        "type": "string",
+        "label": "副标题"
+      },
+      {
+        "key": "holdFrames",
+        "type": "number",
+        "label": "停留帧"
+      },
+      {
+        "key": "slowmo",
+        "type": "number",
+        "label": "慢镜倍率"
+      }
+    ]
+  },
+  "coreSkillIds": [
+    "qinggong",
+    "shanshen",
+    "tiebushan",
+    "lianhuan",
+    "liaoshang",
+    "pojun",
+    "daomang",
+    "qiangjue",
+    "bengquan",
+    "huzhua",
+    "huixuan",
+    "zhanma",
+    "tuci",
+    "chuanxin",
+    "hengsao",
+    "kaitian",
+    "tieshan",
+    "fanyun",
+    "ningqi"
+  ],
+  "coreTalismanIds": [
+    "quxie",
+    "qingwu",
+    "jiekong",
+    "poshi",
+    "hushen",
+    "dingshen",
+    "anhunfu",
+    "jingxue",
+    "zhangyan",
+    "feijianfu",
+    "leifu",
+    "shuilongfu"
+  ],
+  "coreScriptIds": [
+    "quxie",
+    "qingwu",
+    "jiekong",
+    "poshi",
+    "hushen",
+    "dingshen",
+    "anhunfu",
+    "jingxue",
+    "zhangyan",
+    "skySwords",
+    "thunder",
+    "waterPulse"
+  ],
+  "coreEnemyIds": [
+    "axe",
+    "shield",
+    "archer",
+    "spear",
+    "gargoyle"
+  ],
+  "coreStageIds": [
+    "act1",
+    "act2",
+    "act3",
+    "act4"
+  ],
+  "coreWeaponLookIds": [
+    "lookSwordPlain",
+    "lookSpearInk",
+    "lookDaggerNeedle",
+    "lookAxeHeavy",
+    "lookTwinCrescent",
+    "lookGreatInk",
+    "lookHalberdCrescent",
+    "lookHammerBlunt"
+  ]
+}

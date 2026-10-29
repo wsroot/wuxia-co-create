@@ -1,0 +1,193 @@
+{
+  "sfx": [
+    {
+      "id": "moyu_ink_slash",
+      "synth": "slash"
+    },
+    {
+      "id": "moyu_file_tap",
+      "src": "./art/audio/r4a_smoke.wav",
+      "format": "wav"
+    },
+    {
+      "id": "moyu_file_click",
+      "src": "./art/audio/r4c_tap.ogg",
+      "format": "ogg"
+    }
+  ],
+  "attacks": [
+    {
+      "id": "moyu_ink_shot",
+      "name": "moyu_ink_shot",
+      "startup": 0,
+      "active": 1,
+      "recovery": 0,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "damage": 16,
+      "kbX": 6,
+      "kbY": -1,
+      "hitstun": 20,
+      "hitstop": 6,
+      "shake": 4,
+      "parryable": true
+    }
+  ],
+  "projectiles": [
+    {
+      "id": "moyu_ink_arrow",
+      "drawKind": "arrow",
+      "hitW": 32,
+      "hitH": 10,
+      "life": 280,
+      "hitSfx": "arrow",
+      "attackKey": "moyu_ink_shot"
+    }
+  ],
+  "volleys": [
+    {
+      "id": "moyu_slow_thunder",
+      "style": "thunder",
+      "defaultCount": 3,
+      "defaultInterval": 18,
+      "defaultSpread": 180,
+      "color": "#ffe080"
+    }
+  ],
+  "talismanScripts": [
+    {
+      "id": "moyuSlowThunder",
+      "steps": [
+        {
+          "kind": "banner",
+          "text": "灵符",
+          "sub": "墨羽慢雷",
+          "dur": 70
+        },
+        {
+          "kind": "sfx",
+          "id": "moyu_ink_slash"
+        },
+        {
+          "kind": "fx",
+          "preset": "flare",
+          "at": "caster",
+          "size": 48,
+          "color": "#ffe080"
+        },
+        {
+          "kind": "spawnVolley",
+          "volleyId": "moyu_slow_thunder",
+          "count": 3,
+          "interval": 18,
+          "damage": 8,
+          "spread": 180
+        },
+        {
+          "kind": "shake",
+          "amp": 3,
+          "frames": 6
+        },
+        {
+          "kind": "wait",
+          "frames": 12
+        }
+      ]
+    }
+  ],
+  "talismans": [
+    {
+      "id": "moyufu",
+      "name": "墨羽符",
+      "fogName": "灵符·墨??",
+      "lore": "纸上凝墨羽，一挥慢雷自天降。箭羽与雷纹同源。",
+      "tip": "出征：慢雷三落 · 墨羽弹幕",
+      "color": "#ffe080",
+      "cost": {
+        "cinnabar": 1,
+        "silk": 1,
+        "bone": 1
+      },
+      "fee": 14,
+      "stockCap": 2,
+      "runCharges": 1,
+      "quality": "huang",
+      "grade": "zhong",
+      "scriptId": "moyuSlowThunder",
+      "icon": "H-05-tal-4"
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "moyu_ink_archer",
+      "body": "archer",
+      "label": "墨羽试射",
+      "steps": [
+        {
+          "kind": "facePlayer"
+        },
+        {
+          "kind": "keepDistance",
+          "idealMin": 260,
+          "idealMax": 460,
+          "chase": 700,
+          "retreatSpeed": 2.8
+        },
+        {
+          "kind": "rangedAttack",
+          "projectileId": "moyu_ink_arrow",
+          "rangeMin": 190,
+          "rangeMax": 600,
+          "weight": 2.4,
+          "cooldown": 70,
+          "aimFrames": 38
+        },
+        {
+          "kind": "meleeAttack",
+          "attackKey": "whip",
+          "rangeMin": 0,
+          "rangeMax": 76,
+          "weight": 2.0,
+          "cooldown": 40
+        }
+      ]
+    }
+  ],
+  "enemies": [
+    {
+      "id": "moyu_archer",
+      "name": "墨羽弓手",
+      "body": "archer",
+      "silhouetteId": "archer",
+      "behaviorId": "moyu_ink_archer",
+      "hp": 48,
+      "dropChance": 0.2,
+      "eliteEligible": true,
+      "loot": [
+        {
+          "kind": "material",
+          "id": "silk",
+          "chance": 0.3,
+          "amount": 1
+        },
+        {
+          "kind": "crystal",
+          "chance": 0.15,
+          "amount": 2
+        }
+      ]
+    }
+  ],
+  "backdrops": [
+    {
+      "id": "moyu_eclipse_tint",
+      "theme": "eclipse",
+      "skyTint": "#1a1028",
+      "label": "墨羽蚀月"
+    }
+  ]
+}

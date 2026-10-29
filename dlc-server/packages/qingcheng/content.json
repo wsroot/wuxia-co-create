@@ -1,0 +1,18 @@
+{
+  "skills": [
+    {
+      "id": "qingchengdun",
+      "name": "青城遁甲",
+      "fogName": "武学·城??",
+      "kind": "passive",
+      "track": "combat",
+      "lore": "青城山门护体之术，以气化甲，避锋芒。",
+      "tip": "被动减伤（习得后）",
+      "profHint": "格挡承伤 / 挨打存活",
+      "meditateCost": {},
+      "fee": 0,
+      "quality": "huang",
+      "effects": { "defBonus": [0.032, 0.044, 0.056, 0.068, 0.08] }
+    }
+  ]
+}

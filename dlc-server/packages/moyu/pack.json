@@ -1,0 +1,12 @@
+{
+  "id": "moyu",
+  "kind": "pack",
+  "name": "墨羽",
+  "version": "1.1.0",
+  "description": "墨羽一脉：自建墨箭（挂自建伤害盒 moyu_ink_shot）与慢雷弹幕 + 墨羽符一枚。R3 远程素材 + ArrowProj2 伤害软挂示范，只登记数据。",
+  "builtin": true,
+  "tags": [
+    "talisman",
+    "enemy"
+  ]
+}

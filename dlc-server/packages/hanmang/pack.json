@@ -1,0 +1,11 @@
+{
+  "id": "hanmang",
+  "kind": "pack",
+  "name": "寒芒",
+  "version": "1.0.0",
+  "description": "纸上凝霜，一枚寒芒符：身前寒刃锥击。",
+  "builtin": true,
+  "tags": [
+    "talisman"
+  ]
+}
